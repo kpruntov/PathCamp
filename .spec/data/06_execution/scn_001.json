@@ -1,0 +1,24 @@
+{
+  "id": "SCN-001",
+  "title": "Create a Campaign successfully",
+  "objective": "Verify that a GM can create a campaign when providing valid inputs.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": ["UR-001", "FR-001"]
+  },
+  "steps": [
+    {
+      "step": "GM logs in and navigates to Main Dashboard",
+      "expected_result": "Dashboard is displayed with a 'New Campaign' button"
+    },
+    {
+      "step": "GM clicks 'New Campaign'",
+      "expected_result": "New Campaign form is displayed"
+    },
+    {
+      "step": "GM fills in Name 'Test', Description, Party Size 4, Level 1 and submits",
+      "expected_result": "Campaign is saved successfully"
+    }
+  ],
+  "status": "Draft"
+}

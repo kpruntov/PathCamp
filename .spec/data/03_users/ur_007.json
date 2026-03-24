@@ -1,0 +1,45 @@
+{
+  "id": "UR-007",
+  "title": "Manage Users",
+  "primary_actor": "UCH-003",
+  "preconditions": [
+    "Admin is logged in"
+  ],
+  "postconditions": [
+    "User account status is modified (blocked/unblocked)"
+  ],
+  "trigger": "Admin accesses the user management dashboard",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "Admin logs into the system"
+    },
+    {
+      "step": 2,
+      "action": "Admin views a list of all registered GM users"
+    },
+    {
+      "step": 3,
+      "action": "Admin selects a user and changes their status to Blocked or Active"
+    },
+    {
+      "step": 4,
+      "action": "System updates the user's access permissions immediately"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "3",
+      "condition": "Admin attempts to block themselves or the primary super-admin",
+      "action": "System prevents the action and displays an error"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "All registered users are treated as GMs.",
+    "Admins can block or unblock users to control platform access.",
+    "A blocked user cannot log in or access their campaigns."
+  ]
+}

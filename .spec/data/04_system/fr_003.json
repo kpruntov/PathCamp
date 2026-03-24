@@ -1,0 +1,15 @@
+{
+  "id": "FR-003",
+  "title": "Campaign Timeline Initialization",
+  "description": "The system shall initialize every new campaign with an empty timeline starting at exactly Tick 1.",
+  "trace_to": {
+    "user_requirements": ["UR-001"]
+  },
+  "acceptance_criteria": [
+    "A newly created campaign has a 'current_tick' value of 1.",
+    "The campaign's global timeline is initialized without any active events."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

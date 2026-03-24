@@ -1,0 +1,14 @@
+{
+  "id": "FR-001",
+  "title": "Campaign Creation Fields",
+  "description": "The system shall allow the Game Master to create a new campaign by capturing the following fields: Name, Description, Party Size, and Party Starting Level.",
+  "trace_to": {
+    "user_requirements": ["UR-001"]
+  },
+  "acceptance_criteria": [
+    "Database schema correctly stores Name, Description, Party Size, and Starting Level for a Campaign."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

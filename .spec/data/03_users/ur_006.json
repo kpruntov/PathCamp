@@ -1,0 +1,45 @@
+{
+  "id": "UR-006",
+  "title": "Share Campaign",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is logged in",
+    "A campaign exists"
+  ],
+  "postconditions": [
+    "A read-only access link is generated"
+  ],
+  "trigger": "GM clicks 'Share Campaign'",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM selects the sharing option for an active campaign"
+    },
+    {
+      "step": 2,
+      "action": "System generates a unique, read-only URL"
+    },
+    {
+      "step": 3,
+      "action": "GM provides this URL to Campaign Viewers (UCH-002)"
+    },
+    {
+      "step": 4,
+      "action": "Viewers access the URL to see the timeline, public events, and current scenes"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "2",
+      "condition": "System fails to generate link",
+      "action": "System displays an error message"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "The generated link provides read-only access.",
+    "Viewers cannot modify Ticks, Scenes, Events, or trigger Encounters."
+  ]
+}

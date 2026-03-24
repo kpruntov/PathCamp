@@ -1,0 +1,15 @@
+{
+  "id": "FR-002",
+  "title": "Campaign Data Validation",
+  "description": "The system shall require all Campaign Creation fields to be filled and ensure the Campaign Name is unique per Game Master.",
+  "trace_to": {
+    "user_requirements": ["UR-001"]
+  },
+  "acceptance_criteria": [
+    "An error is thrown if required fields are blank.",
+    "An error is thrown if a duplicate name is used by the same GM."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "STK-002",
+  "name": "Paizo",
+  "role": "Regulatory Stakeholder",
+  "influence": "High",
+  "interests": [
+    "Compliance with Community Use Policy",
+    "Proper use of Pathfinder 2e intellectual property"
+  ]
+}

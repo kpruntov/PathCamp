@@ -1,0 +1,54 @@
+{
+  "id": "UR-005",
+  "title": "Generate Encounter within a Scene",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is logged in",
+    "A Scene exists within a Tick"
+  ],
+  "postconditions": [
+    "An encounter is generated and attached to the Scene for that Tick"
+  ],
+  "trigger": "GM clicks 'Generate Encounter' inside a Scene view",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM triggers encounter generation within a specific Scene in the current Tick"
+    },
+    {
+      "step": 2,
+      "action": "System reads the Scene's explicit traits and any traits inherited from active World Events in that Tick"
+    },
+    {
+      "step": 3,
+      "action": "System reads the Campaign's current Party Level and Size"
+    },
+    {
+      "step": 4,
+      "action": "System deterministically queries the monster/hazard database using the Traits"
+    },
+    {
+      "step": 5,
+      "action": "System calculates the appropriate Elite/Weak templates based on Party Level"
+    },
+    {
+      "step": 6,
+      "action": "System outputs the mechanical Trace and uses the AI Narrator to provide narrative flavor, saving it to the Scene for that Tick"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "4",
+      "condition": "No monsters found matching the exact trait combination",
+      "action": "System proposes closest match or broadens search, notifying the GM"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "Encounters are generated based strictly on the Scene's traits for that specific Tick.",
+    "The generation process does not use AI for math, only for flavor text.",
+    "The encounter is saved as part of the Scene's state for that Tick."
+  ]
+}

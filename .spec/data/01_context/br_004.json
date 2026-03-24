@@ -1,0 +1,9 @@
+{
+  "id": "BR-004",
+  "title": "Trait-Based Scene Filtering",
+  "statement": "Monsters, hazards, and rewards proposed by the engine must be filtered strictly based on the active Scene's metadata tags (Traits) and the current Party Level (applying Elite/Weak templates automatically).",
+  "source": "Pathcamp PRD",
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  }
+}

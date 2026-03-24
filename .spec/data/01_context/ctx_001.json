@@ -1,0 +1,19 @@
+{
+  "id": "CTX-001",
+  "product_perspective": "Independent web-based application (frontend and backend) for Pathfinder 2e Game Masters.",
+  "product_scope": {
+    "description": "A metadata-driven Campaign Simulation Engine to create, manage, and share dynamic campaigns and world events.",
+    "in_scope": [
+      "Deterministic encounter generation based on scene metadata",
+      "World tick time tracking",
+      "Event and front management",
+      "Campaign sharing with non-GM users",
+      "AI-driven flavor and narrative generation"
+    ],
+    "out_of_scope": [
+      "AI generation of game mechanics, monster stats, or check DCs",
+      "Player-facing active gameplay mechanics or VTT integration (unless specified as export)"
+    ]
+  },
+  "operating_environment": "Web browser, communicating with a FastAPI backend and PostgreSQL/MongoDB data layer."
+}

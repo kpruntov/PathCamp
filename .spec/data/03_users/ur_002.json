@@ -1,0 +1,51 @@
+{
+  "id": "UR-002",
+  "title": "Manage Timeline (Ticks)",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is logged in",
+    "A campaign exists"
+  ],
+  "postconditions": [
+    "Timeline is updated with a new Tick or a modified historical Tick",
+    "Subsequent Ticks inherit state changes"
+  ],
+  "trigger": "GM creates a new Tick or selects an existing Tick to modify",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM creates a new Tick (milestone) or selects a historical Tick on the timeline"
+    },
+    {
+      "step": 2,
+      "action": "GM defines or updates the narrative context for that Tick"
+    },
+    {
+      "step": 3,
+      "action": "System cascades the state of all global assets (Scenes, NPCs) from the previous Tick into the current one"
+    },
+    {
+      "step": 4,
+      "action": "If modifying a historical Tick, System warns GM that changes will overwrite state in subsequent Ticks and requests confirmation"
+    },
+    {
+      "step": 5,
+      "action": "System updates the active state for the selected Tick and recalculates inheritance for any future Ticks"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "4",
+      "condition": "GM cancels the historical edit warning",
+      "action": "System reverts changes to the historical Tick and aborts the cascade"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "A new Tick inherits the exact state of the previous Tick.",
+    "Modifying a past Tick automatically cascades those changes forward to all subsequent Ticks, overwriting conflicting states.",
+    "A warning is displayed before cascading historical changes."
+  ]
+}

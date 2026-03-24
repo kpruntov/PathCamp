@@ -1,0 +1,9 @@
+{
+  "id": "BR-002",
+  "title": "Restricted AI Scope (Flavor Only)",
+  "statement": "The LLM (Gemini API) may only be used as an AI Narrator to generate narrative prose and contextualize the mechanical data provided by the engine.",
+  "source": "Pathcamp PRD",
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  }
+}

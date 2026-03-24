@@ -1,0 +1,14 @@
+{
+  "id": "FR-004",
+  "title": "Campaign Dashboard Navigation",
+  "description": "The system shall automatically navigate the Game Master to the Campaign Dashboard immediately upon successful creation of a new campaign.",
+  "trace_to": {
+    "user_requirements": ["UR-001"]
+  },
+  "acceptance_criteria": [
+    "Upon successful creation, the frontend router changes view to the specific Campaign Dashboard."
+  ],
+  "verification_method": "Demonstration",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

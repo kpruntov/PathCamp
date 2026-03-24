@@ -1,0 +1,16 @@
+{
+  "id": "SCN-004",
+  "title": "Campaign Dashboard Navigation",
+  "objective": "Verify automatic navigation to Dashboard after creation.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": ["FR-004"]
+  },
+  "steps": [
+    {
+      "step": "GM successfully creates a campaign",
+      "expected_result": "Browser URL changes to the specific Campaign Dashboard view"
+    }
+  ],
+  "status": "Draft"
+}

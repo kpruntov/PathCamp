@@ -1,0 +1,10 @@
+{
+  "id": "UCH-002",
+  "user_type": "Campaign Viewer",
+  "technical_expertise": "Novice",
+  "frequency_of_use": "Occasional",
+  "known_constraints": [
+    "Read-only access to shared campaigns",
+    "Cannot advance ticks or trigger events"
+  ]
+}

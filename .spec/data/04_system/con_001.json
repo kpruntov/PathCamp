@@ -1,0 +1,12 @@
+{
+  "id": "CON-001",
+  "category": "Technical",
+  "statement": "The user interface must follow a Pathfinder 2e aesthetic (fantasy, colorful, clean, simple) and be primarily desktop-focused but fully responsive for mobile devices.",
+  "rationale": "To provide immersive experience for players/GMs consistent with the TTRPG, while ensuring accessibility on different devices.",
+  "trace_to": {
+    "stakeholders": [
+      "STK-001",
+      "STK-002"
+    ]
+  }
+}

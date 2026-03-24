@@ -1,0 +1,51 @@
+{
+  "id": "UR-003",
+  "title": "Manage Global Assets (Scenes & NPCs)",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is logged in",
+    "A campaign exists"
+  ],
+  "postconditions": [
+    "Asset is available globally across the campaign",
+    "Asset state is applied to the active Tick"
+  ],
+  "trigger": "GM creates or modifies a Scene or NPC within a specific Tick",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM creates a new Global Asset (Scene or NPC) or selects an existing one within the current Tick"
+    },
+    {
+      "step": 2,
+      "action": "GM assigns or modifies Metadata/Traits for that asset in the context of the current Tick"
+    },
+    {
+      "step": 3,
+      "action": "GM optionally uploads external files (images, notes) to attach to the Scene"
+    },
+    {
+      "step": 4,
+      "action": "System saves the asset's new state to the current Tick"
+    },
+    {
+      "step": 5,
+      "action": "System cascades this new state forward to all subsequent Ticks"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "3",
+      "condition": "File upload exceeds size limits or is invalid format",
+      "action": "System displays an error and rejects the file"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "Scenes and NPCs exist as global entities that can be referenced in any Tick.",
+    "Changes made to a Scene/NPC in Tick X persist in Tick X+1 unless changed again.",
+    "GMs can attach files to Scenes without the system attempting to parse their contents."
+  ]
+}

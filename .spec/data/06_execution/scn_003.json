@@ -1,0 +1,16 @@
+{
+  "id": "SCN-003",
+  "title": "Campaign Timeline Initialization",
+  "objective": "Verify that a newly created campaign starts exactly at Tick 1.",
+  "type": "Automated",
+  "trace_to": {
+    "requirements": ["FR-003"]
+  },
+  "steps": [
+    {
+      "step": "Create a new campaign programmatically",
+      "expected_result": "Database record shows current_tick = 1"
+    }
+  ],
+  "status": "Draft"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "STK-003",
+  "name": "Campaign Viewers (Shared Users)",
+  "role": "Secondary User",
+  "influence": "Medium",
+  "interests": [
+    "Viewing shared campaigns, events, and world states"
+  ]
+}

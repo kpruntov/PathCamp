@@ -1,0 +1,12 @@
+{
+  "id": "STK-001",
+  "name": "Game Master (GM)",
+  "role": "Primary User and Campaign Creator",
+  "influence": "Critical",
+  "interests": [
+    "Creating and managing dynamic campaigns",
+    "Generating world events and tracking time (Ticks)",
+    "Receiving deterministic encounter proposals",
+    "Sharing campaigns with viewers"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "UCH-001",
+  "user_type": "Game Master (GM)",
+  "technical_expertise": "Intermediate",
+  "frequency_of_use": "Frequent",
+  "known_constraints": [
+    "Needs deterministic encounter math",
+    "Needs efficient way to track game time (Ticks)"
+  ]
+}

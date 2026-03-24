@@ -1,0 +1,10 @@
+{
+  "id": "REF-PRD",
+  "type": "reference_source",
+  "title": "Pathcamp PRD",
+  "description": "Imported from /home/pruntoff/pathcamp/pathcamp_prd.md",
+  "source_path": "/home/pruntoff/pathcamp/pathcamp_prd.md",
+  "local_path": ".spec/attachments/pathcamp_prd.md",
+  "format": "Markdown",
+  "trace_to": {}
+}

@@ -1,0 +1,20 @@
+{
+  "id": "SCN-002",
+  "title": "Campaign Data Validation",
+  "objective": "Verify that required fields and unique names are enforced.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": ["FR-002"]
+  },
+  "steps": [
+    {
+      "step": "GM submits New Campaign form with empty fields",
+      "expected_result": "System displays missing field error"
+    },
+    {
+      "step": "GM submits New Campaign form with an existing Campaign Name",
+      "expected_result": "System displays duplicate name error"
+    }
+  ],
+  "status": "Draft"
+}

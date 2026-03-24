@@ -1,0 +1,9 @@
+{
+  "id": "UCH-003",
+  "user_type": "Admin",
+  "technical_expertise": "Expert",
+  "frequency_of_use": "Occasional",
+  "known_constraints": [
+    "Manage users and system configuration"
+  ]
+}

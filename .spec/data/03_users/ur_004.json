@@ -1,0 +1,51 @@
+{
+  "id": "UR-004",
+  "title": "Manage World Events and Fronts",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is logged in",
+    "A campaign exists"
+  ],
+  "postconditions": [
+    "Event or Front is created and assigned to a specific Tick",
+    "Event traits cascade to relevant assets from that Tick onward"
+  ],
+  "trigger": "GM creates a new Event or Front",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM defines a new Event or Front (Name, Type, Metadata/Traits)"
+    },
+    {
+      "step": 2,
+      "action": "GM assigns the Event to begin at a specific Tick (past, present, or future)"
+    },
+    {
+      "step": 3,
+      "action": "System saves the Event to the designated Tick"
+    },
+    {
+      "step": 4,
+      "action": "If the Event is assigned to a past or present Tick, System recalculates state inheritance for all subsequent Ticks to include the new Event's traits"
+    },
+    {
+      "step": 5,
+      "action": "System warns the GM if recalculation overwrites conflicting states in future Ticks"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "4",
+      "condition": "GM cancels the recalculation warning",
+      "action": "System aborts the event creation and reverts state"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "Events can be scheduled on any Tick, regardless of the 'current' chronological position.",
+    "Events placed in past Ticks automatically ripple their effects forward.",
+    "The GM is warned about downstream overwrites before they are finalized."
+  ]
+}

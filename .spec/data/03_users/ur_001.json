@@ -1,0 +1,50 @@
+{
+  "id": "UR-001",
+  "title": "Create a Campaign",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is locally registered and logged in",
+    "GM is on the main dashboard"
+  ],
+  "postconditions": [
+    "A new campaign is created in the database at Tick 1",
+    "GM is viewing the new Campaign Dashboard"
+  ],
+  "trigger": "GM clicks the 'New Campaign' button",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM submits the New Campaign form with Name, Description, Party Size, and Party Starting Level"
+    },
+    {
+      "step": 2,
+      "action": "System creates the campaign in the database and initializes its timeline at Tick 1"
+    },
+    {
+      "step": 3,
+      "action": "System automatically navigates the GM to the newly created Campaign Dashboard (Timeline View)"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "1",
+      "condition": "Campaign Name already exists for this GM",
+      "action": "System displays an error message 'Campaign Name already exists' and prevents creation"
+    },
+    {
+      "step_ref": "1",
+      "condition": "Required fields are missing",
+      "action": "System displays an error message and highlights the missing fields"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": [
+      "STK-001"
+    ]
+  },
+  "acceptance_criteria": [
+    "A campaign with the provided details is successfully saved.",
+    "The GM is immediately redirected to the Campaign Dashboard.",
+    "The new campaign starts exactly at Tick 1."
+  ]
+}

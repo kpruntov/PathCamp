@@ -1,0 +1,9 @@
+{
+  "id": "BR-003",
+  "title": "Paizo Licensing Compliance",
+  "statement": "The application must strictly comply with the Paizo Community Use Policy and utilize the Paizo Community Use Package for UI branding.",
+  "source": "Pathcamp PRD",
+  "trace_to": {
+    "stakeholders": ["STK-002"]
+  }
+}

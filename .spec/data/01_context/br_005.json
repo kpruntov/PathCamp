@@ -1,0 +1,9 @@
+{
+  "id": "BR-005",
+  "title": "Campaign Sharing",
+  "statement": "The system must allow campaigns and their metadata to be shared with or exported for other users who are not actively GMing the session.",
+  "source": "Pathcamp PRD",
+  "trace_to": {
+    "stakeholders": ["STK-001", "STK-003"]
+  }
+}
