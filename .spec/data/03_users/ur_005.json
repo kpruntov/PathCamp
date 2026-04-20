@@ -33,7 +33,7 @@
     },
     {
       "step": 6,
-      "action": "System outputs the mechanical Trace and uses the AI Narrator to provide narrative flavor, saving it to the Scene for that Tick"
+      "action": "System outputs the mechanical Trace and allows the GM to input narrative flavor, saving both to the Scene for that Tick"
     }
   ],
   "exceptions": [
@@ -48,7 +48,7 @@
   },
   "acceptance_criteria": [
     "Encounters are generated based strictly on the Scene's traits for that specific Tick.",
-    "The generation process does not use AI for math, only for flavor text.",
-    "The encounter is saved as part of the Scene's state for that Tick."
+    "The generation process is deterministic.",
+    "The encounter is saved as part of the Scene's state for that Tick along with optional GM narrative."
   ]
 }

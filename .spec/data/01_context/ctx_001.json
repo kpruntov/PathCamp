@@ -8,12 +8,12 @@
       "World tick time tracking",
       "Event and front management",
       "Campaign sharing with non-GM users",
-      "AI-driven flavor and narrative generation"
+      "GM-provided narrative flavor text for generated mechanical encounters"
     ],
     "out_of_scope": [
-      "AI generation of game mechanics, monster stats, or check DCs",
+      "AI/LLM generation of mechanics, flavor, or narrative",
       "Player-facing active gameplay mechanics or VTT integration (unless specified as export)"
     ]
   },
-  "operating_environment": "Web browser, communicating with a FastAPI backend and PostgreSQL/MongoDB data layer."
+  "operating_environment": "Web browser, communicating with a FastAPI backend and PostgreSQL data layer."
 }

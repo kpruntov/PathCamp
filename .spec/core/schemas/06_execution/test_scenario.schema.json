@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://specloom.io/schemas/06_execution/test_scenario.schema.json",
   "title": "Test Scenario (V&V)",
   "description": "A formal verification scenario (Integration or Acceptance Test) validating that a requirement is met.",
   "type": "object",

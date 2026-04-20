@@ -1,7 +1,7 @@
 {
   "id": "BR-001",
-  "title": "Strict Determinism (Zero-AI Mechanics)",
-  "statement": "The system must never use AI/LLMs to calculate or guess monster levels, stats, traits, or check DCs. All mechanical outputs must be derived deterministically from system metadata.",
+  "title": "Strict Determinism",
+  "statement": "The system must never use non-deterministic algorithms to calculate monster levels, stats, traits, or check DCs. All mechanical outputs must be derived strictly from system metadata and Pathfinder 2e rules.",
   "source": "Pathcamp PRD",
   "trace_to": {
     "stakeholders": ["STK-001"]

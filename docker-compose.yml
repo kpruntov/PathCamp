@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db:
+    image: docker.io/library/postgres:13
+    container_name: pathcamp_db
+    environment:
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+      - POSTGRES_DB=${DB_NAME:-pathcamp}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pathcamp_data:/var/lib/postgresql/data
+
+volumes:
+  pathcamp_data:
