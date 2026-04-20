@@ -1,0 +1,15 @@
+{
+  "id": "FR-012",
+  "title": "Event and Front Creation",
+  "description": "The system shall allow the GM to define a new Event or Front with Name, Type, and Metadata/Traits, and assign it to begin at any specific Tick (past, present, or future).",
+  "trace_to": {
+    "user_requirements": ["UR-004"]
+  },
+  "acceptance_criteria": [
+    "GM can successfully create and save an Event or Front with all required fields.",
+    "The Event can be assigned to any existing chronological Tick."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

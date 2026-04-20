@@ -1,0 +1,106 @@
+{
+  "id": "LCOMP-001",
+  "name": "User & Auth Service",
+  "description": "Manages user identity, registration, authentication, sessions, and role-based access control (Admin vs. GM).",
+  "boundary_definition": {
+    "summary": "This component's boundary contains all logic related to user identity and access control. It begins at the API endpoint and ends at the data access layer for user models. It explicitly does not handle campaign-specific logic."
+  },
+  "allocated_functions": [
+    {
+      "func_id": "LF-001",
+      "name": "Register User",
+      "traces_to": ["FR-022"]
+    },
+    {
+      "func_id": "LF-002",
+      "name": "Authenticate User",
+      "traces_to": ["FR-023"]
+    },
+    {
+      "func_id": "LF-003",
+      "name": "Authorize Session",
+      "traces_to": ["FR-024"]
+    },
+    {
+      "func_id": "LF-004",
+      "name": "View User List",
+      "traces_to": ["FR-020"]
+    },
+    {
+      "func_id": "LF-005",
+      "name": "Update User Status",
+      "traces_to": ["FR-021"]
+    }
+  ],
+  "logical_ports": [
+    {
+      "port_id": "LP-001",
+      "name": "AuthApi",
+      "nature": "REST-API"
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "LI-001",
+      "name": "Register",
+      "port_id": "LP-001",
+      "direction": "Provided",
+      "input": [
+        {"param": "username", "type": "string"},
+        {"param": "email", "type": "string"},
+        {"param": "password", "type": "string"}
+      ],
+      "output": [
+        {"attribute": "user_id", "type": "string"},
+        {"attribute": "message", "type": "string"}
+      ]
+    },
+    {
+      "interface_id": "LI-002",
+      "name": "Login",
+      "port_id": "LP-001",
+      "direction": "Provided",
+      "input": [
+        {"param": "username", "type": "string"},
+        {"param": "password", "type": "string"}
+      ],
+      "output": [
+        {"attribute": "access_token", "type": "string"}
+      ]
+    },
+    {
+      "interface_id": "LI-003",
+      "name": "Logout",
+      "port_id": "LP-001",
+      "direction": "Provided",
+      "input": [],
+      "output": [
+        {"attribute": "message", "type": "string"}
+      ]
+    },
+    {
+      "interface_id": "LI-004",
+      "name": "GetUserList (Admin)",
+      "port_id": "LP-001",
+      "direction": "Provided",
+      "input": [],
+      "output": [
+        {"attribute": "users", "type": "array"}
+      ]
+    },
+    {
+      "interface_id": "LI-005",
+      "name": "UpdateUserStatus (Admin)",
+      "port_id": "LP-001",
+      "direction": "Provided",
+      "input": [
+        {"param": "user_id", "type": "string"},
+        {"param": "new_status", "type": "string"}
+      ],
+      "output": [
+        {"attribute": "user_id", "type": "string"},
+        {"attribute": "status", "type": "string"}
+      ]
+    }
+  ]
+}

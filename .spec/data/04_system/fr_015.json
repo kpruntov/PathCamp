@@ -1,0 +1,16 @@
+{
+  "id": "FR-015",
+  "title": "Deterministic Encounter Query by Traits",
+  "description": "Upon triggering Encounter Generation, the system shall read the Scene's traits and inherited World Event traits, and deterministically query the monster/hazard database. If no exact match is found, the system shall broaden the search to find the closest match and notify the GM.",
+  "trace_to": {
+    "user_requirements": ["UR-005"],
+    "business_rules": ["BR-001", "BR-004"]
+  },
+  "acceptance_criteria": [
+    "System successfully queries the database using combined traits.",
+    "If an exact match is missing, the system falls back to a broader search and notifies the user."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

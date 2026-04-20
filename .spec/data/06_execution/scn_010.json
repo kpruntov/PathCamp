@@ -1,0 +1,30 @@
+{
+  "id": "SCN-010",
+  "title": "Verify File Upload and Validation",
+  "objective": "Validates that the file upload functionality for Scenes correctly attaches valid files and rejects files that exceed size limits or have an unsupported format.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-010"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, navigate to a Scene asset within a Tick.",
+      "expected_result": "The Scene's detail view is displayed, including a file attachment section."
+    },
+    {
+      "step": "Attempt to upload a valid file (e.g., a 1MB JPEG image).",
+      "expected_result": "The file is uploaded successfully and appears in the list of attachments for the Scene."
+    },
+    {
+      "step": "Attempt to upload a file that exceeds the system's defined size limit (e.g., a 20MB image).",
+      "expected_result": "The upload fails, and a clear error message is displayed, stating that the file exceeds the size limit."
+    },
+    {
+      "step": "Attempt to upload a file with an unsupported format (e.g., an .exe file).",
+      "expected_result": "The upload fails, and a clear error message is displayed, stating that the file format is not allowed."
+    }
+  ],
+  "status": "Active"
+}

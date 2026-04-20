@@ -1,0 +1,34 @@
+{
+  "id": "SCN-024",
+  "title": "Verify Session Authorization",
+  "objective": "Validates that all API endpoints that modify campaign data are protected and require a valid, authenticated session.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-024"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As an unauthenticated user (e.g., in an incognito browser window), attempt to make a direct API call to a campaign-modifying endpoint, such as POST /campaigns/{id}/ticks.",
+      "expected_result": "The API call is rejected with an authentication error (e.g., HTTP 401 Unauthorized)."
+    },
+    {
+      "step": "Log in as a standard 'GM' user to obtain a valid session token.",
+      "expected_result": "Login is successful."
+    },
+    {
+      "step": "Using the obtained session token, repeat the API call to POST /campaigns/{id}/ticks with a valid payload.",
+      "expected_result": "The API call is accepted, and the new Tick is created in the campaign."
+    },
+    {
+      "step": "Log out to invalidate the session token.",
+      "expected_result": "Logout is successful."
+    },
+    {
+      "step": "Using the now-invalidated session token, attempt the same POST /campaigns/{id}/ticks API call again.",
+      "expected_result": "The API call is rejected with an authentication error (e.g., HTTP 401 Unauthorized)."
+    }
+  ],
+  "status": "Active"
+}

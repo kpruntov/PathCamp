@@ -1,0 +1,16 @@
+{
+  "id": "FR-016",
+  "title": "Encounter Template Calculation",
+  "description": "After selecting monsters for an encounter, the system shall mathematically calculate and apply the appropriate Elite or Weak templates based on the Campaign's Party Level and Size.",
+  "trace_to": {
+    "user_requirements": ["UR-005"],
+    "business_rules": ["BR-001", "BR-004"]
+  },
+  "acceptance_criteria": [
+    "Elite/Weak templates are correctly applied based on Party Level and Size rules.",
+    "Calculations do not rely on AI/LLM components."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

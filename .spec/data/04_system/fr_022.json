@@ -1,0 +1,16 @@
+{
+  "id": "FR-022",
+  "title": "User Registration",
+  "description": "The system shall allow new Game Masters to register an account with a username, email, and password.",
+  "trace_to": {
+    "user_requirements": ["UR-001"],
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "New users can create accounts.",
+    "User credentials are securely hashed and stored."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

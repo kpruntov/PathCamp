@@ -1,0 +1,17 @@
+{
+  "id": "API-002",
+  "specification": {
+    "type": "OpenAPI",
+    "version": "3.0.0",
+    "path": ".spec/data/05_design/api_002_campaign.yaml"
+  },
+  "trace_to": {
+    "functional_requirements": [
+      "FR-001",
+      "FR-002",
+      "FR-018",
+      "FR-019"
+    ]
+  },
+  "status": "Proposed"
+}

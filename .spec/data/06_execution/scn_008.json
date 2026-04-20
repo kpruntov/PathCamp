@@ -1,0 +1,34 @@
+{
+  "id": "SCN-008",
+  "title": "Verify Historical Cascade Recalculation",
+  "objective": "Validates that confirming a change to a historical Tick correctly recalculates the inheritance cascade, overwriting the state of all subsequent Ticks.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-008"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, create a timeline with 3 Ticks. In Tick 1, create an asset (e.g., NPC 'Goblin') with a status 'Healthy'. Verify it is 'Healthy' in Ticks 2 and 3.",
+      "expected_result": "The timeline is set up correctly with the 'Goblin' NPC present and 'Healthy' in all three Ticks."
+    },
+    {
+      "step": "In Tick 2, specifically change the 'Goblin' status to 'Injured' and save.",
+      "expected_result": "The Goblin is 'Healthy' in Tick 1, 'Injured' in Tick 2, and (due to inheritance) 'Injured' in Tick 3."
+    },
+    {
+      "step": "Return to Tick 1. Change the 'Goblin' status to 'Dead'.",
+      "expected_result": "The change is reflected in the UI for Tick 1."
+    },
+    {
+      "step": "Attempt to save the change. A warning prompt should appear. Select 'Confirm' on the prompt.",
+      "expected_result": "The change is saved to Tick 1. The Goblin's status is now 'Dead' in Tick 1."
+    },
+    {
+      "step": "Inspect the 'Goblin' asset in Tick 2 and Tick 3.",
+      "expected_result": "The Goblin's status should now be 'Dead' in both Tick 2 and Tick 3. The previous 'Injured' state in Tick 2 has been overwritten by the cascading change from Tick 1."
+    }
+  ],
+  "status": "Active"
+}

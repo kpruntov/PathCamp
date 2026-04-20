@@ -1,0 +1,35 @@
+{
+  "id": "PCOMP-003",
+  "name": "Database Server",
+  "pcomp_type": "Node",
+  "description": "A managed PostgreSQL database service that provides persistent storage for all application data.",
+  "realizes_logical_components": [
+    "LCOMP-001",
+    "LCOMP-002",
+    "LCOMP-003"
+  ],
+  "physical_ports": [
+    {
+      "port_id": "PPORT-004",
+      "name": "db_in",
+      "direction": "In"
+    }
+  ],
+  "physical_links": [
+    {
+      "link_id": "PLINK-002",
+      "source_port": "PPORT-004",
+      "target_component": "PCOMP-002",
+      "target_port": "PPORT-002",
+      "medium": "PostgreSQL Protocol over TCP/IP"
+    }
+  ],
+  "technical_interfaces": [
+    {
+      "name": "Database Connection Contract",
+      "description": "Represents the contract for connecting to and interacting with the PostgreSQL database.",
+      "api_contract_id": "API-005",
+      "port_id": "PPORT-004"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "FR-021",
+  "title": "Admin User Status Management",
+  "description": "The system shall allow Admins to change the status of any GM user to 'Blocked' or 'Active', immediately updating their access permissions. The system must prevent an Admin from blocking their own account or the primary super-admin account.",
+  "trace_to": {
+    "user_requirements": ["UR-007"]
+  },
+  "acceptance_criteria": [
+    "Setting a user to 'Blocked' immediately revokes their login and platform access.",
+    "Setting a user to 'Active' restores their access.",
+    "An Admin attempting to block themselves receives an error and the action is blocked.",
+    "An Admin attempting to block the primary super-admin receives an error and the action is blocked."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "FR-005",
+  "title": "Create and Update Tick Narrative Context",
+  "description": "The system shall allow the Game Master to create a new Tick on the timeline or select an existing Tick to define or update its narrative context.",
+  "trace_to": {
+    "user_requirements": ["UR-002"]
+  },
+  "acceptance_criteria": [
+    "GM can create a new sequential Tick.",
+    "GM can select any existing Tick and modify its narrative description field."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

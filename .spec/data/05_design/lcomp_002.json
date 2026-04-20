@@ -1,0 +1,78 @@
+{
+  "id": "LCOMP-002",
+  "name": "Campaign Service",
+  "description": "Manages the lifecycle, data, and sharing of campaigns.",
+  "boundary_definition": {
+    "summary": "This component's boundary contains the high-level business logic for managing campaigns as a whole. It orchestrates creation and sharing, but delegates timeline and state management to the Timeline Service."
+  },
+  "allocated_functions": [
+    {
+      "func_id": "LF-006",
+      "name": "Create Campaign",
+      "traces_to": ["FR-001"]
+    },
+    {
+      "func_id": "LF-007",
+      "name": "Validate Campaign Data",
+      "traces_to": ["FR-002"]
+    },
+    {
+      "func_id": "LF-008",
+      "name": "Generate Campaign Share Link",
+      "traces_to": ["FR-018"]
+    },
+    {
+      "func_id": "LF-009",
+      "name": "Provide Read-Only Campaign View",
+      "traces_to": ["FR-019"]
+    }
+  ],
+  "logical_ports": [
+    {
+      "port_id": "LP-002",
+      "name": "CampaignApi",
+      "nature": "REST-API"
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "LI-006",
+      "name": "CreateNewCampaign",
+      "port_id": "LP-002",
+      "direction": "Provided",
+      "input": [
+        {"param": "name", "type": "string"},
+        {"param": "description", "type": "string"},
+        {"param": "party_size", "type": "integer"},
+        {"param": "party_level", "type": "integer"}
+      ],
+      "output": [
+        {"attribute": "campaign_id", "type": "string"}
+      ]
+    },
+    {
+      "interface_id": "LI-007",
+      "name": "GetCampaignShareLink",
+      "port_id": "LP-002",
+      "direction": "Provided",
+      "input": [
+        {"param": "campaign_id", "type": "string"}
+      ],
+      "output": [
+        {"attribute": "share_url", "type": "string"}
+      ]
+    },
+    {
+      "interface_id": "LI-008",
+      "name": "GetSharedCampaign",
+      "port_id": "LP-002",
+      "direction": "Provided",
+      "input": [
+        {"param": "share_token", "type": "string"}
+      ],
+      "output": [
+        {"attribute": "campaign_data", "type": "object"}
+      ]
+    }
+  ]
+}

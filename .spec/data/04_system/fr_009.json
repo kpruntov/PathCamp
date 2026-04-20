@@ -1,0 +1,15 @@
+{
+  "id": "FR-009",
+  "title": "Asset Creation and Trait Assignment",
+  "description": "The system shall allow the Game Master to create new Global Assets (Scenes or NPCs) or select existing ones within a specific Tick, and assign or modify their Metadata and Traits.",
+  "trace_to": {
+    "user_requirements": ["UR-003"]
+  },
+  "acceptance_criteria": [
+    "GM can create a new Scene or NPC.",
+    "GM can edit traits of an existing Scene or NPC for the currently selected Tick."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

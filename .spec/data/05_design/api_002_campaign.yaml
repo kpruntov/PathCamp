@@ -1,0 +1,56 @@
+# OpenAPI 3.0.0 specification for Campaign Service
+openapi: 3.0.0
+info:
+  title: Campaign Service API
+  version: 1.0.0
+  description: API for creating and managing campaigns.
+
+paths:
+  /campaigns:
+    post:
+      summary: Create a new campaign
+      operationId: createNewCampaign
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                party_size:
+                  type: integer
+                party_level:
+                  type: integer
+      responses:
+        '201':
+          description: Campaign created
+  /campaigns/{campaignId}/share:
+    get:
+      summary: Get a read-only share link for a campaign
+      operationId: getCampaignShareLink
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Share link generated
+  /shared/{shareToken}:
+    get:
+      summary: Access a campaign via a share token
+      operationId: getSharedCampaign
+      parameters:
+        - name: shareToken
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Shared campaign data

@@ -1,0 +1,30 @@
+{
+  "id": "SCN-020",
+  "title": "Verify Admin User List View",
+  "objective": "Validates that authenticated Admin users can view a list of all registered users, and that non-admins are denied access.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-020"
+    ]
+  },
+  "steps": [
+    {
+      "step": "Log in to the system as a user with 'Admin' privileges.",
+      "expected_result": "Successful login."
+    },
+    {
+      "step": "Navigate to the administrative dashboard or '/admin/users' page.",
+      "expected_result": "The page loads successfully, displaying a table or list of all registered users on the platform, showing details like username and registration date."
+    },
+    {
+      "step": "Log out and log back in as a standard 'GM' user (non-admin).",
+      "expected_result": "Successful login."
+    },
+    {
+      "step": "Attempt to navigate directly to the '/admin/users' page.",
+      "expected_result": "Access is denied. The user is redirected to the main dashboard or shown a '403 Forbidden' error page. The list of users is not displayed."
+    }
+  ],
+  "status": "Active"
+}

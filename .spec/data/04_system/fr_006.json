@@ -1,0 +1,14 @@
+{
+  "id": "FR-006",
+  "title": "Tick State Inheritance Cascade",
+  "description": "Upon creation of a new Tick, the system shall automatically cascade the state of all global assets (Scenes, NPCs) from the immediately preceding Tick into the new Tick.",
+  "trace_to": {
+    "user_requirements": ["UR-002"]
+  },
+  "acceptance_criteria": [
+    "A newly created Tick inherits the exact metadata and traits of all assets from the previous Tick."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

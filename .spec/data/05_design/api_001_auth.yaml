@@ -1,0 +1,90 @@
+# OpenAPI 3.0.0 specification for Auth Service
+openapi: 3.0.0
+info:
+  title: Auth Service API
+  version: 1.0.0
+  description: API for user registration, authentication, and management.
+
+paths:
+  /register:
+    post:
+      summary: Register a new user
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created successfully
+  /login:
+    post:
+      summary: Log in a user
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+  /logout:
+    post:
+      summary: Log out a user
+      operationId: logoutUser
+      responses:
+        '200':
+          description: Logout successful
+  /admin/users:
+    get:
+      summary: Get list of all users (Admin only)
+      operationId: getUserList
+      responses:
+        '200':
+          description: A list of users
+  /admin/users/{userId}/status:
+    put:
+      summary: Update a user's status (Admin only)
+      operationId: updateUserStatus
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [Active, Blocked]
+      responses:
+        '200':
+          description: User status updated

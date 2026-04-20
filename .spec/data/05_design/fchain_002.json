@@ -1,0 +1,52 @@
+{
+  "id": "FCHAIN-002",
+  "name": "Create Campaign",
+  "level": "logical",
+  "description": "Demonstrates the sequence of functions to create a new campaign, triggered by the GM.",
+  "traces_to": ["UR-001"],
+  "sequence": [
+    {
+      "step": 1,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "Submits campaign creation request after GM fills form.",
+      "target_function": "LCOMP-002.LI-006",
+      "payload": "Campaign Name, Description, Party Size, Party Level"
+    },
+    {
+      "step": 2,
+      "actor_or_component": "LCOMP-002 (Campaign Service)",
+      "action": "Persists the new campaign entity.",
+      "target_function": "DATA-002",
+      "payload": "Campaign Data"
+    },
+    {
+      "step": 3,
+      "actor_or_component": "LCOMP-002 (Campaign Service)",
+      "action": "Initializes the timeline by creating the first tick.",
+      "target_function": "LCOMP-003.LI-010",
+      "payload": "campaign_id, narrative: 'Tick 1: The campaign begins.'"
+    },
+    {
+      "step": 4,
+      "actor_or_component": "LCOMP-003 (Timeline Service)",
+      "action": "Persists the new tick entity.",
+      "target_function": "DATA-003",
+      "payload": "Tick Data"
+    },
+    {
+      "step": 5,
+      "actor_or_component": "LCOMP-002 (Campaign Service)",
+      "action": "Confirms campaign creation and returns new campaign ID.",
+      "target_function": "LCOMP-005",
+      "payload": "campaign_id"
+    },
+    {
+      "step": 6,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "Navigates user to the new campaign's dashboard.",
+      "target_function": "LCOMP-005.LF-024",
+      "payload": "campaign_id"
+    }
+  ],
+  "sequence_diagram_mermaid": "```mermaid\\nsequenceDiagram\\n    actor GM\\n    participant Browser as PCOMP-001 (Boundary)\\n    participant AppServer as PCOMP-002 (Controller)\\n    participant Database as PCOMP-003 (Entity)\\n\\n    GM->>+Browser: Submits 'New Campaign' Form\\n    Browser->>+AppServer: POST /campaigns (invokes LI-006)\\n    AppServer->>+Database: INSERT INTO campaigns...\\n    Database-->>-AppServer: {campaign_id}\\n    AppServer->>+AppServer: invokes LI-010: CreateNextTick\\n    AppServer->>+Database: INSERT INTO ticks...\\n    Database-->>-AppServer: {tick_id}\\n    AppServer-->>-Browser: returns {campaign_id: ...}\\n    Browser->>-GM: Navigates to new Campaign Dashboard\\n```"
+}

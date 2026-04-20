@@ -1,0 +1,15 @@
+{
+  "id": "FR-011",
+  "title": "Asset State Persistence and Cascade",
+  "description": "The system shall save any modifications to an asset's state within the currently active Tick and automatically cascade these changes forward to all subsequent Ticks.",
+  "trace_to": {
+    "user_requirements": ["UR-003"]
+  },
+  "acceptance_criteria": [
+    "Modifications are saved and immediately reflected in the current Tick.",
+    "The new state is automatically applied to the asset in all chronologically later Ticks."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

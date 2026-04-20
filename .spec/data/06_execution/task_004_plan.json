@@ -3,10 +3,12 @@
   "title": "Create Execution Plan",
   "type": "Process",
   "routine": "Process",
-  "status": "Pending",
+  "status": "Done",
   "priority": 1,
   "description": "Decompose the design into actionable implementation tasks.",
-  "ai_instructions": ["You MUST follow the Planner Agent Protocol (`planner_agent_prompt.md`). Prioritize Foundation tasks."],
+  "ai_instructions": [
+    "You MUST follow the Planner Agent Protocol (`planner_agent_prompt.md`). Prioritize Foundation tasks."
+  ],
   "dependencies": [
     "TASK-003"
   ],

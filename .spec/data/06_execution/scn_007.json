@@ -1,0 +1,34 @@
+{
+  "id": "SCN-007",
+  "title": "Verify Historical Modification Warning and Cancellation",
+  "objective": "Validates that attempting to modify a historical (non-latest) Tick triggers a warning prompt and that cancelling this prompt correctly aborts the change.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-007"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, navigate to a campaign timeline with at least 3 sequential Ticks (Tick 1, Tick 2, Tick 3).",
+      "expected_result": "The timeline is displayed with all three Ticks."
+    },
+    {
+      "step": "In Tick 1, select an asset and change one of its properties (e.g., change an NPC's status from 'Healthy' to 'Injured').",
+      "expected_result": "The change is reflected in the UI, but is not yet saved."
+    },
+    {
+      "step": "Attempt to save the change to the historical Tick 1.",
+      "expected_result": "A warning prompt appears, explaining that this change will affect all subsequent Ticks (Tick 2 and Tick 3) and asks for explicit confirmation."
+    },
+    {
+      "step": "Select the 'Cancel' option on the warning prompt.",
+      "expected_result": "The warning prompt closes, and the attempted change to the asset in Tick 1 is discarded. The NPC's status reverts to 'Healthy'."
+    },
+    {
+      "step": "Inspect the same asset in Tick 2 and Tick 3.",
+      "expected_result": "The asset in Tick 2 and Tick 3 remains in its original state, unaffected by the cancelled change."
+    }
+  ],
+  "status": "Active"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "LCOMP-004",
+  "name": "Encounter Service",
+  "description": "A deterministic, rule-based engine for generating mechanical encounter data based on Pathfinder 2e rules.",
+  "boundary_definition": {
+    "summary": "This component is a pure, stateless rules engine. Its boundary is a single functional call that takes scene/party data and returns mechanical encounter data. It does not persist any state."
+  },
+  "allocated_functions": [
+    {
+      "func_id": "LF-021",
+      "name": "Query Encounters by Trait",
+      "traces_to": ["FR-015"]
+    },
+    {
+      "func_id": "LF-022",
+      "name": "Calculate and Apply Creature Templates",
+      "traces_to": ["FR-016"]
+    },
+    {
+      "func_id": "LF-023",
+      "name": "Persist Mechanical and Narrative Encounter Data",
+      "traces_to": ["FR-017"]
+    }
+  ],
+  "logical_ports": [
+    {
+      "port_id": "LP-004",
+      "name": "EncounterApi",
+      "nature": "REST-API"
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "LI-015",
+      "name": "GenerateEncounter",
+      "port_id": "LP-004",
+      "direction": "Provided",
+      "input": [
+        {"param": "scene_traits", "type": "array"},
+        {"param": "party_level", "type": "integer"},
+        {"param": "party_size", "type": "integer"}
+      ],
+      "output": [
+        {"attribute": "mechanical_encounter_data", "type": "object"}
+      ]
+    }
+  ]
+}

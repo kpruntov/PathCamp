@@ -1,0 +1,6 @@
+{
+  "id": "SYS-IMPLEMENT",
+  "title": "Process Implementation",
+  "description": "The system must follow the SpecLoom V-Model process during the implementation phase.",
+  "phase": "Implement"
+}

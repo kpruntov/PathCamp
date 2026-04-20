@@ -1,0 +1,92 @@
+# OpenAPI 3.0.0 specification for Timeline Service
+openapi: 3.0.0
+info:
+  title: Timeline Service API
+  version: 1.0.0
+  description: API for managing the state of a campaign's timeline.
+
+paths:
+  /campaigns/{campaignId}/timeline:
+    get:
+      summary: Get the full timeline for a campaign
+      operationId: getTimeline
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Timeline data
+  /ticks:
+    post:
+      summary: Create the next tick in a campaign
+      operationId: createNextTick
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campaign_id:
+                  type: string
+                narrative:
+                  type: string
+      responses:
+        '201':
+          description: New tick created
+  /ticks/{tickId}:
+    put:
+      summary: Update the narrative for a specific tick
+      operationId: updateTick
+      parameters:
+        - name: tickId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                narrative:
+                  type: string
+      responses:
+        '200':
+          description: Tick updated
+  /ticks/{tickId}/assets:
+    post:
+      summary: Create a new asset within a tick
+      operationId: createAssetInTick
+      parameters:
+        - name: tickId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Asset created
+  /ticks/{tickId}/scenes/{sceneId}/encounter:
+    post:
+      summary: Save a generated encounter to a scene in a tick
+      operationId: saveEncounterToTick
+      parameters:
+        - name: tickId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: sceneId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Encounter saved

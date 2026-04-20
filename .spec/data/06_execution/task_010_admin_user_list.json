@@ -1,0 +1,42 @@
+{
+  "id": "TASK-010",
+  "title": "Implement Admin User List API",
+  "type": "Feature",
+  "routine": "Feature",
+  "verification_regime": "Automated",
+  "status": "Pending",
+  "priority": 6,
+  "description": "Create an admin-only API endpoint to retrieve a list of all registered users.",
+  "ai_instructions": [
+    "This endpoint must be protected by authorization middleware that verifies the user has an 'Admin' role. The handler should fetch all users from the database, omitting sensitive information like password hashes."
+  ],
+  "dependencies": [
+    "TASK-009"
+  ],
+  "trace_to": {
+    "functional_requirements": ["FR-020"],
+    "design_nodes": ["LCOMP-001", "API-001"]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-010'",
+    "Create a new test file 'tests/admin.test.ts'.",
+    "Write tests for the 'GET /admin/users' endpoint, including success cases for admins and failure cases for non-admins and unauthenticated users.",
+    "Run tests to see them fail.",
+    "Create a new 'src/middleware/adminOnlyMiddleware.ts' that checks for an 'Admin' role on the request user object.",
+    "Create a new 'src/controllers/AdminController.ts' with a 'getAllUsers' handler.",
+    "Add the protected 'GET /admin/users' route to the Express app.",
+    "Implement the logic to fetch users and pass the tests.",
+    "Add '@trace TASK-010' to all modified files."
+  ],
+  "definition_of_done": [
+    "API endpoint 'GET /admin/users' is created.",
+    "Endpoint is only accessible to users with the 'Admin' role.",
+    "Endpoint returns a list of all users, excluding sensitive fields.",
+    "All tests for the admin user list feature pass."
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/admin.test.ts",
+    "implementation_file": "src/controllers/AdminController.ts",
+    "verification_command": "npm test -- tests/admin.test.ts"
+  }
+}

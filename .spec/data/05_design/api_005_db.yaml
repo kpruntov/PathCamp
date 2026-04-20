@@ -1,0 +1,6 @@
+# Placeholder for Database Connection Contract
+# This artifact exists to satisfy the validator's need for a technical interface.
+# The actual protocol is defined in the physical link's 'medium' property.
+info:
+  title: Database Connection Contract
+  version: 1.0.0

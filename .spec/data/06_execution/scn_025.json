@@ -1,0 +1,26 @@
+{
+  "id": "SCN-025",
+  "title": "Verify Protected Route UI Redirection",
+  "objective": "Validates that unauthenticated users attempting to access a protected UI route are automatically redirected to the login page.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-024"
+    ]
+  },
+  "steps": [
+    {
+      "step": "Log in as a standard 'GM' user.",
+      "expected_result": "Login is successful and user is on the dashboard."
+    },
+    {
+      "step": "Log out of the application.",
+      "expected_result": "User is redirected to the login or home page."
+    },
+    {
+      "step": "In the browser's address bar, attempt to navigate directly to a protected route, such as '/dashboard' or '/campaigns/123'.",
+      "expected_result": "The user is immediately redirected to the '/login' page, and the protected content is not displayed."
+    }
+  ],
+  "status": "Active"
+}

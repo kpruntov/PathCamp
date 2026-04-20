@@ -1,0 +1,66 @@
+{
+  "id": "PCOMP-002",
+  "name": "Application Server",
+  "pcomp_type": "Behavioral",
+  "description": "A server-side execution environment, likely a Docker container, that runs the Python backend application. It hosts the user, campaign, timeline, and encounter services.",
+  "realizes_logical_components": [
+    "LCOMP-001",
+    "LCOMP-002",
+    "LCOMP-003",
+    "LCOMP-004"
+  ],
+  "physical_ports": [
+    {
+      "port_id": "PPORT-001",
+      "name": "https_in",
+      "direction": "In"
+    },
+    {
+      "port_id": "PPORT-002",
+      "name": "db_out",
+      "direction": "Out"
+    }
+  ],
+  "physical_links": [
+    {
+      "link_id": "PLINK-001",
+      "source_port": "PPORT-001",
+      "target_component": "PCOMP-001",
+      "target_port": "PPORT-003",
+      "medium": "HTTPS over TCP/IP"
+    },
+    {
+      "link_id": "PLINK-002",
+      "source_port": "PPORT-002",
+      "target_component": "PCOMP-003",
+      "target_port": "PPORT-004",
+      "medium": "PostgreSQL Protocol over TCP/IP"
+    }
+  ],
+  "technical_interfaces": [
+    {
+      "name": "User & Auth API",
+      "description": "Provides endpoints for user management and authentication.",
+      "api_contract_id": "API-001",
+      "port_id": "PPORT-001"
+    },
+    {
+      "name": "Campaign API",
+      "description": "Provides endpoints for high-level campaign management.",
+      "api_contract_id": "API-002",
+      "port_id": "PPORT-001"
+    },
+    {
+      "name": "Timeline API",
+      "description": "Provides endpoints for detailed timeline and state management.",
+      "api_contract_id": "API-003",
+      "port_id": "PPORT-001"
+    },
+    {
+      "name": "Encounter API",
+      "description": "Provides endpoints for deterministic encounter generation.",
+      "api_contract_id": "API-004",
+      "port_id": "PPORT-001"
+    }
+  ]
+}

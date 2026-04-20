@@ -1,0 +1,45 @@
+{
+  "id": "TASK-012",
+  "title": "Implement Campaign Creation API",
+  "type": "Feature",
+  "routine": "Feature",
+  "verification_regime": "Automated",
+  "status": "Pending",
+  "priority": 8,
+  "description": "Create the API endpoint for a logged-in user to create a new campaign. This includes validating the input data, creating the campaign record, and initializing its timeline with a starting tick.",
+  "ai_instructions": [
+    "Follow TDD. The endpoint should be protected by the authorization middleware. It needs to validate that the campaign name is unique for the user. Upon successful creation, it should also trigger the timeline initialization logic."
+  ],
+  "dependencies": [
+    "TASK-009"
+  ],
+  "trace_to": {
+    "functional_requirements": ["FR-001", "FR-002", "FR-003"],
+    "design_nodes": ["LCOMP-002", "LCOMP-003", "API-002", "DATA-002", "FCHAIN-002"]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-012'",
+    "Create a new test file 'tests/campaign.test.ts'.",
+    "Write tests for the 'POST /campaigns' endpoint, covering success cases, validation errors (blank fields, duplicate name), and unauthorized access.",
+    "Run tests to see them fail.",
+    "Create 'src/models/CampaignModel.ts' and 'src/models/TimelineModel.ts'.",
+    "Create 'src/services/CampaignService.ts' with a 'createCampaign' method.",
+    "Create 'src/controllers/CampaignController.ts' with a handler for the route.",
+    "Add the protected 'POST /campaigns' route to the Express app, using the auth middleware.",
+    "Implement the full logic to create the campaign and its initial timeline tick.",
+    "Run tests to verify the implementation.",
+    "Add '@trace TASK-012' to all modified files."
+  ],
+  "definition_of_done": [
+    "API endpoint 'POST /campaigns' is created and protected.",
+    "A new campaign is successfully created in the database with valid data.",
+    "A new campaign is initialized with a timeline and a single starting tick.",
+    "Validation prevents creation with invalid or duplicate data.",
+    "All tests for the campaign creation feature pass."
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/campaign.test.ts",
+    "implementation_file": "src/controllers/CampaignController.ts",
+    "verification_command": "npm test -- tests/campaign.test.ts"
+  }
+}

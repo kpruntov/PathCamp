@@ -1,0 +1,15 @@
+{
+  "id": "PCOMP-001",
+  "name": "Client Browser",
+  "pcomp_type": "Behavioral",
+  "description": "The user's web browser, which downloads and executes the frontend application (LCOMP-005).",
+  "realizes_logical_components": ["LCOMP-005"],
+  "physical_ports": [
+    {
+      "port_id": "PPORT-003",
+      "name": "https_out",
+      "direction": "Out"
+    }
+  ],
+  "technical_interfaces": []
+}

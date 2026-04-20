@@ -1,0 +1,34 @@
+{
+  "id": "TASK-020",
+  "title": "Setup Frontend Project",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Done",
+  "priority": 2,
+  "description": "Initialize the React/Vite/TypeScript frontend project, configure linting, and establish basic project structure (e.g., src/, components/, views/, services/).",
+  "ai_instructions": [
+    "You are a frontend developer. Your goal is to create a clean, scalable project structure for a React single-page application."
+  ],
+  "dependencies": [],
+  "trace_to": {
+    "system_requirements": [
+      "SYS-IMPLEMENT"
+    ],
+    "design_nodes": [
+      "PCOMP-001"
+    ]
+  },
+  "execution_steps": [
+    "Run 'npm create vite@latest frontend -- --template react-ts'",
+    "Install required dependencies like 'axios' and 'react-router-dom'.",
+    "Initialize eslint and prettier configurations.",
+    "Create a basic folder structure: 'src/components', 'src/views', 'src/services', 'src/hooks'.",
+    "Create a basic 'hello world' component to ensure the dev server works."
+  ],
+  "definition_of_done": [
+    "Frontend project directory is created.",
+    "npm install completes without errors.",
+    "'npm run dev' starts the Vite dev server successfully.",
+    "A basic component renders in the browser without errors."
+  ]
+}

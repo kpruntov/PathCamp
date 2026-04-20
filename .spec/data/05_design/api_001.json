@@ -1,0 +1,18 @@
+{
+  "id": "API-001",
+  "specification": {
+    "type": "OpenAPI",
+    "version": "3.0.0",
+    "path": ".spec/data/05_design/api_001_auth.yaml"
+  },
+  "trace_to": {
+    "functional_requirements": [
+      "FR-020",
+      "FR-021",
+      "FR-022",
+      "FR-023",
+      "FR-024"
+    ]
+  },
+  "status": "Proposed"
+}

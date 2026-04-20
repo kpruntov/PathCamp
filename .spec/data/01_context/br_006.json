@@ -1,0 +1,9 @@
+{
+  "id": "BR-006",
+  "title": "Secure Session Management",
+  "statement": "The system must protect user data by requiring explicit authentication for any operation that modifies campaign state.",
+  "source": "Project Security Guidelines",
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  }
+}

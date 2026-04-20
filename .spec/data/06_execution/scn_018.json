@@ -1,0 +1,26 @@
+{
+  "id": "SCN-018",
+  "title": "Verify Read-Only Link Generation",
+  "objective": "Validates that the system can generate a unique, read-only sharing URL for a campaign.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-018"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, navigate to the main dashboard for a campaign.",
+      "expected_result": "The campaign dashboard is displayed."
+    },
+    {
+      "step": "Locate and click the 'Share Campaign' button or option.",
+      "expected_result": "The system processes the request and presents a unique URL to the GM (e.g., 'https://path.camp/share/a7d8f...')."
+    },
+    {
+      "step": "Copy the generated URL.",
+      "expected_result": "The URL is successfully copied to the clipboard."
+    }
+  ],
+  "status": "Active"
+}

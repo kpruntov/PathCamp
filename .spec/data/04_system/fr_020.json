@@ -1,0 +1,15 @@
+{
+  "id": "FR-020",
+  "title": "Admin User List View",
+  "description": "The system shall provide an administrative dashboard where authenticated Admin users can view a list of all registered GM users on the platform.",
+  "trace_to": {
+    "user_requirements": ["UR-007"]
+  },
+  "acceptance_criteria": [
+    "Admin can view all registered users.",
+    "Non-admin users cannot access this view."
+  ],
+  "verification_method": "Test",
+  "priority": "Should-have",
+  "stability": "Stable"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "FCHAIN-007",
+  "name": "Manage Users (Admin)",
+  "level": "logical",
+  "description": "Demonstrates the sequence for an Admin to view all users and update their status.",
+  "traces_to": ["UR-007"],
+  "sequence": [
+    {
+      "step": 1,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "Admin navigates to user management view, triggering a request for all users.",
+      "target_function": "LCOMP-001.LI-004",
+      "payload": ""
+    },
+    {
+      "step": 2,
+      "actor_or_component": "LCOMP-001 (User & Auth Service)",
+      "action": "Retrieves all user records from the database.",
+      "target_function": "DATA-001",
+      "payload": "SELECT * FROM users"
+    },
+    {
+      "step": 3,
+      "actor_or_component": "LCOMP-001 (User & Auth Service)",
+      "action": "Returns the list of users to the frontend.",
+      "target_function": "LCOMP-005",
+      "payload": "[{user_id, username, email, status}, ...]"
+    },
+    {
+      "step": 4,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "Admin clicks a button to change a user's status.",
+      "target_function": "LCOMP-001.LI-005",
+      "payload": "user_id, new_status"
+    },
+    {
+      "step": 5,
+      "actor_or_component": "LCOMP-001 (User & Auth Service)",
+      "action": "Updates the status for the given user in the database.",
+      "target_function": "DATA-001",
+      "payload": "UPDATE users SET status = ... WHERE id = ..."
+    },
+    {
+      "step": 6,
+      "actor_or_component": "LCOMP-001 (User & Auth Service)",
+      "action": "Confirms the update was successful.",
+      "target_function": "LCOMP-005",
+      "payload": "{success: true}"
+    }
+  ],
+  "sequence_diagram_mermaid": "```mermaid\\nsequenceDiagram\\n    actor Admin\\n    participant Browser as PCOMP-001 (Boundary)\\n    participant AppServer as PCOMP-002 (Controller)\\n    participant Database as PCOMP-003 (Entity)\\n\\n    Admin->>+Browser: Navigates to User Management\\n    Browser->>+AppServer: GET /admin/users (invokes LI-004)\\n    AppServer->>+Database: SELECT * FROM users\\n    Database-->>-AppServer: returns [user_list]\\n    AppServer-->>-Browser: returns [user_list]\\n    Browser-->>Admin: Displays list of users\\n\\n    Admin->>+Browser: Changes a user's status\\n    Browser->>+AppServer: PUT /admin/users/{id}/status (invokes LI-005)\\n    AppServer->>+Database: UPDATE users SET status=...\\n    Database-->>-AppServer: {success: true}\\n    AppServer-->>-Browser: returns {success: true}\\n    Browser-->>Admin: Refreshes list with new status\\n```"
+}

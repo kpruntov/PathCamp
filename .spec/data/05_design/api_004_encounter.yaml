@@ -1,0 +1,30 @@
+# OpenAPI 3.0.0 specification for Encounter Service
+openapi: 3.0.0
+info:
+  title: Encounter Service API
+  version: 1.0.0
+  description: API for deterministically generating encounters.
+
+paths:
+  /generate-encounter:
+    post:
+      summary: Generate a mechanical encounter based on traits
+      operationId: generateEncounter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scene_traits:
+                  type: array
+                  items:
+                    type: string
+                party_level:
+                  type: integer
+                party_size:
+                  type: integer
+      responses:
+        '200':
+          description: Mechanical encounter data

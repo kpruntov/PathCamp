@@ -1,0 +1,59 @@
+{
+  "id": "FCHAIN-006",
+  "name": "Share Campaign",
+  "level": "logical",
+  "description": "Demonstrates the sequence to generate a read-only share link for a campaign and for a viewer to access it.",
+  "traces_to": ["UR-006"],
+  "sequence": [
+    {
+      "step": 1,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "GM requests to share a campaign.",
+      "target_function": "LCOMP-002.LI-007",
+      "payload": "campaign_id"
+    },
+    {
+      "step": 2,
+      "actor_or_component": "LCOMP-002 (Campaign Service)",
+      "action": "Generates and persists a unique share token for the campaign.",
+      "target_function": "DATA-002",
+      "payload": "UPDATE campaigns SET share_token = ..."
+    },
+    {
+      "step": 3,
+      "actor_or_component": "LCOMP-002 (Campaign Service)",
+      "action": "Returns the generated share URL to the frontend.",
+      "target_function": "LCOMP-005",
+      "payload": "{share_url: ...}"
+    },
+    {
+      "step": 4,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "Displays the share URL to the GM.",
+      "target_function": "GM",
+      "payload": "UI Update"
+    },
+    {
+      "step": 5,
+      "actor_or_component": "Viewer (UCH-002)",
+      "action": "Accesses the provided share URL.",
+      "target_function": "LCOMP-005",
+      "payload": "HTTP GET request"
+    },
+    {
+      "step": 6,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "Requests read-only campaign data using the share token from the URL.",
+      "target_function": "LCOMP-002.LI-008",
+      "payload": "share_token"
+    },
+    {
+      "step": 7,
+      "actor_or_component": "LCOMP-002 (Campaign Service)",
+      "action": "Validates token and returns read-only campaign data.",
+      "target_function": "LCOMP-005",
+      "payload": "Read-Only Campaign Data"
+    }
+  ],
+  "sequence_diagram_mermaid": "```mermaid\\nsequenceDiagram\\n    actor GM\\n    participant Browser as PCOMP-001 (Boundary)\\n    participant AppServer as PCOMP-002 (Controller)\\n    participant Database as PCOMP-003 (Entity)\\n\\n    GM->>+Browser: Clicks 'Share Campaign'\\n    Browser->>+AppServer: GET /campaigns/{id}/share (invokes LI-007)\\n    AppServer->>+Database: UPDATE campaigns SET share_token=...\\n    Database-->>-AppServer: {share_token}\\n    AppServer-->>-Browser: returns {share_url: ...}\\n    Browser-->>GM: Displays Share URL\\n\\n    actor Viewer\\n    Viewer->>+Browser: Accesses Share URL\\n    Browser->>+AppServer: GET /shared/{token} (invokes LI-008)\\n    AppServer->>+Database: SELECT * FROM campaigns WHERE share_token=...\\n    Database-->>-AppServer: Campaign Data\\n    AppServer-->>-Browser: returns Read-Only Campaign Data\\n    Browser-->>-Viewer: Renders Read-Only View\\n```"
+}

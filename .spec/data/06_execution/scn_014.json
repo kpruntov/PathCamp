@@ -1,0 +1,30 @@
+{
+  "id": "SCN-014",
+  "title": "Verify Event Overwrite Warning and Cancellation",
+  "objective": "Validates that the system warns the GM and allows cancellation if assigning an Event would overwrite a conflicting state in a future Tick.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-014"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a GM, set up a timeline with 3 Ticks. In Tick 2, set a Scene's trait to 'Ruined'. The trait should be different in Tick 1 (e.g., 'Intact').",
+      "expected_result": "The timeline is set up with a conflicting state in Tick 2."
+    },
+    {
+      "step": "Create a new Event 'Earthquake' with a trait 'Collapsed' and attempt to assign it to begin at Tick 1.",
+      "expected_result": "The system detects that this will overwrite the 'Ruined' state in Tick 2 and displays a warning prompt asking for confirmation."
+    },
+    {
+      "step": "Select 'Cancel' on the warning prompt.",
+      "expected_result": "The 'Earthquake' event assignment is aborted."
+    },
+    {
+      "step": "Inspect the Scene's trait in Tick 1, Tick 2, and Tick 3.",
+      "expected_result": "The Scene trait remains 'Intact' in Tick 1 and 'Ruined' in Ticks 2 and 3. The timeline is unchanged, and the 'Collapsed' trait was not applied."
+    }
+  ],
+  "status": "Active"
+}

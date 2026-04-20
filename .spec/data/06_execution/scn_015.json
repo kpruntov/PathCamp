@@ -1,0 +1,30 @@
+{
+  "id": "SCN-015",
+  "title": "Verify Encounter Trait Query and Fallback",
+  "objective": "Validates that the encounter generation system correctly queries monsters using scene traits and gracefully falls back to a broader search when no exact match is found.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-015"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a GM, navigate to a Tick and select a Scene. Set the Scene's traits to something specific and common, e.g., 'Forest' and 'Undead'.",
+      "expected_result": "The scene traits are saved."
+    },
+    {
+      "step": "Trigger the 'Generate Encounter' function for that Scene.",
+      "expected_result": "The system returns a list of proposed monsters that have both the 'Forest' and 'Undead' traits (e.g., a Zombie Bear)."
+    },
+    {
+      "step": "Modify the Scene's traits to be extremely specific and unlikely to have a match, e.g., 'Clockwork', 'Aquatic', and 'Celestial'.",
+      "expected_result": "The scene traits are saved."
+    },
+    {
+      "step": "Trigger the 'Generate Encounter' function again.",
+      "expected_result": "The system fails to find an exact match. It displays a notification to the GM stating that it has broadened the search, and returns proposals that match some of the traits (e.g., a Clockwork Golem or an Angel Shark)."
+    }
+  ],
+  "status": "Active"
+}

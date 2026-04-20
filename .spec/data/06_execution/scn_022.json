@@ -1,0 +1,30 @@
+{
+  "id": "SCN-022",
+  "title": "Verify New User Registration",
+  "objective": "Validates that a new user can successfully register an account and that their credentials are handled securely.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-022"
+    ]
+  },
+  "steps": [
+    {
+      "step": "Navigate to the application's registration page.",
+      "expected_result": "A registration form is displayed with fields for username, email, and password."
+    },
+    {
+      "step": "Fill out the form with a unique username, a valid email address, and a strong password. Submit the form.",
+      "expected_result": "The system accepts the registration and redirects the user to the login page or directly into the application with a success message."
+    },
+    {
+      "step": "Attempt to log in using the newly created credentials.",
+      "expected_result": "The user is successfully authenticated and gains access to the application."
+    },
+    {
+      "step": "Attempt to register again with the exact same username or email address.",
+      "expected_result": "The system rejects the registration and displays an error message indicating that the username or email is already in use."
+    }
+  ],
+  "status": "Active"
+}

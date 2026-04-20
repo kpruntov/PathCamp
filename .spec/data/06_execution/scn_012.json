@@ -1,0 +1,34 @@
+{
+  "id": "SCN-012",
+  "title": "Verify Event Creation and Assignment",
+  "objective": "Validates that a GM can create a new Event or Front and assign it to a specific Tick on the timeline.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-012"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, navigate to the 'Events/Fronts' management page for a campaign with at least two Ticks.",
+      "expected_result": "The Events/Fronts management view is displayed."
+    },
+    {
+      "step": "Select the option to create a new Event.",
+      "expected_result": "A form appears to define the new Event."
+    },
+    {
+      "step": "Fill in the Event details: Name='Royal Wedding', Type='Social', Traits='Public'.",
+      "expected_result": "The form fields are populated."
+    },
+    {
+      "step": "Assign the Event to begin at a specific Tick, for example, Tick 2.",
+      "expected_result": "The start Tick is selected."
+    },
+    {
+      "step": "Save the new Event.",
+      "expected_result": "The Event is saved successfully. When viewing the timeline, the 'Royal Wedding' event should be indicated as starting at Tick 2."
+    }
+  ],
+  "status": "Active"
+}

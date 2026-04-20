@@ -1,0 +1,16 @@
+{
+  "id": "FR-018",
+  "title": "Campaign Read-Only Link Generation",
+  "description": "The system shall generate a unique, read-only URL when the GM selects the sharing option for an active campaign. It shall display an error message if link generation fails.",
+  "trace_to": {
+    "user_requirements": ["UR-006"],
+    "business_rules": ["BR-005"]
+  },
+  "acceptance_criteria": [
+    "A unique URL is successfully generated upon request.",
+    "If an internal error prevents link generation, a clear error message is shown to the GM."
+  ],
+  "verification_method": "Test",
+  "priority": "Should-have",
+  "stability": "Stable"
+}

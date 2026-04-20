@@ -1,0 +1,48 @@
+{
+  "id": "LCOMP-005",
+  "name": "Web Frontend",
+  "description": "The client-side single-page application (SPA) that GMs and Viewers interact with. It renders the UI and communicates with the backend services.",
+  "boundary_definition": {
+    "summary": "This component encompasses all code that runs in the user's web browser. Its boundary is the HTTP API that it uses to communicate with the backend services."
+  },
+  "allocated_functions": [
+    {
+      "func_id": "LF-024",
+      "name": "Navigate to Campaign Dashboard",
+      "traces_to": ["FR-004"]
+    },
+    {
+      "func_id": "LF-025",
+      "name": "Render all UI Views and Components",
+      "description": "This function covers the general responsibility of rendering the UI, which is implicitly required by all user-facing functional requirements.",
+      "traces_to": ["NFR-001"]
+    }
+  ],
+  "logical_ports": [
+    {
+      "port_id": "LP-005",
+      "name": "BackendApiGateway",
+      "nature": "REST-API"
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "LI-001", "port_id": "LP-005", "direction": "Required", "name": "Uses Register" 
+    },
+    {
+      "interface_id": "LI-002", "port_id": "LP-005", "direction": "Required", "name": "Uses Login" 
+    },
+    {
+      "interface_id": "LI-006", "port_id": "LP-005", "direction": "Required", "name": "Uses CreateNewCampaign" 
+    },
+    {
+      "interface_id": "LI-009", "port_id": "LP-005", "direction": "Required", "name": "Uses GetTimeline"
+    },
+    {
+      "interface_id": "LI-010", "port_id": "LP-005", "direction": "Required", "name": "Uses CreateNextTick"
+    },
+    {
+      "interface_id": "LI-015", "port_id": "LP-005", "direction": "Required", "name": "Uses GenerateEncounter"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "SCN-021",
+  "title": "Verify Admin Modify User Status Restrictions",
+  "objective": "Validates that an Admin can block and unblock standard users, but is prevented from blocking their own account or a super-admin account.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-021"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As an Admin, navigate to the user management dashboard and select a standard 'GM' user.",
+      "expected_result": "User details are displayed."
+    },
+    {
+      "step": "Change the GM user's status to 'Blocked'.",
+      "expected_result": "The change is saved. Attempting to log in as that GM user should fail."
+    },
+    {
+      "step": "Change the same GM user's status back to 'Active'.",
+      "expected_result": "The change is saved. Attempting to log in as that GM user should now succeed."
+    },
+    {
+      "step": "From the user list, attempt to change your own Admin account status to 'Blocked'.",
+      "expected_result": "The action is rejected, and an error message is displayed, such as 'Admins cannot block their own accounts.'"
+    },
+    {
+      "step": "From the user list, attempt to change the primary 'super-admin' account status to 'Blocked'.",
+      "expected_result": "The action is rejected, and a similar error message is displayed, such as 'The super-admin account cannot be blocked.'"
+    }
+  ],
+  "status": "Active"
+}

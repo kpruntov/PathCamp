@@ -1,0 +1,30 @@
+{
+  "id": "SCN-019",
+  "title": "Verify Read-Only Viewer Permissions",
+  "objective": "Validates that users accessing a campaign via a read-only link can view data but are strictly prevented from making any modifications.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-019"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a GM, generate a read-only share link for a campaign.",
+      "expected_result": "A unique URL is generated."
+    },
+    {
+      "step": "Access the campaign using the generated link in a different browser or incognito window (simulating a different user).",
+      "expected_result": "The campaign's timeline, scenes, and public events are visible."
+    },
+    {
+      "step": "Thoroughly inspect the UI.",
+      "expected_result": "There should be no visible UI elements for editing, adding, deleting, or generating anything (e.g., no 'Add Tick', 'Edit Scene', or 'Generate Encounter' buttons)."
+    },
+    {
+      "step": "Attempt to bypass the UI by making a direct API call to modify a scene (requires a tool like Postman or browser dev tools).",
+      "expected_result": "The API call should be rejected with an authentication/authorization error (e.g., HTTP 401 Unauthorized or 403 Forbidden), as the read-only session is not authenticated for write operations."
+    }
+  ],
+  "status": "Active"
+}

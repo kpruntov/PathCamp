@@ -1,0 +1,41 @@
+{
+  "id": "TASK-009",
+  "title": "Implement Session Authorization",
+  "type": "Feature",
+  "routine": "Feature",
+  "verification_regime": "Automated",
+  "status": "Pending",
+  "priority": 5,
+  "description": "Create middleware to protect API endpoints by validating the session token (e.g., JWT) from the request headers.",
+  "ai_instructions": [
+    "The middleware should be placed before protected routes. It should decode the token, verify its signature, and attach the user's identity to the request object for downstream handlers. If the token is invalid or missing, it must send a 401/403 response."
+  ],
+  "dependencies": [
+    "TASK-008"
+  ],
+  "trace_to": {
+    "functional_requirements": ["FR-024"],
+    "design_nodes": ["LCOMP-001", "API-001"]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-009'",
+    "Create a new test file 'tests/middleware.test.ts'.",
+    "Write tests for the authorization middleware, checking both valid and invalid token scenarios.",
+    "Run tests to see them fail.",
+    "Create 'src/middleware/authMiddleware.ts' and implement the token validation logic.",
+    "Apply the middleware to a sample protected route in the main Express app.",
+    "Run tests to verify the implementation.",
+    "Add '@trace TASK-009' to all modified files."
+  ],
+  "definition_of_done": [
+    "Middleware successfully protects routes from unauthenticated access.",
+    "Middleware correctly decodes a valid token and attaches user info to the request.",
+    "Middleware rejects requests with invalid or missing tokens.",
+    "All tests for the authorization middleware pass."
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/middleware.test.ts",
+    "implementation_file": "src/middleware/authMiddleware.ts",
+    "verification_command": "npm test -- tests/middleware.test.ts"
+  }
+}

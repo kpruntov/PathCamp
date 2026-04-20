@@ -1,0 +1,12 @@
+{
+  "id": "DATA-002",
+  "specification": {
+    "type": "SQL_DDL",
+    "path": ".spec/data/05_design/data_002_campaign.sql"
+  },
+  "trace_to": {
+    "logical_components": [
+      "LCOMP-002"
+    ]
+  }
+}

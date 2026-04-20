@@ -1,0 +1,16 @@
+{
+  "id": "FR-010",
+  "title": "Asset File Attachments and Validation",
+  "description": "The system shall allow the GM to upload external files (such as images or notes) to attach to a Scene, enforcing predefined size limits and allowed file formats. It shall display an error and reject invalid files.",
+  "trace_to": {
+    "user_requirements": ["UR-003"]
+  },
+  "acceptance_criteria": [
+    "Valid files are successfully attached to the Scene.",
+    "Files exceeding the size limit trigger an error message and are rejected.",
+    "Unsupported file formats trigger an error message and are rejected."
+  ],
+  "verification_method": "Test",
+  "priority": "Should-have",
+  "stability": "Stable"
+}

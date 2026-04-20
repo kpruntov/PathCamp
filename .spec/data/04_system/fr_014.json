@@ -1,0 +1,15 @@
+{
+  "id": "FR-014",
+  "title": "Event Overwrite Warning and Cancellation",
+  "description": "The system shall warn the GM if the recalculation of an Event's inheritance will overwrite conflicting states in future Ticks. If the GM cancels the warning, the system shall abort the event creation and revert any state changes.",
+  "trace_to": {
+    "user_requirements": ["UR-004"]
+  },
+  "acceptance_criteria": [
+    "A warning is shown before overwriting conflicting future states due to an Event.",
+    "Cancelling the warning discards the new Event and preserves the existing timeline state."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

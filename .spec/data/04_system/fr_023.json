@@ -1,0 +1,16 @@
+{
+  "id": "FR-023",
+  "title": "User Authentication",
+  "description": "The system shall provide a login and logout interface for registered users to manage their session.",
+  "trace_to": {
+    "user_requirements": ["UR-001", "UR-007"],
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "Users can log in with valid credentials.",
+    "Users can log out to end their session."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "DATA-003",
+  "specification": {
+    "type": "SQL_DDL",
+    "path": ".spec/data/05_design/data_003_timeline.sql"
+  },
+  "trace_to": {
+    "logical_components": [
+      "LCOMP-003"
+    ]
+  }
+}

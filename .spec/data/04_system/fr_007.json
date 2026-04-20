@@ -1,0 +1,15 @@
+{
+  "id": "FR-007",
+  "title": "Historical Tick Modification Warning",
+  "description": "When the Game Master attempts to modify the state of a historical Tick, the system shall display a warning that changes will overwrite state in subsequent Ticks and require explicit confirmation. If cancelled, the system shall abort the operation.",
+  "trace_to": {
+    "user_requirements": ["UR-002"]
+  },
+  "acceptance_criteria": [
+    "Modifying a non-latest Tick triggers a confirmation prompt.",
+    "Cancelling the prompt reverts any unsaved changes and prevents cascade."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

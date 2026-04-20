@@ -1,0 +1,16 @@
+{
+  "id": "FR-017",
+  "title": "Encounter Narrative Flavor and Persistence",
+  "description": "The system shall take the deterministically generated mechanical encounter data and provide a text interface for the GM to add narrative flavor text. Both the mechanical trace and narrative flavor shall be saved to the Scene for the current Tick.",
+  "trace_to": {
+    "user_requirements": ["UR-005"],
+    "business_rules": ["BR-002"]
+  },
+  "acceptance_criteria": [
+    "Mechanical trace and user-provided narrative text are both saved successfully.",
+    "The complete encounter is saved and persisted in the Scene's state for the current Tick."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "API-005",
+  "specification": {
+    "type": "CLI",
+    "version": "1.0",
+    "path": ".spec/data/05_design/api_005_db.yaml"
+  },
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-002"
+    ]
+  },
+  "status": "Proposed"
+}

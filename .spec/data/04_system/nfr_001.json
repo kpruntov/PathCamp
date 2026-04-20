@@ -1,0 +1,15 @@
+{
+  "id": "NFR-001",
+  "title": "Paizo UI Branding Compliance",
+  "description": "The application's UI must strictly incorporate the Paizo Community Use Package branding and explicitly follow the Paizo Community Use Policy.",
+  "category": "Usability",
+  "trace_to": {
+    "business_rules": ["BR-003"],
+    "stakeholders": ["STK-002"],
+    "verification_plans": ["SCN-022"]
+  },
+  "acceptance_criteria": [
+    "The UI includes the required Paizo copyright notices.",
+    "The UI branding uses the authorized Community Use Package assets."
+  ]
+}

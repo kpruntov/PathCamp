@@ -1,0 +1,16 @@
+{
+  "id": "FR-024",
+  "title": "Session Authorization",
+  "description": "The system shall enforce authentication for all campaign-modifying API endpoints.",
+  "trace_to": {
+    "business_rules": ["BR-006"],
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "Unauthenticated users cannot modify campaign data.",
+    "Campaign viewers (UCH-002) have read-only access via shared links."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

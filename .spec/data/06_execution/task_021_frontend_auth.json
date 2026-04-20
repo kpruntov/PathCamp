@@ -1,0 +1,46 @@
+{
+  "id": "TASK-021",
+  "title": "Implement User Auth UI",
+  "type": "Feature",
+  "routine": "Feature",
+  "verification_regime": "Manual",
+  "status": "Review",
+  "priority": 16,
+  "description": "Create the frontend views and components for user registration and login. This includes creating forms, managing component state, and communicating with the backend authentication API.",
+  "ai_instructions": [
+    "Create a 'RegistrationView' and a 'LoginView'. Use a state management solution (like React Context or Zustand) to handle the user's authentication status globally. API calls should be centralized in a service module (e.g., 'src/services/authService.ts')."
+  ],
+  "dependencies": [
+    "TASK-008",
+    "TASK-020"
+  ],
+  "trace_to": {
+    "functional_requirements": [
+      "FR-022",
+      "FR-023"
+    ],
+    "design_nodes": [
+      "LCOMP-005"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-021'",
+    "Create Registration and Login view components under 'src/views/'.",
+    "Create reusable form and input components under 'src/components/'.",
+    "Create an 'authService.ts' to handle API calls to the '/register' and '/login' endpoints.",
+    "Implement a global auth context to store the user's token and status.",
+    "Wire up the components, state, and services.",
+    "Implement routing for the login/registration pages."
+  ],
+  "definition_of_done": [
+    "A user can successfully register through the UI.",
+    "A user can successfully log in through the UI.",
+    "The application state correctly reflects the user's authenticated status after login/logout.",
+    "Error messages from the API are displayed to the user."
+  ],
+  "tdd_cycle": {
+    "test_file": "src/views/LoginView.test.tsx",
+    "implementation_file": "src/views/LoginView.tsx",
+    "verification_command": "npm test -- src/views/LoginView.test.tsx"
+  }
+}

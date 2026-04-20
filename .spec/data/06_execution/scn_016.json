@@ -1,0 +1,30 @@
+{
+  "id": "SCN-016",
+  "title": "Verify Elite/Weak Template Calculations",
+  "objective": "Validates that the system correctly applies Elite or Weak templates to monsters based on the campaign's party level to create a balanced encounter.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-016"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a GM, set a campaign's average party level to 5.",
+      "expected_result": "The party level is saved."
+    },
+    {
+      "step": "Generate an encounter in a Scene that proposes a monster with a base level of 3 (e.g., a Ghoul).",
+      "expected_result": "The system should propose the monster. Because the party level (5) is significantly higher than the monster level (3), the system should automatically apply the 'Elite' template to the Ghoul, increasing its stats and effective level."
+    },
+    {
+      "step": "Change the campaign's average party level to 1.",
+      "expected_result": "The party level is saved."
+    },
+    {
+      "step": "Generate another encounter in a Scene that proposes a monster with a base level of 3 (e.g., a Ghoul).",
+      "expected_result": "The system should propose the monster. Because the party level (1) is significantly lower than the monster level (3), the system should automatically apply the 'Weak' template to the Ghoul, decreasing its stats and effective level."
+    }
+  ],
+  "status": "Active"
+}

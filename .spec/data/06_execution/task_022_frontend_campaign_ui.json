@@ -1,0 +1,40 @@
+{
+  "id": "TASK-022",
+  "title": "Implement Campaign Management UI",
+  "type": "Feature",
+  "routine": "Feature",
+  "verification_regime": "Manual",
+  "status": "Pending",
+  "priority": 17,
+  "description": "Create the frontend views for listing a user's campaigns, creating a new campaign, and viewing the main campaign dashboard. This covers the UI for FR-004.",
+  "ai_instructions": [
+    "Create a 'CampaignListView' to show all of the logged-in user's campaigns. Create a 'NewCampaignView' with a form to hit the campaign creation endpoint. Create a 'CampaignDashboardView' which will be the main hub for viewing a campaign's timeline and assets. Implement client-side routing between these views."
+  ],
+  "dependencies": [
+    "TASK-012",
+    "TASK-021"
+  ],
+  "trace_to": {
+    "functional_requirements": ["FR-004"],
+    "design_nodes": ["LCOMP-005"]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-022'",
+    "Create the required view components: 'CampaignListView', 'NewCampaignView', 'CampaignDashboardView'.",
+    "Create a 'campaignService.ts' to handle API calls for fetching and creating campaigns.",
+    "Implement the UI forms and lists.",
+    "Upon successful campaign creation, programmatically navigate the user to the new campaign's dashboard, satisfying FR-004.",
+    "Add the necessary routes to the application's router."
+  ],
+  "definition_of_done": [
+    "A logged-in user can see a list of their campaigns.",
+    "A user can create a new campaign using a form.",
+    "After creating a campaign, the user is automatically redirected to that campaign's dashboard page.",
+    "The basic dashboard view is implemented."
+  ],
+  "tdd_cycle": {
+    "test_file": "src/views/CampaignDashboardView.test.tsx",
+    "implementation_file": "src/views/CampaignDashboardView.tsx",
+    "verification_command": "npm test -- src/views/CampaignDashboardView.test.tsx"
+  }
+}

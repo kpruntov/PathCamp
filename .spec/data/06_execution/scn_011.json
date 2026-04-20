@@ -1,0 +1,30 @@
+{
+  "id": "SCN-011",
+  "title": "Verify Asset State Save and Cascade",
+  "objective": "Validates that modifications to an asset's state are saved in the current Tick and correctly cascade forward to all subsequent Ticks.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-011"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, create a timeline with 3 Ticks. Create an asset (e.g., Scene 'Town Square') with a trait 'Quiet' in Tick 1. Verify it is 'Quiet' in all Ticks.",
+      "expected_result": "The timeline is set up correctly with the 'Town Square' Scene present and 'Quiet' in all three Ticks."
+    },
+    {
+      "step": "Navigate to Tick 2 and modify the 'Town Square' trait to 'Festival Day'. Save the change.",
+      "expected_result": "The change is saved. The Scene is now 'Festival Day' in Tick 2. A warning about historical edits may appear; confirm it."
+    },
+    {
+      "step": "Inspect the 'Town Square' asset in Tick 1.",
+      "expected_result": "The Scene should remain 'Quiet' in Tick 1. The change in the future does not affect the past."
+    },
+    {
+      "step": "Inspect the 'Town Square' asset in Tick 3.",
+      "expected_result": "The Scene's trait should now be 'Festival Day' in Tick 3, having automatically cascaded forward from the change made in Tick 2."
+    }
+  ],
+  "status": "Active"
+}

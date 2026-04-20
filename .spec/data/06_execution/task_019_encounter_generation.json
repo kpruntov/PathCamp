@@ -1,0 +1,43 @@
+{
+  "id": "TASK-019",
+  "title": "Implement Deterministic Encounter Generation",
+  "type": "Feature",
+  "routine": "Feature",
+  "verification_regime": "Automated",
+  "status": "Pending",
+  "priority": 15,
+  "description": "Implement the deterministic, rule-based engine for generating mechanical encounter data. This includes querying the monster database by traits, applying templates based on party level/size, and saving the final encounter data.",
+  "ai_instructions": [
+    "This is a pure rules engine. The focus is on correctly implementing the game logic (e.g., Pathfinder 2e rules for templates) deterministically, without relying on AI. The final step is to save the generated data along with any GM-provided narrative text."
+  ],
+  "dependencies": [
+    "TASK-016"
+  ],
+  "trace_to": {
+    "functional_requirements": ["FR-015", "FR-016", "FR-017"],
+    "design_nodes": ["LCOMP-004", "API-004", "FCHAIN-001"]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-019'",
+    "Create a new test file 'tests/encounter.test.ts'.",
+    "Write tests for the encounter generation service. Mock the database of monsters and test that the correct monsters are selected based on traits. Test that the Elite/Weak templates are applied correctly based on party stats.",
+    "Run tests to see them fail.",
+    "Create 'src/services/EncounterService.ts' with a 'generateEncounter' method.",
+    "Create a corresponding controller and route 'POST /encounters/generate'.",
+    "Implement the deterministic query and template application logic.",
+    "Implement the logic to save the final encounter to the database, associated with a scene/tick.",
+    "Run tests to verify the implementation.",
+    "Add '@trace TASK-019' to all modified files."
+  ],
+  "definition_of_done": [
+    "The encounter generation service correctly selects monsters based on input traits.",
+    "Elite/Weak templates are mathematically and correctly applied based on party level and size.",
+    "The final mechanical and narrative encounter data is persisted correctly.",
+    "All tests for the encounter generation feature pass."
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/encounter.test.ts",
+    "implementation_file": "src/services/EncounterService.ts",
+    "verification_command": "npm test -- tests/encounter.test.ts"
+  }
+}

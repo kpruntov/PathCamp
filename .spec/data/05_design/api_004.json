@@ -1,0 +1,16 @@
+{
+  "id": "API-004",
+  "specification": {
+    "type": "OpenAPI",
+    "version": "3.0.0",
+    "path": ".spec/data/05_design/api_004_encounter.yaml"
+  },
+  "trace_to": {
+    "functional_requirements": [
+      "FR-015",
+      "FR-016",
+      "FR-017"
+    ]
+  },
+  "status": "Proposed"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "TASK-006",
+  "title": "Setup Database & Alembic Migrations",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Done",
+  "priority": 2,
+  "description": "Prepare the PostgreSQL database using Docker and set up Alembic to manage schema changes for the FastAPI application.",
+  "ai_instructions": [
+    "You are a database administrator. Ensure the setup is clean and migrations are repeatable using Python tools."
+  ],
+  "dependencies": [
+    "TASK-005"
+  ],
+  "trace_to": {
+    "system_requirements": [
+      "SYS-IMPLEMENT"
+    ],
+    "design_nodes": [
+      "PCOMP-003"
+    ]
+  },
+  "execution_steps": [
+    "Create a 'docker-compose.yml' file at the project root to define the PostgreSQL service, using environment variables for credentials.",
+    "Install Alembic, SQLAlchemy, and psycopg2-binary into the backend virtual environment.",
+    "Run 'alembic init backend/migrations' to create the migration environment.",
+    "Update 'backend/alembic.ini' with the correct database URL, sourcing from environment variables.",
+    "Modify 'backend/migrations/env.py' to ensure it can see the database models.",
+    "Create a new migration revision using 'alembic revision -m \"Create initial tables\"'.",
+    "Copy the SQL from DATA-001, DATA-002, DATA-003, and DATA-004 into the upgrade function of the new migration file.",
+    "Add `@trace TASK-006` to the new migration file."
+  ],
+  "definition_of_done": [
+    "'docker-compose up -d' starts the PostgreSQL container successfully.",
+    "'alembic upgrade head' runs successfully from within the backend directory, creating all tables.",
+    "The backend application can establish a connection to the database."
+  ]
+}

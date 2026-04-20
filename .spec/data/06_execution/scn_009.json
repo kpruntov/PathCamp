@@ -1,0 +1,38 @@
+{
+  "id": "SCN-009",
+  "title": "Verify Asset Creation and Trait Editing",
+  "objective": "Validates that a GM can create new assets (Scenes, NPCs) and modify their traits within a specific Tick.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-009"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, navigate to a specific Tick in a campaign timeline.",
+      "expected_result": "The asset management view for that Tick is displayed."
+    },
+    {
+      "step": "Select the option to create a new NPC asset.",
+      "expected_result": "A form or modal appears to enter the new NPC's details."
+    },
+    {
+      "step": "Name the NPC 'Shopkeeper' and add a trait 'Friendly'. Save the new asset.",
+      "expected_result": "The 'Shopkeeper' NPC appears in the list of assets for the current Tick, displaying the 'Friendly' trait."
+    },
+    {
+      "step": "Select the newly created 'Shopkeeper' NPC.",
+      "expected_result": "The NPC's details are shown, with an option to edit its traits."
+    },
+    {
+      "step": "Add a new trait 'Wealthy' to the 'Shopkeeper' and remove the 'Friendly' trait. Save the changes.",
+      "expected_result": "The 'Shopkeeper' NPC's traits are updated. It should now display the 'Wealthy' trait but not the 'Friendly' trait."
+    },
+    {
+      "step": "Navigate to a different Tick and verify the asset list.",
+      "expected_result": "The 'Shopkeeper' NPC should not appear in other Ticks unless it was inherited."
+    }
+  ],
+  "status": "Active"
+}

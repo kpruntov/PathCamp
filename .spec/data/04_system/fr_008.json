@@ -1,0 +1,15 @@
+{
+  "id": "FR-008",
+  "title": "Future Tick Recalculation",
+  "description": "Upon confirmation of changes to a historical Tick, the system shall recalculate the inheritance cascade for all subsequent Ticks, overwriting any conflicting future states with the newly applied changes.",
+  "trace_to": {
+    "user_requirements": ["UR-002"]
+  },
+  "acceptance_criteria": [
+    "Changes made to Tick N automatically update the inherited state in Tick N+1, N+2, etc.",
+    "Conflicting state changes in later Ticks are overwritten by the cascading update."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

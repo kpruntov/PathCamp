@@ -1,0 +1,45 @@
+{
+  "id": "FCHAIN-005",
+  "name": "Manage World Events (Create Event)",
+  "level": "logical",
+  "description": "Demonstrates the sequence of functions to create a new Event/Front and assign it to a starting Tick.",
+  "traces_to": ["UR-004"],
+  "sequence": [
+    {
+      "step": 1,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "GM submits new Event data and a starting Tick.",
+      "target_function": "LCOMP-003.LI-012",
+      "payload": "tick_id, asset_data: {asset_type: 'Event', ...}"
+    },
+    {
+      "step": 2,
+      "actor_or_component": "LCOMP-003 (Timeline Service)",
+      "action": "Saves the new Event asset to the designated start Tick.",
+      "target_function": "DATA-003",
+      "payload": "New Event Asset Data"
+    },
+    {
+      "step": 3,
+      "actor_or_component": "LCOMP-003 (Timeline Service)",
+      "action": "Recalculates state inheritance for all subsequent Ticks to include the new Event's traits.",
+      "target_function": "LCOMP-003.LF-019",
+      "payload": "event_asset_id, start_tick_id"
+    },
+    {
+      "step": 4,
+      "actor_or_component": "LCOMP-003 (Timeline Service)",
+      "action": "Confirms event creation.",
+      "target_function": "LCOMP-005",
+      "payload": "{asset_id: ...}"
+    },
+    {
+      "step": 5,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "Refreshes UI to display the new event on the timeline.",
+      "target_function": "LCOMP-005",
+      "payload": "UI Update"
+    }
+  ],
+  "sequence_diagram_mermaid": "```mermaid\\nsequenceDiagram\\n    actor GM\\n    participant Browser as PCOMP-001 (Boundary)\\n    participant AppServer as PCOMP-002 (Controller)\\n    participant Database as PCOMP-003 (Entity)\\n\\n    GM->>+Browser: Clicks 'Create Event'\\n    Browser->>+AppServer: POST /ticks/{id}/assets (invokes LI-012 with type 'Event')\\n    AppServer->>+Database: INSERT INTO assets...\\n    Database-->>-AppServer: returns asset_id\\n    AppServer->>+AppServer: LF-019: Recalculate Event Inheritance\\n    AppServer-->>-Browser: returns {asset_id: ...}\\n    Browser->>-GM: Refreshes UI to show new Event\\n```"
+}

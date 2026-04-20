@@ -1,0 +1,52 @@
+{
+  "id": "FCHAIN-001",
+  "name": "Generate Encounter",
+  "level": "logical",
+  "description": "Demonstrates the sequence of functions to generate a deterministic encounter for a given scene, triggered by the GM.",
+  "traces_to": ["UR-005"],
+  "sequence": [
+    {
+      "step": 1,
+      "actor_or_component": "LCOMP-005",
+      "action": "Requests scene data to prepare for encounter generation.",
+      "target_function": "LCOMP-003.LI-009",
+      "payload": "campaign_id, scene_id"
+    },
+    {
+      "step": 2,
+      "actor_or_component": "LCOMP-003",
+      "action": "Returns scene data, including traits and party info.",
+      "target_function": "LCOMP-005",
+      "payload": "Scene Traits, Party Level, Party Size"
+    },
+    {
+      "step": 3,
+      "actor_or_component": "LCOMP-005",
+      "action": "Requests a new mechanical encounter from the Encounter Service.",
+      "target_function": "LCOMP-004.LI-015",
+      "payload": "Scene Traits, Party Level, Party Size"
+    },
+    {
+      "step": 4,
+      "actor_or_component": "LCOMP-004",
+      "action": "Returns the calculated mechanical encounter data.",
+      "target_function": "LCOMP-005",
+      "payload": "Mechanical Encounter Data"
+    },
+    {
+      "step": 5,
+      "actor_or_component": "LCOMP-005",
+      "action": "Submits the full encounter (mechanical data + GM narrative) to be saved.",
+      "target_function": "LCOMP-003.LI-016",
+      "payload": "tick_id, scene_id, Full Encounter Data"
+    },
+    {
+      "step": 6,
+      "actor_or_component": "LCOMP-003",
+      "action": "Confirms the encounter was saved successfully.",
+      "target_function": "LCOMP-005",
+      "payload": "{success: true}"
+    }
+  ],
+  "sequence_diagram_mermaid": "```mermaid\\nsequenceDiagram\\n    actor GM\\n    participant Browser as PCOMP-001 (Boundary)\\n    participant AppServer as PCOMP-002 (Controller)\\n    participant Database as PCOMP-003 (Entity)\\n\\n    GM->>+Browser: Clicks 'Generate Encounter' on Scene\\n    Browser->>+AppServer: GET /timeline/{id} (invokes LI-009)\\n    AppServer->>+Database: SELECT * FROM assets WHERE id = ...\\n    Database-->>-AppServer: Returns Scene/Party data\\n    AppServer-->>-Browser: Returns Scene/Party data\\n\\n    Browser->>+AppServer: POST /generate-encounter (invokes LI-015)\\n    AppServer-->>-Browser: Returns Mechanical Encounter Data\\n\\n    Browser->>GM: Displays Mechanical Data, asks for Narrative\\n    GM->>+Browser: Submits Narrative\\n    Browser->>+AppServer: POST /ticks/{id}/scenes/{id}/encounter (invokes LI-016)\\n    AppServer->>+Database: INSERT INTO encounters ...\\n    Database-->>-AppServer: Returns {success: true}\\n    AppServer-->>-Browser: Returns {success: true}\\n    Browser->>GM: Shows success message\\n```"
+}

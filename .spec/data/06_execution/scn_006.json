@@ -1,0 +1,34 @@
+{
+  "id": "SCN-006",
+  "title": "Verify Tick Inheritance",
+  "objective": "Validates that a newly created Tick automatically inherits the complete state (metadata, traits) of all assets from the tick immediately preceding it.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-006"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, navigate to a campaign timeline that has at least one Tick (Tick 1).",
+      "expected_result": "The timeline is displayed."
+    },
+    {
+      "step": "In Tick 1, define or verify that a global asset exists, for example, an NPC named 'Guard Captain' with a 'Wounded' status trait.",
+      "expected_result": "The asset and its state are saved in Tick 1."
+    },
+    {
+      "step": "Create a new Tick (Tick 2).",
+      "expected_result": "Tick 2 is created immediately after Tick 1."
+    },
+    {
+      "step": "Inspect the assets within Tick 2.",
+      "expected_result": "The same NPC, 'Guard Captain', should exist in Tick 2 with the identical 'Wounded' status trait, having been automatically copied from Tick 1."
+    },
+    {
+      "step": "In Tick 2, modify the NPC's trait to 'Healed'. Then, inspect the same NPC in Tick 1.",
+      "expected_result": "The NPC in Tick 1 should remain 'Wounded'. The state change in Tick 2 should not affect the state of the parent Tick 1."
+    }
+  ],
+  "status": "Active"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "SYS-VERIFY",
+  "title": "Process Verification",
+  "description": "The system must follow the SpecLoom V-Model process during the verification phase.",
+  "phase": "Verify"
+}

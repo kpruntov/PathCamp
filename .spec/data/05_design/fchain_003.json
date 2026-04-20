@@ -1,0 +1,45 @@
+{
+  "id": "FCHAIN-003",
+  "name": "Manage Timeline (Create Tick)",
+  "level": "logical",
+  "description": "Demonstrates the sequence of functions to create a new Tick in a campaign timeline.",
+  "traces_to": ["UR-002"],
+  "sequence": [
+    {
+      "step": 1,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "GM clicks 'New Tick' and submits a narrative.",
+      "target_function": "LCOMP-003.LI-010",
+      "payload": "campaign_id, narrative"
+    },
+    {
+      "step": 2,
+      "actor_or_component": "LCOMP-003 (Timeline Service)",
+      "action": "Calculates state to cascade from the previous tick.",
+      "target_function": "LCOMP-003.LF-012",
+      "payload": "campaign_id"
+    },
+    {
+      "step": 3,
+      "actor_or_component": "LCOMP-003 (Timeline Service)",
+      "action": "Persists the new tick with cascaded state.",
+      "target_function": "DATA-003",
+      "payload": "New Tick Data"
+    },
+    {
+      "step": 4,
+      "actor_or_component": "LCOMP-003 (Timeline Service)",
+      "action": "Confirms tick creation.",
+      "target_function": "LCOMP-005",
+      "payload": "{new_tick_id: ...}"
+    },
+    {
+      "step": 5,
+      "actor_or_component": "LCOMP-005 (Web Frontend)",
+      "action": "Refreshes timeline view to display the new tick.",
+      "target_function": "LCOMP-005",
+      "payload": "UI Update"
+    }
+  ],
+  "sequence_diagram_mermaid": "```mermaid\\nsequenceDiagram\\n    actor GM\\n    participant Browser as PCOMP-001 (Boundary)\\n    participant AppServer as PCOMP-002 (Controller)\\n    participant Database as PCOMP-003 (Entity)\\n\\n    GM->>+Browser: Clicks 'New Tick' and enters narrative\\n    Browser->>+AppServer: POST /ticks (invokes LI-010)\\n    AppServer->>+AppServer: LF-012: Cascade Tick State\\n    AppServer->>+Database: INSERT INTO ticks...\\n    Database-->>-AppServer: returns new_tick_id\\n    AppServer-->>-Browser: returns {new_tick_id: ...}\\n    Browser->>-GM: Refreshes UI with new Tick\\n```"
+}

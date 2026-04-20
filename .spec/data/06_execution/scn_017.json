@@ -1,0 +1,30 @@
+{
+  "id": "SCN-017",
+  "title": "Verify GM Narrative and Mechanical Data Persistence",
+  "objective": "Validates that the system provides an interface for the GM to add narrative text to a generated encounter and that both the mechanical data and the GM's narrative are saved to the Scene.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-017"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a GM, after the system has generated a mechanical encounter (e.g., '2 Elite Ghouls').",
+      "expected_result": "The system presents the mechanical data and a text input field for the GM to add narrative flavor text."
+    },
+    {
+      "step": "In the narrative text field, enter a description, e.g., 'The ghouls crawl from the graves, their claws caked in dirt and gore.'",
+      "expected_result": "The text is entered into the field."
+    },
+    {
+      "step": "Save the encounter with the added narrative.",
+      "expected_result": "The encounter, including both the mechanical data ('2 Elite Ghouls') and the GM's narrative, is saved successfully."
+    },
+    {
+      "step": "Reload the Scene or navigate away and back to it.",
+      "expected_result": "The saved encounter is displayed, showing both the original mechanical details and the GM-provided narrative text, proving it has been persisted."
+    }
+  ],
+  "status": "Active"
+}

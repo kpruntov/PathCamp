@@ -1,0 +1,16 @@
+{
+  "id": "FR-019",
+  "title": "Campaign Read-Only Access View",
+  "description": "The system shall allow users with a valid read-only link to view the campaign's timeline, public events, and current scenes, while strictly preventing any modifications or encounter generations.",
+  "trace_to": {
+    "user_requirements": ["UR-006"],
+    "business_rules": ["BR-005"]
+  },
+  "acceptance_criteria": [
+    "Viewers can see the timeline, public events, and current scenes.",
+    "Viewers cannot edit assets, create ticks, or generate encounters."
+  ],
+  "verification_method": "Test",
+  "priority": "Should-have",
+  "stability": "Stable"
+}

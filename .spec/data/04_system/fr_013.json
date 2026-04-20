@@ -1,0 +1,14 @@
+{
+  "id": "FR-013",
+  "title": "Event Inheritance Recalculation",
+  "description": "When an Event or Front is assigned to a past or present Tick, the system shall recalculate the state inheritance for all subsequent Ticks to include the new Event's traits.",
+  "trace_to": {
+    "user_requirements": ["UR-004"]
+  },
+  "acceptance_criteria": [
+    "Assigning an event to Tick N correctly applies its traits to assets in Tick N, N+1, N+2, etc."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

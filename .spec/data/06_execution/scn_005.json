@@ -1,0 +1,34 @@
+{
+  "id": "SCN-005",
+  "title": "Verify Tick Creation and Narrative Updating",
+  "objective": "Validates that a Game Master can create new Ticks on the timeline and modify the narrative description of existing Ticks.",
+  "type": "Manual",
+  "trace_to": {
+    "requirements": [
+      "FR-005"
+    ]
+  },
+  "steps": [
+    {
+      "step": "As a logged-in GM, navigate to a campaign's timeline view.",
+      "expected_result": "The campaign timeline with existing Ticks is displayed."
+    },
+    {
+      "step": "Click the 'Add New Tick' button.",
+      "expected_result": "A new Tick appears at the end of the timeline sequence, and an input field for its narrative is shown."
+    },
+    {
+      "step": "Enter 'This is a new tick narrative.' into the new Tick's narrative field and save.",
+      "expected_result": "The narrative is saved successfully. Reloading the page should show the new Tick and its narrative."
+    },
+    {
+      "step": "Select a pre-existing Tick on the timeline.",
+      "expected_result": "The narrative description field for that Tick becomes editable."
+    },
+    {
+      "step": "Modify the narrative text of the selected Tick to 'This is an updated narrative.' and save.",
+      "expected_result": "The updated narrative is saved successfully. Reloading the page should show the modified narrative for that Tick."
+    }
+  ],
+  "status": "Active"
+}

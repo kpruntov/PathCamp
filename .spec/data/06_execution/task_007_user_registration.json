@@ -1,0 +1,56 @@
+{
+  "id": "TASK-007",
+  "title": "Implement User Registration API",
+  "type": "Feature",
+  "routine": "Feature",
+  "verification_regime": "Automated",
+  "status": "Done",
+  "priority": 3,
+  "description": "Create the SQLAlchemy user model, Pydantic schema, and FastAPI endpoint to allow new users to register. This includes hashing the password before storing it.",
+  "ai_instructions": [
+    "You are a software engineer following TDD. Write a failing test for the API endpoint first, then implement the logic to make it pass. Use SQLAlchemy for the model, Pydantic for schema validation, and Passlib for hashing."
+  ],
+  "dependencies": [
+    "TASK-006"
+  ],
+  "trace_to": {
+    "functional_requirements": [
+      "FR-022"
+    ],
+    "design_nodes": [
+      "LCOMP-001",
+      "API-001",
+      "DATA-001"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-007'",
+    "Run 'loom context TASK-007'",
+    "Install `pytest`, `httpx`, `passlib[bcrypt]` and `sqlalchemy-utils` into the venv.",
+    "Update `requirements.txt`.",
+    "Create a `backend/tests` directory and configure pytest.",
+    "Create test file `backend/tests/test_auth.py` with a failing test for the POST /users/ endpoint.",
+    "Create `backend/app/schemas.py` with Pydantic models for User input and output.",
+    "Create `backend/app/models.py` with the SQLAlchemy User model.",
+    "Create `backend/app/database.py` to handle database session management.",
+    "Create `backend/app/hashing.py` for password hashing logic using Passlib.",
+    "Create `backend/app/crud.py` with a function to create a user in the database.",
+    "Create the `POST /users/` endpoint in `backend/app/main.py`.",
+    "Implement the logic to make the test pass.",
+    "Run `pytest` from the `backend` directory to verify.",
+    "Add `@trace TASK-007` annotations to all new/modified files.",
+    "Run 'loom complete TASK-007'"
+  ],
+  "definition_of_done": [
+    "API endpoint 'POST /users/' is created and functional.",
+    "User data is correctly saved to the 'users' table.",
+    "Passwords are securely hashed using bcrypt.",
+    "All pytest tests for the registration feature pass.",
+    "All modified source files have '@trace TASK-007' annotation."
+  ],
+  "tdd_cycle": {
+    "test_file": "backend/tests/test_auth.py",
+    "implementation_file": "backend/app/main.py",
+    "verification_command": "pytest backend/tests/test_auth.py"
+  }
+}

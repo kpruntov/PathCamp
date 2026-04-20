@@ -1,0 +1,134 @@
+{
+  "id": "LCOMP-003",
+  "name": "Timeline Service",
+  "description": "The core engine that manages the chronological state of a campaign through Ticks, assets, and events. It handles all state inheritance and recalculation logic.",
+  "boundary_definition": {
+    "summary": "This component contains all logic for managing the state of a campaign over time. Its boundary is defined by the set of operations that create or modify Ticks, or the assets and events within them."
+  },
+  "allocated_functions": [
+    {
+      "func_id": "LF-010",
+      "name": "Initialize Timeline",
+      "traces_to": ["FR-003"]
+    },
+    {
+      "func_id": "LF-011",
+      "name": "Manage Tick Narrative",
+      "traces_to": ["FR-005"]
+    },
+    {
+      "func_id": "LF-012",
+      "name": "Cascade Tick State",
+      "traces_to": ["FR-006"]
+    },
+    {
+      "func_id": "LF-013",
+      "name": "Handle Historical Edit Warnings",
+      "traces_to": ["FR-007"]
+    },
+    {
+      "func_id": "LF-014",
+      "name": "Recalculate Future Ticks",
+      "traces_to": ["FR-008"]
+    },
+    {
+      "func_id": "LF-015",
+      "name": "Manage Asset Traits",
+      "traces_to": ["FR-009"]
+    },
+    {
+      "func_id": "LF-016",
+      "name": "Manage Asset Attachments",
+      "traces_to": ["FR-010"]
+    },
+    {
+      "func_id": "LF-017",
+      "name": "Cascade Asset State",
+      "traces_to": ["FR-011"]
+    },
+    {
+      "func_id": "LF-018",
+      "name": "Create Events/Fronts",
+      "traces_to": ["FR-012"]
+    },
+    {
+      "func_id": "LF-019",
+      "name": "Recalculate Event Inheritance",
+      "traces_to": ["FR-013"]
+    },
+    {
+      "func_id": "LF-020",
+      "name": "Handle Event Overwrite Warnings",
+      "traces_to": ["FR-014"]
+    }
+  ],
+  "logical_ports": [
+    {
+      "port_id": "LP-003",
+      "name": "TimelineApi",
+      "nature": "REST-API"
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "LI-009",
+      "name": "GetTimeline",
+      "port_id": "LP-003",
+      "direction": "Provided",
+      "input": [{"param": "campaign_id", "type": "string"}],
+      "output": [{"attribute": "timeline_data", "type": "object"}]
+    },
+    {
+      "interface_id": "LI-010",
+      "name": "CreateNextTick",
+      "port_id": "LP-003",
+      "direction": "Provided",
+      "input": [{"param": "campaign_id", "type": "string"}, {"param": "narrative", "type": "string"}],
+      "output": [{"attribute": "new_tick_id", "type": "integer"}]
+    },
+    {
+      "interface_id": "LI-011",
+      "name": "UpdateTick",
+      "port_id": "LP-003",
+      "direction": "Provided",
+      "input": [{"param": "tick_id", "type": "string"}, {"param": "narrative", "type": "string"}],
+      "output": [{"attribute": "success", "type": "boolean"}]
+    },
+    {
+      "interface_id": "LI-012",
+      "name": "CreateAssetInTick",
+      "port_id": "LP-003",
+      "direction": "Provided",
+      "input": [{"param": "tick_id", "type": "string"}, {"param": "asset_data", "type": "object"}],
+      "output": [{"attribute": "asset_id", "type": "string"}]
+    },
+    {
+      "interface_id": "LI-013",
+      "name": "UpdateAssetInTick",
+      "port_id": "LP-003",
+      "direction": "Provided",
+      "input": [{"param": "tick_id", "type": "string"}, {"param": "asset_id", "type": "string"}, {"param": "asset_data", "type": "object"}],
+      "output": [{"attribute": "success", "type": "boolean"}]
+    },
+    {
+      "interface_id": "LI-014",
+      "name": "CreateEvent",
+      "port_id": "LP-003",
+      "direction": "Provided",
+      "input": [{"param": "campaign_id", "type": "string"}, {"param": "start_tick_id", "type": "string"}, {"param": "event_data", "type": "object"}],
+      "output": [{"attribute": "event_id", "type": "string"}]
+    },
+    {
+      "interface_id": "LI-016",
+      "name": "SaveEncounterToTick",
+      "port_id": "LP-003",
+      "direction": "Provided",
+      "input": [
+        {"param": "tick_id", "type": "string"},
+        {"param": "scene_id", "type": "string"},
+        {"param": "encounter_data", "type": "object"}
+      ],
+      "output": [{"attribute": "success", "type": "boolean"}]
+    }
+  ]
+}
