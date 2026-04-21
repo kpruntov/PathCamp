@@ -4,11 +4,13 @@ from datetime import timedelta
 
 from . import crud, models, schemas, token
 from .database import engine, get_db
+from .dependencies import get_current_user
 from .hashing import Hasher
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
 
 @app.post("/login", response_model=schemas.Token)
 def login_for_access_token(form_data: schemas.UserLogin, db: Session = Depends(get_db)):
@@ -33,16 +35,25 @@ def create_user_endpoint(user: schemas.UserCreate, db: Session = Depends(get_db)
     db_user = crud.create_user(db=db, user=user)
     return db_user
 
+
 @app.post("/logout")
 def logout():
     # In a real application, this would invalidate the token, e.g., by using a blacklist.
     # For now, we just return a success message as per the spec.
     return {"message": "Logout successful"}
 
+
+@app.get("/users/me", response_model=schemas.User)
+def read_users_me(current_user: schemas.User = Depends(get_current_user)):
+    return current_user
+
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
 
+
 # @trace TASK-005
 # @trace TASK-007
 # @trace TASK-008
+# @trace TASK-009

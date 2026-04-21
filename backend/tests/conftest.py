@@ -17,6 +17,7 @@ TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engin
 # Create tables for every test session
 Base.metadata.create_all(bind=engine)
 
+
 @pytest.fixture(scope="function")
 def db_session():
     """
@@ -45,5 +46,6 @@ def test_client(db_session):
 
     app.dependency_overrides[get_db] = override_get_db
     yield TestClient(app)
+
 
 # @trace TASK-008

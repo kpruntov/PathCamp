@@ -1,17 +1,18 @@
 """Create initial tables
 
 Revision ID: 212bfb58a1cd
-Revises: 
+Revises:
 Create Date: 2026-04-15 20:45:51.723289
 
 """
+
 from typing import Sequence, Union
 
 from alembic import op
 
 
 # revision identifiers, used by Alembic.
-revision: str = '212bfb58a1cd'
+revision: str = "212bfb58a1cd"
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -115,5 +116,6 @@ def downgrade() -> None:
     DROP TABLE campaigns;
     DROP TABLE users;
     """)
+
 
 # @trace TASK-006
