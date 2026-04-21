@@ -43,6 +43,24 @@ def logout():
     return {"message": "Logout successful"}
 
 
+@app.post(
+    "/campaigns", response_model=schemas.Campaign, status_code=status.HTTP_201_CREATED
+)
+def create_new_campaign(
+    campaign: schemas.CampaignCreate,
+    db: Session = Depends(get_db),
+    current_user: schemas.User = Depends(get_current_user),
+):
+    db_campaign = crud.get_campaign_by_name(
+        db, name=campaign.name, gm_user_id=current_user.id
+    )
+    if db_campaign:
+        raise HTTPException(
+            status_code=400, detail="A campaign with this name already exists."
+        )
+    return crud.create_campaign(db=db, campaign=campaign, gm_user_id=current_user.id)
+
+
 @app.get("/users/me", response_model=schemas.User)
 def read_users_me(current_user: schemas.User = Depends(get_current_user)):
     return current_user
@@ -57,3 +75,4 @@ def read_root():
 # @trace TASK-007
 # @trace TASK-008
 # @trace TASK-009
+# @trace TASK-012
