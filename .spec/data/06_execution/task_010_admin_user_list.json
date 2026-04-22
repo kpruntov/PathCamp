@@ -4,7 +4,7 @@
   "type": "Feature",
   "routine": "Feature",
   "verification_regime": "Automated",
-  "status": "Pending",
+  "status": "Done",
   "priority": 6,
   "description": "Create an admin-only API endpoint to retrieve a list of all registered users.",
   "ai_instructions": [
@@ -14,8 +14,13 @@
     "TASK-009"
   ],
   "trace_to": {
-    "functional_requirements": ["FR-020"],
-    "design_nodes": ["LCOMP-001", "API-001"]
+    "functional_requirements": [
+      "FR-020"
+    ],
+    "design_nodes": [
+      "LCOMP-001",
+      "API-001"
+    ]
   },
   "execution_steps": [
     "Run 'loom start TASK-010'",

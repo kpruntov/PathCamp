@@ -4,7 +4,7 @@
   "type": "Feature",
   "routine": "Feature",
   "verification_regime": "Manual",
-  "status": "Review",
+  "status": "Done",
   "priority": 16,
   "description": "Create the frontend views and components for user registration and login. This includes creating forms, managing component state, and communicating with the backend authentication API.",
   "ai_instructions": [

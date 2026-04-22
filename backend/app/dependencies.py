@@ -30,3 +30,17 @@ def get_current_user(
         raise credentials_exception
 
     return user
+
+
+def get_admin_user(current_user: schemas.User = Depends(get_current_user)):
+    """
+    Dependency that checks if the current user is an admin.
+    """
+    if current_user.role != "Admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="The user does not have enough privileges",
+        )
+    return current_user
+
+# @trace TASK-010

@@ -4,7 +4,7 @@
   "type": "Feature",
   "routine": "Feature",
   "verification_regime": "Automated",
-  "status": "Pending",
+  "status": "Done",
   "priority": 9,
   "description": "Implement the endpoints for generating a unique read-only share link for a campaign, and for retrieving the read-only campaign data using that link.",
   "ai_instructions": [
@@ -14,8 +14,15 @@
     "TASK-012"
   ],
   "trace_to": {
-    "functional_requirements": ["FR-018", "FR-019"],
-    "design_nodes": ["LCOMP-002", "API-002", "FCHAIN-006"]
+    "functional_requirements": [
+      "FR-018",
+      "FR-019"
+    ],
+    "design_nodes": [
+      "LCOMP-002",
+      "API-002",
+      "FCHAIN-006"
+    ]
   },
   "execution_steps": [
     "Run 'loom start TASK-013'",

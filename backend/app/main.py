@@ -1,10 +1,11 @@
 from fastapi import FastAPI, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 from datetime import timedelta
+from typing import List
 
 from . import crud, models, schemas, token
 from .database import engine, get_db
-from .dependencies import get_current_user
+from .dependencies import get_current_user, get_admin_user
 from .hashing import Hasher
 
 models.Base.metadata.create_all(bind=engine)
@@ -76,3 +77,58 @@ def read_root():
 # @trace TASK-008
 # @trace TASK-009
 # @trace TASK-012
+# @trace TASK-014
+
+
+@app.post("/ticks", response_model=schemas.Tick, status_code=status.HTTP_201_CREATED)
+def create_tick(
+    tick: schemas.TickCreate,
+    db: Session = Depends(get_db),
+    current_user: schemas.User = Depends(get_current_user),
+):
+    db_campaign = crud.get_campaign_by_id(
+        db, campaign_id=tick.campaign_id, gm_user_id=current_user.id
+    )
+    if db_campaign is None:
+        raise HTTPException(status_code=404, detail="Campaign not found")
+
+    return crud.create_tick(db=db, tick=tick)
+
+
+@app.get("/campaigns/{campaign_id}/share", response_model=schemas.ShareLink)
+def generate_share_link(
+    campaign_id: int,
+    db: Session = Depends(get_db),
+    current_user: schemas.User = Depends(get_current_user),
+):
+    db_campaign = crud.get_campaign_by_id(
+        db, campaign_id=campaign_id, gm_user_id=current_user.id
+    )
+    if db_campaign is None:
+        raise HTTPException(status_code=404, detail="Campaign not found")
+    
+    token = crud.generate_share_token_for_campaign(db, campaign=db_campaign)
+    # In a real app, the domain would be configured, not hardcoded
+    share_url = f"http://example.com/shared/{token}"
+    return {"share_url": share_url}
+
+
+@app.get("/shared/{token}", response_model=schemas.CampaignPublic)
+def get_shared_campaign(token: str, db: Session = Depends(get_db)):
+    db_campaign = crud.get_campaign_by_share_token(db, token=token)
+    if db_campaign is None:
+        raise HTTPException(status_code=404, detail="Campaign not found")
+    return db_campaign
+
+
+# @trace TASK-013
+# @trace TASK-010
+
+
+@app.get("/admin/users", response_model=List[schemas.User])
+def get_all_users(
+    db: Session = Depends(get_db),
+    admin_user: schemas.User = Depends(get_admin_user),
+):
+    users = crud.get_users(db)
+    return users

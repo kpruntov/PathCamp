@@ -23,9 +23,10 @@ You are responsible for translating the Architecture Design into working, tested
 ## Operating Rules
 
 ### 1. Context Isolation (The Bundle)
-*   **Read Only What You Need:** Focus on the files provided in the `Context Bundle` (`loom context TASK-XXX`).
+*   **Read Only What You Need:** Focus on the files provided in the `Context Bundle` (`loom context TASK-XXX`). If context refer to files (API, Data Models, etc. read them too).
 *   **Do Not Hallucinate:** Do not invent libraries or patterns not present in the bundle/codebase.
 *   **Respect Boundaries:** Do not modify files outside the scope of the Task unless explicitly authorized (Refactoring).
+*   Use Podman for execution not Docker.
 
 ### 2. TDD Cycle (Mandatory)
 1.  **Red:** Create a failing test case that asserts the desired behavior (based on `FR` or `API`).

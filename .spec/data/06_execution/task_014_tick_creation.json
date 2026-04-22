@@ -4,7 +4,7 @@
   "type": "Feature",
   "routine": "Feature",
   "verification_regime": "Automated",
-  "status": "Pending",
+  "status": "Done",
   "priority": 10,
   "description": "Implement the API endpoint to create a new tick on a campaign's timeline. This includes setting its narrative and cascading the state of all assets from the previous tick.",
   "ai_instructions": [
@@ -14,8 +14,15 @@
     "TASK-012"
   ],
   "trace_to": {
-    "functional_requirements": ["FR-005", "FR-006"],
-    "design_nodes": ["LCOMP-003", "API-003", "FCHAIN-003"]
+    "functional_requirements": [
+      "FR-005",
+      "FR-006"
+    ],
+    "design_nodes": [
+      "LCOMP-003",
+      "API-003",
+      "FCHAIN-003"
+    ]
   },
   "execution_steps": [
     "Run 'loom start TASK-014'",

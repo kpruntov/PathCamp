@@ -1,4 +1,6 @@
 from fastapi.testclient import TestClient
+from sqlalchemy.orm import Session
+from app import crud
 
 # @trace TASK-012
 
@@ -101,3 +103,75 @@ def test_create_campaign_missing_fields(test_client: TestClient):
     }
     response = test_client.post("/campaigns", json=campaign_data, headers=headers)
     assert response.status_code == 422  # Unprocessable Entity
+
+
+def test_generate_share_link_unauthorized(test_client: TestClient):
+    """
+    Test that generating a share link without authentication fails with 401.
+    """
+    response = test_client.get("/campaigns/1/share")
+    assert response.status_code == 401
+
+
+def test_generate_share_link_success(test_client: TestClient, db_session: Session):
+    """
+    Test that generating a share link with authentication succeeds and saves the token.
+    """
+    # 1. Create user and campaign
+    token = get_gm_access_token(test_client, username="share_gm")
+    headers = {"Authorization": f"Bearer {token}"}
+    campaign_data = {"name": "Sharable Campaign", "party_size": 4, "party_level": 1}
+    res = test_client.post("/campaigns", json=campaign_data, headers=headers)
+    assert res.status_code == 201
+    campaign_id = res.json()["id"]
+
+    # 2. Generate share link
+    response = test_client.get(f"/campaigns/{campaign_id}/share", headers=headers)
+
+    # 3. Assertions
+    assert response.status_code == 200
+    data = response.json()
+    assert "share_url" in data
+    
+    # 4. Verify token in DB
+    share_token = data["share_url"].split("/")[-1]
+    db_campaign = crud.get_campaign_by_share_token(db=db_session, token=share_token)
+    assert db_campaign is not None
+    assert db_campaign.id == campaign_id
+
+
+def test_get_shared_campaign_success(test_client: TestClient):
+    """
+    Test that a shared campaign can be accessed via its share token.
+    """
+    # 1. Create user and campaign, and generate share link
+    token = get_gm_access_token(test_client, username="shared_campaign_gm")
+    headers = {"Authorization": f"Bearer {token}"}
+    campaign_data = {"name": "A Shared Story", "description": "Public view.", "party_size": 3, "party_level": 2}
+    res = test_client.post("/campaigns", json=campaign_data, headers=headers)
+    assert res.status_code == 201
+    campaign_id = res.json()["id"]
+    res = test_client.get(f"/campaigns/{campaign_id}/share", headers=headers)
+    assert res.status_code == 200
+    share_token = res.json()["share_url"].split("/")[-1]
+
+    # 2. Access the shared campaign without auth
+    response = test_client.get(f"/shared/{share_token}")
+
+    # 3. Assertions
+    assert response.status_code == 200
+    data = response.json()
+    assert data["name"] == "A Shared Story"
+    assert data["id"] == campaign_id
+    assert "gm_user_id" not in data # Ensure sensitive data is not exposed
+
+
+def test_get_shared_campaign_not_found(test_client: TestClient):
+    """
+    Test that accessing a shared campaign with an invalid token fails.
+    """
+    response = test_client.get("/shared/invalid-token")
+    assert response.status_code == 404
+
+
+# @trace TASK-013
