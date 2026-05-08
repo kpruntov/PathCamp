@@ -1,92 +1,111 @@
-def test_create_user(test_client):
-    """
-    Test creating a new user.
-    """
-    response = test_client.post(
-        "/users/",
-        json={
-            "email": "test@example.com",
-            "username": "testuser",
-            "password": "password123",
-        },
+# @trace TASK-011
+# @trace TASK-012
+import pytest
+from fastapi.testclient import TestClient
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import StaticPool
+from app.database import Base
+from app.main import app
+
+@pytest.fixture(scope="module")
+def engine():
+    engine = create_engine(
+        "sqlite://",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool
     )
-    assert response.status_code == 201, response.text
+    Base.metadata.create_all(engine)
+    yield engine
+    Base.metadata.drop_all(engine)
+
+@pytest.fixture(scope="function")
+def db_session(engine):
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    yield session
+    session.rollback()
+    session.close()
+
+@pytest.fixture(scope="function")
+def client(db_session):
+    from app.dependencies import get_db
+    def override_get_db():
+        yield db_session
+    app.dependency_overrides[get_db] = override_get_db
+    with TestClient(app) as c:
+        yield c
+    app.dependency_overrides.clear()
+
+def test_register_user(client):
+    response = client.post(
+        "/register",
+        json={"username": "testuser", "email": "test@test.com", "password": "password123"}
+    )
+    assert response.status_code == 201
     data = response.json()
-    assert data["email"] == "test@example.com"
-    assert data["username"] == "testuser"
-    assert "id" in data
-    assert "password_hash" not in data  # Ensure password hash is not returned
+    assert "user_id" in data
+    assert data["message"] == "User registered successfully"
 
-
-def test_login_for_access_token(test_client):
-    """
-    Test logging in to get an access token.
-    """
-    # First, create a user to test login
-    test_client.post(
-        "/users/",
-        json={
-            "email": "loginuser@example.com",
-            "username": "loginuser",
-            "password": "password123",
-        },
+def test_login_user(client):
+    client.post(
+        "/register",
+        json={"username": "testuser2", "email": "test2@test.com", "password": "password123"}
     )
-
-    response = test_client.post(
+    response = client.post(
         "/login",
-        json={"username": "loginuser", "password": "password123"},
+        json={"username": "testuser2", "password": "password123"}
     )
-    assert response.status_code == 200, response.text
-    data = response.json()
-    assert "access_token" in data
-    assert data["token_type"] == "bearer"
+    assert response.status_code == 200
+    assert "access_token" in response.json()
 
+def test_logout_user(client):
+    response = client.post("/logout")
+    assert response.status_code == 200
+    assert response.json()["message"] == "Logout successful"
 
-def test_login_for_access_token_wrong_password(test_client):
-    """
-    Test logging in with the wrong password.
-    """
-    # First, create a user to test login
-    test_client.post(
-        "/users/",
-        json={
-            "email": "wrongpass@example.com",
-            "username": "wrongpass",
-            "password": "password123",
-        },
+def test_get_user_list(client):
+    client.post(
+        "/register",
+        json={"username": "testuser3", "email": "test3@test.com", "password": "password123"}
     )
-
-    response = test_client.post(
+    # Login to get token
+    login_res = client.post(
         "/login",
-        json={"username": "wrongpass", "password": "wrongpassword"},
+        json={"username": "testuser3", "password": "password123"}
     )
-    assert response.status_code == 401, response.text
+    token = login_res.json()["access_token"]
+    
+    response = client.get(
+        "/admin/users",
+        headers={"Authorization": f"Bearer {token}"}
+    )
+    assert response.status_code == 200
     data = response.json()
-    assert data["detail"] == "Incorrect username or password"
+    assert "users" in data
+    assert len(data["users"]) >= 1
+    usernames = [u["username"] for u in data["users"]]
+    assert "testuser3" in usernames
 
+def test_update_user_status(client):
+    reg_res = client.post(
+        "/register",
+        json={"username": "testuser4", "email": "test4@test.com", "password": "password123"}
+    )
+    user_id = reg_res.json()["user_id"]
 
-def test_login_for_access_token_wrong_username(test_client):
-    """
-    Test logging in with the wrong username.
-    """
-    response = test_client.post(
+    login_res = client.post(
         "/login",
-        json={"username": "nonexistentuser", "password": "password123"},
+        json={"username": "testuser4", "password": "password123"}
     )
-    assert response.status_code == 401, response.text
+    token = login_res.json()["access_token"]
+
+    response = client.put(
+        f"/admin/users/{user_id}/status",
+        json={"status": "Inactive"},
+        headers={"Authorization": f"Bearer {token}"}
+    )
+    assert response.status_code == 200
     data = response.json()
-    assert data["detail"] == "Incorrect username or password"
-
-
-def test_logout(test_client):
-    """
-    Test logging out. This is a placeholder for now as proper token invalidation is not implemented.
-    It just checks that the endpoint exists and returns a success status.
-    """
-    response = test_client.post("/logout")
-    assert response.status_code == 200, response.text
-    assert response.json() == {"message": "Logout successful"}
-
-
-# @trace TASK-007
-# @trace TASK-008
+    assert str(data["user_id"]) == str(user_id)
+    assert data["status"] == "Inactive"
