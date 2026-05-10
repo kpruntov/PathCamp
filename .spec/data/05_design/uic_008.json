@@ -1,0 +1,13 @@
+{
+  "id": "UIC-008",
+  "name": "User Authentication Forms",
+  "description": "Login and Registration forms for GMs and Admins to access the system.",
+  "layout_structure": "A centered card layout with tabs or separate views for Login and Registration. Inputs for username, email (registration only), and password.",
+  "data_binding": {
+    "api_calls": ["API-001: Register", "API-001: Login"]
+  },
+  "trace_to": {
+    "use_cases": ["UR-001", "UR-007"],
+    "api_contracts": ["API-001"]
+  }
+}

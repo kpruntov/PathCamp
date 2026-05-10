@@ -1,0 +1,52 @@
+{
+  "id": "TASK-039",
+  "title": "UI Component - Auth Forms",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 1,
+  "description": "Implement UIC-008 (Login and Registration UI)",
+  "dependencies": [],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-007"
+    ],
+    "design_nodes": [
+      "UIC-008"
+    ],
+    "constraints": [
+      "CON-001",
+      "CON-002"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/uic_008.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-039' to lock active context",
+    "Run 'loom context TASK-039' to ingest requirements",
+    "Create React component files in `frontend/src/components/` for Login and Registration",
+    "Implement UI layout using Tailwind CSS to match the Pathfinder aesthetic",
+    "Implement state management and API integration to `/auth/login` and `/auth/register`",
+    "Update `App.tsx` to conditionally render the Auth UI or the User Management dashboard based on authentication state",
+    "Run frontend tests or verify rendering locally",
+    "Run 'loom complete TASK-039'"
+  ],
+  "definition_of_done": [
+    "React components implemented and rendering without errors",
+    "Tailwind CSS aesthetic is applied correctly",
+    "State management and API integration functional for Login and Registration",
+    "App conditionally renders main content only when authenticated",
+    "Linter passes for frontend code",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}
