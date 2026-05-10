@@ -8,7 +8,7 @@ from datetime import timedelta
 from app import schemas, crud, token, hashing
 from app.dependencies import get_db
 
-router = APIRouter(tags=["auth"])
+router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/register", response_model=schemas.UserResponse, status_code=status.HTTP_201_CREATED)
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
