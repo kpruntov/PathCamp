@@ -17,10 +17,12 @@ function App() {
   }, [token]);
 
   const handleLoginSuccess = (newToken: string) => {
+    localStorage.setItem('token', newToken);
     setToken(newToken);
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
     setToken(null);
   };
 
