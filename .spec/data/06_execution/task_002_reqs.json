@@ -4,9 +4,11 @@
   "type": "Process",
   "routine": "Process",
   "status": "Done",
-  "priority": 1,
+  "priority": 90,
   "description": "Elicit and specify User Needs (UR) and System Functions (FR).",
-  "ai_instructions": ["You MUST follow the Requirements Agent Protocol (`requirements_agent_prompt.md`). Focus on `UCH`, `UR`, `FR`, and `SCN` artifacts."],
+  "ai_instructions": [
+    "You MUST follow the Requirements Agent Protocol (`requirements_agent_prompt.md`). Focus on `UCH`, `UR`, `FR`, and `SCN` artifacts."
+  ],
   "dependencies": [
     "TASK-001"
   ],
@@ -31,5 +33,6 @@
     "All FRs trace to URs",
     "All FRs have at least one SCN",
     "Validation passes (No Orphans)"
-  ]
+  ],
+  "assigned_role": "Master"
 }

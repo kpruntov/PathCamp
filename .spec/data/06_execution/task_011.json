@@ -1,0 +1,46 @@
+{
+  "id": "TASK-011",
+  "title": "Backend Logic - User & Auth",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Done",
+  "priority": 2,
+  "description": "Implement LCOMP-001 logic",
+  "dependencies": [
+    "TASK-010"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-007"
+    ],
+    "design_nodes": [
+      "LCOMP-001"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/lcomp_001.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-011' to lock active context",
+    "Run 'loom context TASK-011' to ingest requirements",
+    "Create/Update Test File for logic business logic",
+    "Implement core business logic/services in `backend/app/` for logic",
+    "Run Pytest to verify logic behaves as defined in the Logical Component",
+    "Run 'loom complete TASK-011'"
+  ],
+  "definition_of_done": [
+    "Business logic services implemented",
+    "Logic accurately reflects the constraints of logic",
+    "Tests pass covering success and failure paths",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

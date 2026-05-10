@@ -1,0 +1,48 @@
+{
+  "id": "TASK-015",
+  "title": "Data Model - Campaign",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 3,
+  "description": "Implement DATA-002",
+  "dependencies": [
+    "TASK-014"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-002"
+    ],
+    "design_nodes": [
+      "DATA-002",
+      "LCOMP-002"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/data_002_campaign.sql"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-015' to lock active context",
+    "Run 'loom context TASK-015' to ingest requirements",
+    "Create/Update Test File for DATA-002 database models",
+    "Create SQLAlchemy models in `backend/app/models.py` based on DATA-002",
+    "Generate and run Alembic migrations for the new models",
+    "Run Pytest to verify database operations and constraints",
+    "Run 'loom complete TASK-015'"
+  ],
+  "definition_of_done": [
+    "SQLAlchemy models created and matching the specification",
+    "Alembic migrations generated and successfully applied",
+    "Tests pass for model creation and constraints",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

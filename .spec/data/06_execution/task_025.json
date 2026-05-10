@@ -1,0 +1,47 @@
+{
+  "id": "TASK-025",
+  "title": "Backend Logic - Global Assets",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 5,
+  "description": "Implement Asset creation in LCOMP-003",
+  "dependencies": [
+    "TASK-024"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-004"
+    ],
+    "design_nodes": [
+      "LCOMP-003"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/fchain_004.json",
+      ".spec/data/05_design/lcomp_003.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-025' to lock active context",
+    "Run 'loom context TASK-025' to ingest requirements",
+    "Create/Update Test File for LCOMP-003 business logic",
+    "Implement core business logic/services in `backend/app/` for LCOMP-003",
+    "Run Pytest to verify logic behaves as defined in the Logical Component",
+    "Run 'loom complete TASK-025'"
+  ],
+  "definition_of_done": [
+    "Business logic services implemented",
+    "Logic accurately reflects the constraints of LCOMP-003",
+    "Tests pass covering success and failure paths",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

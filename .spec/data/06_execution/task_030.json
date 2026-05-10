@@ -1,0 +1,33 @@
+{
+  "id": "TASK-030",
+  "title": "Integration Gate - World Events",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Pending",
+  "priority": 6,
+  "description": "Human verification of Events epic",
+  "dependencies": [
+    "TASK-029"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-005"
+    ]
+  },
+  "context": {},
+  "execution_steps": [
+    "Run 'loom start TASK-030' to lock active context",
+    "Run 'loom context TASK-030' to ingest requirements",
+    "Manually spin up the application stack (frontend and backend)",
+    "Perform end-to-end manual testing for the World Events flow",
+    "Review the integrated behavior against the original FCHAIN requirements",
+    "Run 'loom complete TASK-030'"
+  ],
+  "definition_of_done": [
+    "Application stack runs locally without errors",
+    "Manual end-to-end testing confirms the Epic is functional",
+    "No critical regressions found in integrated components",
+    "loom validate passes"
+  ],
+  "assigned_role": "Master"
+}

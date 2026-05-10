@@ -1,0 +1,50 @@
+{
+  "id": "TASK-018",
+  "title": "UI Component - Campaign Form",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 3,
+  "description": "Implement UIC-001",
+  "dependencies": [
+    "TASK-017"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-002"
+    ],
+    "design_nodes": [
+      "UIC-001"
+    ],
+    "constraints": [
+      "CON-001",
+      "CON-002"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/uic_001.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-018' to lock active context",
+    "Run 'loom context TASK-018' to ingest requirements",
+    "Create React component files in `frontend/src/components/` or `views/` for UIC-001",
+    "Implement UI layout, state management, and API integration",
+    "Run frontend tests or verify rendering",
+    "Run 'loom complete TASK-018'"
+  ],
+  "definition_of_done": [
+    "React components implemented and rendering without errors",
+    "State management and API integration functional",
+    "Linter passes for frontend code",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

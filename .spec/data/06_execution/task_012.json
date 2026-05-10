@@ -1,0 +1,47 @@
+{
+  "id": "TASK-012",
+  "title": "API Contract - User & Auth",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Done",
+  "priority": 2,
+  "description": "Implement API-001 endpoints",
+  "dependencies": [
+    "TASK-011"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-007"
+    ],
+    "design_nodes": [
+      "API-001"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/api_001_auth.yaml",
+      ".spec/data/05_design/lcomp_001.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-012' to lock active context",
+    "Run 'loom context TASK-012' to ingest requirements",
+    "Create/Update API integration tests in `backend/tests/`",
+    "Implement FastAPI routers and Pydantic schemas in `backend/app/` for endpoints",
+    "Run Pytest to verify API endpoints return correct status codes and payloads",
+    "Run 'loom complete TASK-012'"
+  ],
+  "definition_of_done": [
+    "FastAPI endpoints implemented and registered",
+    "Pydantic schemas created for request/response validation",
+    "API tests pass with proper HTTP status codes",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

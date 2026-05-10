@@ -1,0 +1,48 @@
+{
+  "id": "TASK-031",
+  "title": "Data Model - Encounter",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 7,
+  "description": "Implement DATA-004",
+  "dependencies": [
+    "TASK-030"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-001"
+    ],
+    "design_nodes": [
+      "DATA-004",
+      "LCOMP-004"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/data_004_bestiary.sql"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-031' to lock active context",
+    "Run 'loom context TASK-031' to ingest requirements",
+    "Create/Update Test File for DATA-004 database models",
+    "Create SQLAlchemy models in `backend/app/models.py` based on DATA-004",
+    "Generate and run Alembic migrations for the new models",
+    "Run Pytest to verify database operations and constraints",
+    "Run 'loom complete TASK-031'"
+  ],
+  "definition_of_done": [
+    "SQLAlchemy models created and matching the specification",
+    "Alembic migrations generated and successfully applied",
+    "Tests pass for model creation and constraints",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

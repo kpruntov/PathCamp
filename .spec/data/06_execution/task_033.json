@@ -1,0 +1,46 @@
+{
+  "id": "TASK-033",
+  "title": "API Contract - Encounter",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 7,
+  "description": "Implement API-004 endpoints",
+  "dependencies": [
+    "TASK-032"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-001"
+    ],
+    "design_nodes": [
+      "API-004"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/api_004_encounter.yaml"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-033' to lock active context",
+    "Run 'loom context TASK-033' to ingest requirements",
+    "Create/Update API integration tests in `backend/tests/`",
+    "Implement FastAPI routers and Pydantic schemas in `backend/app/` for endpoints",
+    "Run Pytest to verify API endpoints return correct status codes and payloads",
+    "Run 'loom complete TASK-033'"
+  ],
+  "definition_of_done": [
+    "FastAPI endpoints implemented and registered",
+    "Pydantic schemas created for request/response validation",
+    "API tests pass with proper HTTP status codes",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

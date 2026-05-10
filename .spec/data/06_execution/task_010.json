@@ -1,0 +1,49 @@
+{
+  "id": "TASK-010",
+  "title": "Data Model - User & Auth",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Done",
+  "priority": 2,
+  "description": "Implement DATA-001",
+  "dependencies": [
+    "TASK-009"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-007"
+    ],
+    "design_nodes": [
+      "DATA-001",
+      "LCOMP-001"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/data_001_user.sql",
+      ".spec/data/05_design/lcomp_001.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-010' to lock active context",
+    "Run 'loom context TASK-010' to ingest requirements",
+    "Create/Update Test File for DATA-001 database models",
+    "Create SQLAlchemy models in `backend/app/models.py` based on DATA-001",
+    "Generate and run Alembic migrations for the new models",
+    "Run Pytest to verify database operations and constraints",
+    "Run 'loom complete TASK-010'"
+  ],
+  "definition_of_done": [
+    "SQLAlchemy models created and matching the specification",
+    "Alembic migrations generated and successfully applied",
+    "Tests pass for model creation and constraints",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "TASK-009",
+  "title": "Foundation Integration Gate",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Done",
+  "priority": 1,
+  "description": "Human verification of foundation setup",
+  "dependencies": [
+    "TASK-006",
+    "TASK-007",
+    "TASK-008"
+  ],
+  "trace_to": {
+    "system_requirements": [
+      "SYS-IMPLEMENT"
+    ]
+  },
+  "context": {},
+  "execution_steps": [
+    "Run 'loom start TASK-009' to lock active context",
+    "Run 'loom context TASK-009' to ingest requirements",
+    "Manually spin up the application stack (frontend and backend)",
+    "Perform end-to-end manual testing for the Foundation Integration Gate flow",
+    "Review the integrated behavior against the original FCHAIN requirements",
+    "Run 'loom complete TASK-009'"
+  ],
+  "definition_of_done": [
+    "Application stack runs locally without errors",
+    "Manual end-to-end testing confirms the Epic is functional",
+    "No critical regressions found in integrated components",
+    "loom validate passes"
+  ],
+  "assigned_role": "Master"
+}

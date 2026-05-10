@@ -1,0 +1,31 @@
+{
+  "id": "TASK-005",
+  "title": "Initialize Workspace Foundation",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Done",
+  "priority": 1,
+  "description": "Initialize Repo, Linter, Build System",
+  "dependencies": [
+    "TASK-004"
+  ],
+  "trace_to": {
+    "system_requirements": [
+      "SYS-IMPLEMENT"
+    ]
+  },
+  "context": {},
+  "execution_steps": [
+    "Run 'loom start TASK-005' to lock active context",
+    "Run 'loom context TASK-005' to ingest requirements",
+    "Execute sub-tasks",
+    "Run 'loom validate'",
+    "Ensure all process objectives are met BEFORE calling loom_complete.",
+    "Run 'loom complete TASK-005'"
+  ],
+  "definition_of_done": [
+    "Workspace configured",
+    "loom validate passes"
+  ],
+  "assigned_role": "Master"
+}

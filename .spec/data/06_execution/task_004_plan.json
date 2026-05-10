@@ -7,7 +7,7 @@
   "priority": 1,
   "description": "Decompose the design into actionable implementation tasks.",
   "ai_instructions": [
-    "You MUST follow the Planner Agent Protocol (`planner_agent_prompt.md`). Prioritize Foundation tasks."
+    "You MUST follow the Planner Agent Protocol (`planner_agent_prompt.md`) and procedure (`procedure_planning.md`). Prioritize Foundation tasks."
   ],
   "dependencies": [
     "TASK-003"
@@ -32,5 +32,6 @@
     "All architecture and functions covered by tasks",
     "Dependency graph is acyclic",
     "Validation passes"
-  ]
+  ],
+  "assigned_role": "Master"
 }

@@ -1,0 +1,50 @@
+{
+  "id": "TASK-013",
+  "title": "UI Component - User Management",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 2,
+  "description": "Implement UIC-007",
+  "dependencies": [
+    "TASK-012"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-007"
+    ],
+    "design_nodes": [
+      "UIC-007"
+    ],
+    "constraints": [
+      "CON-001",
+      "CON-002"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/uic_007.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-013' to lock active context",
+    "Run 'loom context TASK-013' to ingest requirements",
+    "Create React component files in `frontend/src/components/` or `views/` for UIC-007",
+    "Implement UI layout, state management, and API integration",
+    "Run frontend tests or verify rendering",
+    "Run 'loom complete TASK-013'"
+  ],
+  "definition_of_done": [
+    "React components implemented and rendering without errors",
+    "State management and API integration functional",
+    "Linter passes for frontend code",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

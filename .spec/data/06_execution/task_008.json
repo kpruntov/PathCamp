@@ -1,0 +1,33 @@
+{
+  "id": "TASK-008",
+  "title": "Initialize Web Frontend Foundation",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Done",
+  "priority": 1,
+  "description": "Setup React SPA",
+  "dependencies": [
+    "TASK-005"
+  ],
+  "trace_to": {
+    "system_requirements": [
+      "SYS-IMPLEMENT"
+    ]
+  },
+  "context": {},
+  "execution_steps": [
+    "Run 'loom start TASK-008' to lock active context",
+    "Run 'loom context TASK-008' to ingest requirements",
+    "Scaffold React SPA using Vite",
+    "Configure ESLint and Prettier",
+    "Verify development server starts",
+    "Run 'loom complete TASK-008'"
+  ],
+  "definition_of_done": [
+    "React SPA created",
+    "Linter and formatter configured",
+    "Frontend dev server boots successfully",
+    "loom validate passes"
+  ],
+  "assigned_role": "Master"
+}

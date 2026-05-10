@@ -1,0 +1,50 @@
+{
+  "id": "TASK-029",
+  "title": "UI Component - Events Board",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 6,
+  "description": "Implement UIC-004",
+  "dependencies": [
+    "TASK-028"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-005"
+    ],
+    "design_nodes": [
+      "UIC-004"
+    ],
+    "constraints": [
+      "CON-001",
+      "CON-002"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/uic_004.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-029' to lock active context",
+    "Run 'loom context TASK-029' to ingest requirements",
+    "Create React component files in `frontend/src/components/` or `views/` for UIC-004",
+    "Implement UI layout, state management, and API integration",
+    "Run frontend tests or verify rendering",
+    "Run 'loom complete TASK-029'"
+  ],
+  "definition_of_done": [
+    "React components implemented and rendering without errors",
+    "State management and API integration functional",
+    "Linter passes for frontend code",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

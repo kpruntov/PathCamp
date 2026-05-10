@@ -1,0 +1,47 @@
+{
+  "id": "TASK-036",
+  "title": "Backend Logic - Share Campaign",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 8,
+  "description": "Implement Share logic in LCOMP-002",
+  "dependencies": [
+    "TASK-035"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-006"
+    ],
+    "design_nodes": [
+      "LCOMP-002"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      ".spec/data/05_design/fchain_006.json",
+      ".spec/data/05_design/lcomp_002.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-036' to lock active context",
+    "Run 'loom context TASK-036' to ingest requirements",
+    "Create/Update Test File for LCOMP-002 business logic",
+    "Implement core business logic/services in `backend/app/` for LCOMP-002",
+    "Run Pytest to verify logic behaves as defined in the Logical Component",
+    "Run 'loom complete TASK-036'"
+  ],
+  "definition_of_done": [
+    "Business logic services implemented",
+    "Logic accurately reflects the constraints of LCOMP-002",
+    "Tests pass covering success and failure paths",
+    "All modified source files have @trace annotation"
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

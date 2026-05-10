@@ -1,0 +1,33 @@
+{
+  "id": "TASK-027",
+  "title": "Integration Gate - Global Assets",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Pending",
+  "priority": 5,
+  "description": "Human verification of Assets epic",
+  "dependencies": [
+    "TASK-026"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-004"
+    ]
+  },
+  "context": {},
+  "execution_steps": [
+    "Run 'loom start TASK-027' to lock active context",
+    "Run 'loom context TASK-027' to ingest requirements",
+    "Manually spin up the application stack (frontend and backend)",
+    "Perform end-to-end manual testing for the Global Assets flow",
+    "Review the integrated behavior against the original FCHAIN requirements",
+    "Run 'loom complete TASK-027'"
+  ],
+  "definition_of_done": [
+    "Application stack runs locally without errors",
+    "Manual end-to-end testing confirms the Epic is functional",
+    "No critical regressions found in integrated components",
+    "loom validate passes"
+  ],
+  "assigned_role": "Master"
+}

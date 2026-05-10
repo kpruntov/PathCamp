@@ -1,0 +1,33 @@
+{
+  "id": "TASK-035",
+  "title": "Integration Gate - Generate Encounter",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Pending",
+  "priority": 7,
+  "description": "Human verification of Encounter epic",
+  "dependencies": [
+    "TASK-034"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-001"
+    ]
+  },
+  "context": {},
+  "execution_steps": [
+    "Run 'loom start TASK-035' to lock active context",
+    "Run 'loom context TASK-035' to ingest requirements",
+    "Manually spin up the application stack (frontend and backend)",
+    "Perform end-to-end manual testing for the Generate Encounter flow",
+    "Review the integrated behavior against the original FCHAIN requirements",
+    "Run 'loom complete TASK-035'"
+  ],
+  "definition_of_done": [
+    "Application stack runs locally without errors",
+    "Manual end-to-end testing confirms the Epic is functional",
+    "No critical regressions found in integrated components",
+    "loom validate passes"
+  ],
+  "assigned_role": "Master"
+}

@@ -4,7 +4,7 @@
   "type": "Process",
   "routine": "Process",
   "status": "Done",
-  "priority": 3,
+  "priority": 80,
   "description": "Define the structural design using MBSE (Logical/Physical Components, Functional Chains), interfaces (API), and data models (DATA).",
   "ai_instructions": [
     "You MUST follow the Architecture Agent Protocol (`architecture_agent_prompt.md`). Implement Arcadia methodology (LA, PA, FC)."
@@ -36,5 +36,6 @@
     "APIs trace to FRs",
     "Data Models defined (DB & DTO)",
     "Validation passes"
-  ]
+  ],
+  "assigned_role": "Master"
 }

@@ -1,0 +1,31 @@
+{
+  "id": "TASK-006",
+  "title": "Initialize Database Foundation",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Done",
+  "priority": 1,
+  "description": "Setup Database schema framework",
+  "dependencies": [
+    "TASK-005"
+  ],
+  "trace_to": {
+    "system_requirements": [
+      "SYS-IMPLEMENT"
+    ]
+  },
+  "context": {},
+  "execution_steps": [
+    "Run 'loom start TASK-006' to lock active context",
+    "Run 'loom context TASK-006' to ingest requirements",
+    "Execute sub-tasks",
+    "Run 'loom validate'",
+    "Ensure all process objectives are met BEFORE calling loom_complete.",
+    "Run 'loom complete TASK-006'"
+  ],
+  "definition_of_done": [
+    "Database configured",
+    "loom validate passes"
+  ],
+  "assigned_role": "Master"
+}
