@@ -1,5 +1,6 @@
 # @trace TASK-011
 # @trace TASK-012
+# @trace TASK-040
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
@@ -39,7 +40,7 @@ def client(db_session):
 
 def test_register_user(client):
     response = client.post(
-        "/register",
+        "/auth/register",
         json={"username": "testuser", "email": "test@test.com", "password": "password123"}
     )
     assert response.status_code == 201
@@ -49,31 +50,36 @@ def test_register_user(client):
 
 def test_login_user(client):
     client.post(
-        "/register",
+        "/auth/register",
         json={"username": "testuser2", "email": "test2@test.com", "password": "password123"}
     )
     response = client.post(
-        "/login",
+        "/auth/login",
         json={"username": "testuser2", "password": "password123"}
     )
     assert response.status_code == 200
     assert "access_token" in response.json()
 
 def test_logout_user(client):
-    response = client.post("/logout")
+    response = client.post("/auth/logout")
     assert response.status_code == 200
     assert response.json()["message"] == "Logout successful"
 
-def test_get_user_list(client):
+def test_get_user_list(client, db_session):
+    from app import models, hashing
+    db_session.add(models.User(username="admin1", email="admin1@test.com", password_hash=hashing.get_password_hash("admin"), role="Admin"))
+    db_session.commit()
+
     client.post(
-        "/register",
+        "/auth/register",
         json={"username": "testuser3", "email": "test3@test.com", "password": "password123"}
     )
-    # Login to get token
+    # Login as seeded admin
     login_res = client.post(
-        "/login",
-        json={"username": "testuser3", "password": "password123"}
+        "/auth/login",
+        json={"username": "admin1", "password": "admin"}
     )
+    assert login_res.status_code == 200
     token = login_res.json()["access_token"]
     
     response = client.get(
@@ -87,17 +93,22 @@ def test_get_user_list(client):
     usernames = [u["username"] for u in data["users"]]
     assert "testuser3" in usernames
 
-def test_update_user_status(client):
+def test_update_user_status(client, db_session):
+    from app import models, hashing
+    db_session.add(models.User(username="admin2", email="admin2@test.com", password_hash=hashing.get_password_hash("admin"), role="Admin"))
+    db_session.commit()
+
     reg_res = client.post(
-        "/register",
+        "/auth/register",
         json={"username": "testuser4", "email": "test4@test.com", "password": "password123"}
     )
     user_id = reg_res.json()["user_id"]
 
     login_res = client.post(
-        "/login",
-        json={"username": "testuser4", "password": "password123"}
+        "/auth/login",
+        json={"username": "admin2", "password": "admin"}
     )
+    assert login_res.status_code == 200
     token = login_res.json()["access_token"]
 
     response = client.put(
@@ -109,3 +120,47 @@ def test_update_user_status(client):
     data = response.json()
     assert str(data["user_id"]) == str(user_id)
     assert data["status"] == "Inactive"
+
+def test_blocked_user_cannot_auth(client, db_session):
+    from app import models, hashing
+    db_session.add(models.User(username="admin3", email="admin3@test.com", password_hash=hashing.get_password_hash("admin"), role="Admin"))
+    db_session.commit()
+
+    # Register a user
+    client.post(
+        "/auth/register",
+        json={"username": "testblocked", "email": "blocked@test.com", "password": "password123"}
+    )
+
+    # Login as user to get their token
+    login_res_user = client.post(
+        "/auth/login",
+        json={"username": "testblocked", "password": "password123"}
+    )
+    assert login_res_user.status_code == 200
+    user_token = login_res_user.json()["access_token"]
+
+    # Before blocking, they should be able to access /auth/me
+    me_res = client.get("/auth/me", headers={"Authorization": f"Bearer {user_token}"})
+    assert me_res.status_code == 200
+    user_id = me_res.json()["id"]
+
+    # Login as admin and block the user
+    login_res_admin = client.post(
+        "/auth/login",
+        json={"username": "admin3", "password": "admin"}
+    )
+    assert login_res_admin.status_code == 200
+    admin_token = login_res_admin.json()["access_token"]
+    
+    update_res = client.put(
+        f"/admin/users/{user_id}/status",
+        json={"status": "Blocked"},
+        headers={"Authorization": f"Bearer {admin_token}"}
+    )
+    assert update_res.status_code == 200
+
+    # After blocking, user should not be able to access /auth/me
+    blocked_res = client.get("/auth/me", headers={"Authorization": f"Bearer {user_token}"})
+    assert blocked_res.status_code == 400
+    assert blocked_res.json()["detail"] == "Inactive user"

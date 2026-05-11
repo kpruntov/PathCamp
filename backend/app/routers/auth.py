@@ -6,9 +6,13 @@ from sqlalchemy.orm import Session
 from datetime import timedelta
 
 from app import schemas, crud, token, hashing
-from app.dependencies import get_db
+from app.dependencies import get_db, get_current_active_user
 
 router = APIRouter(prefix="/auth", tags=["auth"])
+
+@router.get("/me", response_model=schemas.UserDetail)
+def read_users_me(current_user: schemas.UserDetail = Depends(get_current_active_user)):
+    return current_user
 
 @router.post("/register", response_model=schemas.UserResponse, status_code=status.HTTP_201_CREATED)
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):

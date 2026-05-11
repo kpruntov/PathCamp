@@ -27,7 +27,7 @@ async def lifespan(app: FastAPI):
                 email="admin@example.com",
                 password="admin"
             )
-            crud.create_user(db, new_admin)
+            crud.create_user(db, new_admin, role="Admin")
             logger.info("Admin user created (username: admin, password: admin).")
     except Exception as e:
         logger.error(f"Error seeding admin user: {e}")

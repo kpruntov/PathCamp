@@ -25,6 +25,7 @@ class UserDetail(BaseModel):
     username: str
     email: str
     status: str
+    role: str
 
     class Config:
         from_attributes = True

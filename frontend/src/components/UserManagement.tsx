@@ -118,7 +118,7 @@ export function UserManagement() {
                   <td className="py-4 px-6 text-fantasy-text/80">{user.email}</td>
                   <td className="py-4 px-6">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide
-                      ${user.status === 'active' 
+                      ${user.status.toLowerCase() === 'active' 
                         ? 'bg-fantasy-success/20 text-fantasy-success border border-fantasy-success/30' 
                         : 'bg-fantasy-danger/20 text-fantasy-danger border border-fantasy-danger/30'}`}
                     >
