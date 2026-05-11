@@ -1,0 +1,11 @@
+{
+  "id": "CON-003",
+  "category": "Technical",
+  "statement": "The application MUST be containerized using Podman. Docker SHALL NOT be used.",
+  "rationale": "To comply with the specified development environment and infrastructure preferences.",
+  "trace_to": {
+    "stakeholders": [
+      "STK-004"
+    ]
+  }
+}

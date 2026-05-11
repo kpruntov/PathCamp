@@ -1,0 +1,13 @@
+{
+  "id": "UIC-003",
+  "name": "Global Assets Manager",
+  "description": "A dashboard to manage Scenes and NPCs within the current Tick context.",
+  "layout_structure": "A Shadcn Data Table or Grid view for listing assets, with a slide-out sheet (Shadcn Sheet) for editing metadata and uploading files.",
+  "data_binding": {
+    "api_calls": ["API-003: UpdateSceneState", "API-003: UploadAsset"]
+  },
+  "trace_to": {
+    "use_cases": ["UR-003"],
+    "api_contracts": ["API-003"]
+  }
+}

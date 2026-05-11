@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "pathcamp-backend"
+version = "0.1.0"
+description = "Pathcamp Campaign Simulation Engine"
+authors = ["Development Team <dev@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.27.0"}
+sqlalchemy = "^2.0.25"
+psycopg2-binary = "^2.9.9"
+alembic = "^1.18.4"
+passlib = "^1.7.4"
+bcrypt = "<4.0.0"
+pyjwt = "^2.12.1"
+python-multipart = "^0.0.27"
+email-validator = "^2.3.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+ruff = "^0.2.0"
+httpx = "<0.28.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+addopts = "-v"
+testpaths = ["tests"]

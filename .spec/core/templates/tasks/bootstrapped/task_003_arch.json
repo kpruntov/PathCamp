@@ -1,15 +1,21 @@
 {
   "id": "TASK-003",
   "title": "Design System Architecture",
-  "type": "process",
+  "type": "Process",
   "routine": "Process",
   "status": "Pending",
-  "priority": "High",
+  "priority": 80,
   "description": "Define the structural design using MBSE (Logical/Physical Components, Functional Chains), interfaces (API), and data models (DATA).",
-  "ai_instructions": "You MUST follow the Architecture Agent Protocol (`architecture_agent_prompt.md`). Implement Arcadia methodology (LA, PA, FC).",
-  "dependencies": ["TASK-002"],
+  "ai_instructions": [
+    "You MUST follow the Architecture Agent Protocol (`architecture_agent_prompt.md`). Implement Arcadia methodology (LA, PA, FC)."
+  ],
+  "dependencies": [
+    "TASK-002"
+  ],
   "trace_to": {
-    "system_requirements": ["SYS-DEFINE"]
+    "system_requirements": [
+      "SYS-DEFINE"
+    ]
   },
   "execution_steps": [
     "Run 'loom start TASK-003'",
@@ -30,5 +36,6 @@
     "APIs trace to FRs",
     "Data Models defined (DB & DTO)",
     "Validation passes"
-  ]
+  ],
+  "assigned_role": "Master"
 }

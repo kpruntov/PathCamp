@@ -1,0 +1,46 @@
+{
+  "id": "TASK-040",
+  "title": "Defect - RBAC and Status Enforcement",
+  "type": "Bugfix",
+  "routine": "Feature",
+  "status": "Review",
+  "priority": 1,
+  "description": "Fix missing Admin vs GM roles, enforce blocked user status, and fix UI badge case sensitivity.",
+  "dependencies": [],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-007"
+    ],
+    "design_nodes": [
+      "LCOMP-001"
+    ],
+    "constraints": []
+  },
+  "context": {
+    "relevant_files": []
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-040'",
+    "Add 'role' to User model and schemas.",
+    "Seed Admin user with role='Admin' in main.py.",
+    "Add get_current_active_user and get_admin_user to dependencies.py.",
+    "Protect /admin/users endpoints with get_admin_user.",
+    "Add /auth/me endpoint to return current user info.",
+    "Update App.tsx to fetch /auth/me and route based on role.",
+    "Fix UserManagement.tsx badge case sensitivity.",
+    "Run 'loom complete TASK-040'"
+  ],
+  "definition_of_done": [
+    "Admin role is enforced on /admin endpoints.",
+    "Blocked users cannot authenticate via dependencies.",
+    "UI correctly shows Admin vs GM views.",
+    "UI badges correctly reflect status."
+  ],
+  "tdd_cycle": {
+    "test_file": "tests/test_placeholder.py",
+    "implementation_file": "src/placeholder.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

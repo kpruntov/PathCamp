@@ -1,0 +1,13 @@
+{
+  "id": "UIC-002",
+  "name": "Timeline View",
+  "description": "The primary campaign dashboard displaying the chronological progression of Ticks.",
+  "layout_structure": "A horizontal or vertical scrollable timeline using Shadcn primitives. Includes a side panel for Tick details and editing.",
+  "data_binding": {
+    "api_calls": ["API-003: GetTimeline", "API-003: UpdateTick"]
+  },
+  "trace_to": {
+    "use_cases": ["UR-002"],
+    "api_contracts": ["API-003"]
+  }
+}

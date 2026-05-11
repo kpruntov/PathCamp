@@ -3,7 +3,7 @@
   "title": "Integration Gate - User & Auth",
   "type": "Process",
   "routine": "Process",
-  "status": "Pending",
+  "status": "Verified",
   "priority": 2,
   "description": "Human verification of Auth epic",
   "dependencies": [
@@ -29,5 +29,6 @@
     "No critical regressions found in integrated components",
     "loom validate passes"
   ],
-  "assigned_role": "Master"
+  "verification_regime": "Manual",
+  "assigned_role": "Verifier"
 }

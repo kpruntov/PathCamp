@@ -1,0 +1,39 @@
+{
+  "id": "NAV-001",
+  "name": "Application Routing Map",
+  "routes": [
+    {
+      "path": "/",
+      "layout_wrapper": "PublicLayout",
+      "auth_gate": "None"
+    },
+    {
+      "path": "/dashboard",
+      "layout_wrapper": "GMLayout",
+      "auth_gate": "Authenticated"
+    },
+    {
+      "path": "/campaign/:id",
+      "layout_wrapper": "GMLayout",
+      "auth_gate": "Authenticated"
+    },
+    {
+      "path": "/share/:id",
+      "layout_wrapper": "ViewerLayout",
+      "auth_gate": "None"
+    },
+    {
+      "path": "/admin/users",
+      "layout_wrapper": "AdminLayout",
+      "auth_gate": "AdminOnly"
+    }
+  ],
+  "trace_to": {
+    "user_requirements": [
+      "UR-001",
+      "UR-002",
+      "UR-006",
+      "UR-007"
+    ]
+  }
+}

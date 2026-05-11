@@ -1,0 +1,13 @@
+{
+  "id": "UIC-001",
+  "name": "Campaign Creation Form",
+  "description": "A modal or page component for GMs to create a new campaign.",
+  "layout_structure": "A Shadcn form component inside a Card layout. Contains inputs for Name, Description, Party Size, and Level.",
+  "data_binding": {
+    "api_calls": ["API-002: CreateCampaign"]
+  },
+  "trace_to": {
+    "use_cases": ["UR-001"],
+    "api_contracts": ["API-002"]
+  }
+}

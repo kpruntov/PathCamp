@@ -12,6 +12,11 @@
       "description": "The mandatory operating procedure to follow (enforces specific DoD and commands)."
     },
     "objective": { "type": "string" },
+    "assigned_role": {
+      "type": "string",
+      "enum": ["BusinessAnalyst", "Architect", "Planner", "Developer", "Verifier", "Master"],
+      "description": "The specific role responsible for executing this task."
+    },
     "trace_to": {
       "type": "object",
       "properties": {
@@ -66,11 +71,15 @@
     },
     "execution_steps": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "The atomic, sequential steps required to complete this task (e.g., 'Write Test', 'Fail', 'Implement')."
+      "items": { 
+        "type": "string",
+        "pattern": "^(?!\\[\\[REPLACE_WITH).+$"
+      },
+      "description": "The atomic, sequential steps required to complete this task. MUST be specific to the feature. Do not use generic placeholders."
     },
     "definition_of_done": {
       "type": "array",
+      "minItems": 1,
       "items": { "type": "string" }
     },
     "status": {
@@ -89,7 +98,7 @@
       "description": "Required for Design routine: The expected artifact IDs to be created or modified."
     }
   },
-  "required": ["id", "title", "type", "trace_to", "status", "execution_steps", "definition_of_done"],
+  "required": ["id", "title", "type", "trace_to", "status", "execution_steps", "definition_of_done", "assigned_role"],
   "allOf": [
     {
       "if": {

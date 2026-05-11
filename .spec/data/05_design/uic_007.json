@@ -1,0 +1,13 @@
+{
+  "id": "UIC-007",
+  "name": "User Management Dashboard",
+  "description": "Admin dashboard to manage user access and block/unblock accounts.",
+  "layout_structure": "A Shadcn Data Table displaying users with action dropdowns for blocking/unblocking.",
+  "data_binding": {
+    "api_calls": ["API-001: GetUsers", "API-001: UpdateUserStatus"]
+  },
+  "trace_to": {
+    "use_cases": ["UR-007"],
+    "api_contracts": ["API-001"]
+  }
+}

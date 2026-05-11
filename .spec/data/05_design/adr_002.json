@@ -1,0 +1,21 @@
+{
+  "id": "ADR-002",
+  "title": "Container Runtime Selection",
+  "status": "Accepted",
+  "context": "The backend services need to be containerized for deployment and local development. The development team has a strict preference against Docker.",
+  "decision": "We will use Podman as the exclusive container runtime engine for building and running the application backend.",
+  "consequences": {
+    "positive": [
+      "Satisfies technical constraint CON-003",
+      "Daemonless and rootless containerization by default"
+    ],
+    "negative": [
+      "Developers must have Podman installed",
+      "Scripts and workflows must rely on podman commands instead of docker"
+    ]
+  },
+  "trace_to": {
+    "stakeholders": ["STK-004"],
+    "constraints": ["CON-003"]
+  }
+}

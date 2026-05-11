@@ -11,5 +11,30 @@
       "direction": "Out"
     }
   ],
-  "technical_interfaces": []
+  "technical_interfaces": [
+    {
+      "name": "Auth API",
+      "description": "Interface for authentication and authorization.",
+      "api_contract_id": "API-001",
+      "port_id": "PPORT-003"
+    },
+    {
+      "name": "Campaign API",
+      "description": "Interface for managing campaigns.",
+      "api_contract_id": "API-002",
+      "port_id": "PPORT-003"
+    },
+    {
+      "name": "Timeline API",
+      "description": "Interface for accessing the timeline and world state.",
+      "api_contract_id": "API-003",
+      "port_id": "PPORT-003"
+    },
+    {
+      "name": "Encounter API",
+      "description": "Interface for managing and generating encounters.",
+      "api_contract_id": "API-004",
+      "port_id": "PPORT-003"
+    }
+  ]
 }

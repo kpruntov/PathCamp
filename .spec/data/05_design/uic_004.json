@@ -1,0 +1,13 @@
+{
+  "id": "UIC-004",
+  "name": "Events & Fronts Board",
+  "description": "A view for managing major world events and fronts that span across Ticks.",
+  "layout_structure": "A Kanban-style board or list view using Tailwind/Shadcn. Includes modals for event creation and Tick assignment.",
+  "data_binding": {
+    "api_calls": ["API-003: CreateEvent", "API-003: AssignEventToTick"]
+  },
+  "trace_to": {
+    "use_cases": ["UR-004"],
+    "api_contracts": ["API-003"]
+  }
+}

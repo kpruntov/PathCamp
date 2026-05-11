@@ -1,0 +1,13 @@
+{
+  "id": "UIC-006",
+  "name": "Shared Campaign Viewer",
+  "description": "A read-only presentation of the campaign timeline and public events for non-GM users.",
+  "layout_structure": "A simplified, read-only variant of the Timeline View (UIC-002) without editing controls.",
+  "data_binding": {
+    "api_calls": ["API-002: GetCampaignPublic", "API-003: GetTimelinePublic"]
+  },
+  "trace_to": {
+    "use_cases": ["UR-006"],
+    "api_contracts": ["API-002", "API-003"]
+  }
+}

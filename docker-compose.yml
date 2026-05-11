@@ -1,16 +1,26 @@
 version: '3.8'
+
 services:
-  db:
-    image: docker.io/library/postgres:13
-    container_name: pathcamp_db
+  backend:
+    build: 
+      context: ./backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
     environment:
-      - POSTGRES_USER=${DB_USER:-postgres}
-      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
-      - POSTGRES_DB=${DB_NAME:-pathcamp}
+      - DATABASE_URL=postgresql://postgres:password@db:5432/pathcamp
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=pathcamp
     ports:
       - "5432:5432"
     volumes:
-      - pathcamp_data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  pathcamp_data:
+  pgdata:

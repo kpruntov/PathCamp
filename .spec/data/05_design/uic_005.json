@@ -1,0 +1,13 @@
+{
+  "id": "UIC-005",
+  "name": "Encounter Generator View",
+  "description": "A view within the Scene context that allows generating and reviewing mechanical encounters.",
+  "layout_structure": "A split pane (Shadcn Resizable) showing Scene Traits on one side and generated Encounter details (monsters, hazard) on the other. Includes a text area for GM flavor text.",
+  "data_binding": {
+    "api_calls": ["API-004: GenerateEncounter", "API-003: UpdateSceneState"]
+  },
+  "trace_to": {
+    "use_cases": ["UR-005"],
+    "api_contracts": ["API-004", "API-003"]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "CON-002",
+  "category": "Technical",
+  "statement": "The frontend application MUST use Tailwind CSS or shadcn/ui, and must adhere strictly to a single consistent design system.",
+  "rationale": "To ensure rapid UI development, maintainability, and a unified aesthetic across all views.",
+  "trace_to": {
+    "stakeholders": [
+      "STK-004"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "STK-004",
+  "name": "Development Team",
+  "role": "System Builders and Maintainers",
+  "influence": "High",
+  "interests": [
+    "Maintainable codebase",
+    "Efficient deployment and containerization",
+    "Consistent UI components and design systems"
+  ]
+}

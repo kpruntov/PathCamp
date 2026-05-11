@@ -2,7 +2,7 @@
   "id": "PCOMP-002",
   "name": "Application Server",
   "pcomp_type": "Behavioral",
-  "description": "A server-side execution environment, likely a Docker container, that runs the Python backend application. It hosts the user, campaign, timeline, and encounter services.",
+  "description": "A server-side execution environment, likely a Podman container, that runs the Python backend application. It hosts the user, campaign, timeline, and encounter services.",
   "realizes_logical_components": [
     "LCOMP-001",
     "LCOMP-002",

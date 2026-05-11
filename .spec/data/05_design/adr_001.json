@@ -1,0 +1,22 @@
+{
+  "id": "ADR-001",
+  "title": "Frontend UI Framework Selection",
+  "status": "Accepted",
+  "context": "The application requires a cohesive, modern, and rapidly developable UI that aligns with a fantasy/clean aesthetic. We must select a framework that provides high utility and maintainability.",
+  "decision": "We will use Tailwind CSS in combination with shadcn/ui components for all frontend styling and component structure.",
+  "consequences": {
+    "positive": [
+      "Rapid UI development",
+      "Unified aesthetic across all views",
+      "Guarantees compliance with technical constraint CON-002"
+    ],
+    "negative": [
+      "Restricts us to utility-first CSS",
+      "Requires our UI components to conform to the shadcn/ui headless philosophy"
+    ]
+  },
+  "trace_to": {
+    "stakeholders": ["STK-004"],
+    "constraints": ["CON-002"]
+  }
+}
