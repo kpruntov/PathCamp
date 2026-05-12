@@ -39,3 +39,30 @@ class UserStatusUpdate(BaseModel):
 class UserStatusResponse(BaseModel):
     user_id: str
     status: str
+
+# @trace TASK-016
+from datetime import datetime
+from typing import Optional
+
+class CampaignBase(BaseModel):
+    name: str
+    description: Optional[str] = None
+    party_size: int
+    party_level: int
+
+class CampaignCreate(CampaignBase):
+    pass
+
+class CampaignResponse(CampaignBase):
+    id: int
+    gm_user_id: int
+    share_token: Optional[str] = None
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class CampaignShareResponse(BaseModel):
+    share_url: str
+
