@@ -1,9 +1,11 @@
 // @trace TASK-013
 // @trace TASK-039
 // @trace TASK-040
+// @trace TASK-018
 import { useState, useEffect } from 'react'
 import { UserManagement } from './components/UserManagement'
 import { AuthForms } from './components/AuthForms'
+import { CampaignForm } from './components/CampaignForm'
 import './App.css'
 
 interface User {
@@ -74,9 +76,9 @@ function App() {
       ) : user?.role === 'Admin' ? (
         <UserManagement />
       ) : user ? (
-        <div className="p-8 text-center text-fantasy-text">
-          <h2 className="text-2xl font-bold mb-4 text-fantasy-accent">GM Dashboard</h2>
-          <p>Welcome to your campaign manager. Feature coming soon.</p>
+        <div className="p-8">
+          <h2 className="text-2xl font-bold mb-8 text-fantasy-text text-center">GM Dashboard</h2>
+          <CampaignForm onSuccess={(id) => alert(`Campaign ${id} created!`)} />
         </div>
       ) : (
         <div className="p-8 text-center text-fantasy-accent animate-pulse">Loading...</div>
