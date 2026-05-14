@@ -1,0 +1,42 @@
+{
+  "id": "UR-008",
+  "title": "View My Campaigns",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is logged in"
+  ],
+  "postconditions": [
+    "GM is viewing a list of their owned campaigns"
+  ],
+  "trigger": "GM logs in or navigates to the Campaign Dashboard",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM navigates to the Campaign Dashboard"
+    },
+    {
+      "step": 2,
+      "action": "System retrieves the list of campaigns owned by the GM"
+    },
+    {
+      "step": 3,
+      "action": "System displays the campaigns in a list format, including Name, Description, Party Size, and Party Level"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "2",
+      "condition": "No campaigns exist for the GM",
+      "action": "System displays an empty state message prompting the GM to create a new campaign"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": [
+      "STK-001"
+    ]
+  },
+  "acceptance_criteria": [
+    "Only campaigns owned by the logged-in GM are displayed.",
+    "Empty state is handled gracefully."
+  ]
+}

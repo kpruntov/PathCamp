@@ -1,9 +1,13 @@
 # @trace TASK-016
+# @trace TASK-042
 from sqlalchemy.orm import Session
 from app.models import Campaign
 from app.schemas import CampaignCreate
 from app.services import timeline
 import uuid
+
+def get_campaigns_by_gm(db: Session, gm_user_id: int) -> list[Campaign]:
+    return db.query(Campaign).filter(Campaign.gm_user_id == gm_user_id).all()
 
 def create_campaign(db: Session, gm_user_id: int, campaign_data: CampaignCreate) -> Campaign:
     db_campaign = Campaign(

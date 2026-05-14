@@ -1,4 +1,5 @@
 # @trace TASK-017
+# @trace TASK-042
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
@@ -46,6 +47,25 @@ def test_user(db_session):
     db_session.commit()
     db_session.refresh(user)
     return user
+
+def test_get_campaigns(client, db_session, test_user):
+    from app.dependencies import get_current_active_user
+    app.dependency_overrides[get_current_active_user] = lambda: test_user
+    
+    # Create two campaigns for test_user
+    c1 = Campaign(gm_user_id=test_user.id, name="Campaign 1", party_size=4, party_level=1)
+    c2 = Campaign(gm_user_id=test_user.id, name="Campaign 2", party_size=5, party_level=2)
+    db_session.add_all([c1, c2])
+    db_session.commit()
+
+    response = client.get("/campaigns")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data) == 2
+    assert data[0]["name"] == "Campaign 1"
+    assert data[1]["name"] == "Campaign 2"
+
+    app.dependency_overrides.pop(get_current_active_user, None)
 
 def test_create_campaign(client, test_user):
     from app.dependencies import get_current_active_user

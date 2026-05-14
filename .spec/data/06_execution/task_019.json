@@ -8,7 +8,9 @@
   "description": "Human verification of Campaign epic",
   "dependencies": [
     "TASK-018",
-    "TASK-041"
+    "TASK-041",
+    "TASK-042",
+    "TASK-043"
   ],
   "trace_to": {
     "functional_chains": [

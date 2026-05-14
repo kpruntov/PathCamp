@@ -1,0 +1,42 @@
+{
+  "id": "UR-009",
+  "title": "View All Campaigns (Admin)",
+  "primary_actor": "UCH-003",
+  "preconditions": [
+    "Admin is logged in"
+  ],
+  "postconditions": [
+    "Admin is viewing a global list of all campaigns across the system"
+  ],
+  "trigger": "Admin navigates to the Global Campaigns Dashboard",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "Admin navigates to the Global Campaigns Dashboard"
+    },
+    {
+      "step": 2,
+      "action": "System retrieves a complete list of all campaigns in the system"
+    },
+    {
+      "step": 3,
+      "action": "System displays the campaigns, including the GM owner's username for context"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "2",
+      "condition": "System has zero campaigns globally",
+      "action": "System displays an empty state message"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": [
+      "STK-001"
+    ]
+  },
+  "acceptance_criteria": [
+    "All campaigns are displayed, regardless of owner.",
+    "Only users with the Admin role can access this view."
+  ]
+}

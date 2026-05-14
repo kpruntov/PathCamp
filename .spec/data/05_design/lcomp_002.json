@@ -25,6 +25,16 @@
       "func_id": "LF-009",
       "name": "Provide Read-Only Campaign View",
       "traces_to": ["FR-019"]
+    },
+    {
+      "func_id": "LF-026",
+      "name": "List GM Campaigns",
+      "traces_to": ["FR-025"]
+    },
+    {
+      "func_id": "LF-027",
+      "name": "List All Campaigns",
+      "traces_to": ["FR-026"]
     }
   ],
   "logical_ports": [
@@ -48,6 +58,26 @@
       ],
       "output": [
         {"attribute": "campaign_id", "type": "string"}
+      ]
+    },
+    {
+      "interface_id": "LI-026",
+      "name": "GetMyCampaigns",
+      "port_id": "LP-002",
+      "direction": "Provided",
+      "input": [],
+      "output": [
+        {"attribute": "campaigns", "type": "array"}
+      ]
+    },
+    {
+      "interface_id": "LI-027",
+      "name": "GetAllCampaigns",
+      "port_id": "LP-002",
+      "direction": "Provided",
+      "input": [],
+      "output": [
+        {"attribute": "campaigns", "type": "array"}
       ]
     },
     {

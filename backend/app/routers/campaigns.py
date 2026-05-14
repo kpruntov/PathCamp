@@ -1,11 +1,21 @@
 # @trace TASK-017
+# @trace TASK-042
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
+from typing import List
 from app.dependencies import get_db, get_current_active_user
 from app.schemas import CampaignCreate, CampaignResponse, CampaignShareResponse, UserDetail
 from app.services import campaign as campaign_service
 
 router = APIRouter()
+
+@router.get("/campaigns", response_model=List[CampaignResponse])
+def get_campaigns(
+    db: Session = Depends(get_db),
+    current_user: UserDetail = Depends(get_current_active_user)
+):
+    """Get all campaigns for the current user."""
+    return campaign_service.get_campaigns_by_gm(db, gm_user_id=current_user.id)
 
 @router.post("/campaigns", response_model=CampaignResponse, status_code=201)
 def create_campaign(

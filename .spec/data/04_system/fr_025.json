@@ -1,0 +1,14 @@
+{
+  "id": "FR-025",
+  "title": "Retrieve GM Campaigns",
+  "description": "The system shall provide an endpoint for authenticated Game Masters to retrieve a list of only the campaigns they own.",
+  "trace_to": {
+    "user_requirements": ["UR-008"]
+  },
+  "acceptance_criteria": [
+    "A GET request to /campaigns returns a list of campaigns filtered by the authenticated user's ID."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

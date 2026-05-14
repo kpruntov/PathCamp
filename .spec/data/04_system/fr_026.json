@@ -1,0 +1,15 @@
+{
+  "id": "FR-026",
+  "title": "Retrieve All Campaigns",
+  "description": "The system shall provide an endpoint for authenticated Admins to retrieve a list of all campaigns in the system.",
+  "trace_to": {
+    "user_requirements": ["UR-009"]
+  },
+  "acceptance_criteria": [
+    "A GET request to /admin/campaigns returns all campaigns.",
+    "Non-admin users receive a 403 Forbidden error."
+  ],
+  "verification_method": "Test",
+  "priority": "Must-have",
+  "stability": "Stable"
+}

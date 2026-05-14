@@ -3,7 +3,7 @@
   "title": "Defect - RBAC and Status Enforcement",
   "type": "Bugfix",
   "routine": "Feature",
-  "status": "Review",
+  "status": "Done",
   "priority": 1,
   "description": "Fix missing Admin vs GM roles, enforce blocked user status, and fix UI badge case sensitivity.",
   "dependencies": [],

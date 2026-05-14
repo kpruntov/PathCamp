@@ -3,7 +3,7 @@
   "title": "Defect - Fix Create Campaign Flow",
   "type": "Defect",
   "routine": "Defect Resolution",
-  "status": "Pending",
+  "status": "Done",
   "priority": 1,
   "description": "Fix Vite proxy for /campaigns and implement navigation to dashboard upon campaign creation.",
   "dependencies": [],

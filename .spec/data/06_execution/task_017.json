@@ -3,7 +3,7 @@
   "title": "API Contract - Campaign",
   "type": "Feature",
   "routine": "Feature",
-  "status": "Pending",
+  "status": "Done",
   "priority": 3,
   "description": "Implement API-002 endpoints",
   "dependencies": [

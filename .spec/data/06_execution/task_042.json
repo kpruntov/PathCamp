@@ -1,0 +1,50 @@
+{
+  "id": "TASK-042",
+  "title": "Feature - Campaign List Dashboard",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 2,
+  "description": "Implement a dashboard view listing all campaigns owned by the GM with an option to create a new campaign.",
+  "dependencies": [],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-002"
+    ],
+    "design_nodes": [
+      "LCOMP-002",
+      "LCOMP-005",
+      "API-002",
+      "UIC-006"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      "frontend/src/App.tsx",
+      "frontend/src/components/CampaignList.tsx",
+      "backend/app/routers/campaigns.py",
+      "backend/app/services/campaign.py",
+      ".spec/data/05_design/uic_006.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-042'",
+    "Implement GET /campaigns endpoint in backend to return campaigns for the logged-in GM.",
+    "Create CampaignList.tsx React component matching UIC-006.",
+    "Update App.tsx to display CampaignList by default for GMs.",
+    "Run 'loom complete TASK-042'"
+  ],
+  "definition_of_done": [
+    "GM dashboard displays a list of campaigns owned by the GM.",
+    "GM can click a button to reveal the CampaignForm to create a new campaign.",
+    "Backend endpoint correctly filters campaigns by gm_user_id.",
+    "Code contains @trace annotations for the task."
+  ],
+  "tdd_cycle": {
+    "test_file": "backend/tests/test_campaign_api.py",
+    "implementation_file": "backend/app/routers/campaigns.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

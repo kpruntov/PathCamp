@@ -1,13 +1,16 @@
 {
   "id": "UIC-007",
-  "name": "User Management Dashboard",
-  "description": "Admin dashboard to manage user access and block/unblock accounts.",
-  "layout_structure": "A Shadcn Data Table displaying users with action dropdowns for blocking/unblocking.",
-  "data_binding": {
-    "api_calls": ["API-001: GetUsers", "API-001: UpdateUserStatus"]
-  },
-  "trace_to": {
-    "use_cases": ["UR-007"],
-    "api_contracts": ["API-001"]
-  }
+  "name": "Global Campaigns Dashboard (Admin)",
+  "description": "Displays a table or list of all campaigns across the system, including GM ownership.",
+  "traces_to": [
+    "UR-009"
+  ],
+  "layout": "Data table view. Columns: ID, Name, GM Username, Party Size, Level, Created At.",
+  "state_bindings": [
+    {
+      "state": "all_campaigns",
+      "source_api": "API-002 (GET /admin/campaigns)"
+    }
+  ],
+  "actions": []
 }

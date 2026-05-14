@@ -36,6 +36,12 @@
       "interface_id": "LI-006", "port_id": "LP-005", "direction": "Required", "name": "Uses CreateNewCampaign" 
     },
     {
+      "interface_id": "LI-026", "port_id": "LP-005", "direction": "Required", "name": "Uses GetMyCampaigns"
+    },
+    {
+      "interface_id": "LI-027", "port_id": "LP-005", "direction": "Required", "name": "Uses GetAllCampaigns"
+    },
+    {
       "interface_id": "LI-009", "port_id": "LP-005", "direction": "Required", "name": "Uses GetTimeline"
     },
     {

@@ -1,0 +1,50 @@
+{
+  "id": "TASK-043",
+  "title": "Feature - Global Campaigns Dashboard (Admin)",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Pending",
+  "priority": 2,
+  "description": "Implement an admin dashboard view listing all campaigns across the system.",
+  "dependencies": [
+    "TASK-042"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-002"
+    ],
+    "design_nodes": [
+      "LCOMP-002",
+      "LCOMP-005",
+      "API-002",
+      "UIC-007"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      "frontend/src/components/UserManagement.tsx",
+      "backend/app/routers/campaigns.py",
+      "backend/app/services/campaign.py",
+      ".spec/data/05_design/uic_007.json"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-043'",
+    "Implement GET /admin/campaigns endpoint in backend returning all campaigns.",
+    "Create AdminCampaignList.tsx or update admin view matching UIC-007.",
+    "Ensure endpoint requires Admin role.",
+    "Run 'loom complete TASK-043'"
+  ],
+  "definition_of_done": [
+    "Admin dashboard displays a global list of all campaigns.",
+    "Backend endpoint enforces admin-only access.",
+    "Code contains @trace annotations for the task."
+  ],
+  "tdd_cycle": {
+    "test_file": "backend/tests/test_campaign_api.py",
+    "implementation_file": "backend/app/routers/campaigns.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

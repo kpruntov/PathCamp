@@ -1,13 +1,26 @@
 {
   "id": "UIC-006",
-  "name": "Shared Campaign Viewer",
-  "description": "A read-only presentation of the campaign timeline and public events for non-GM users.",
-  "layout_structure": "A simplified, read-only variant of the Timeline View (UIC-002) without editing controls.",
-  "data_binding": {
-    "api_calls": ["API-002: GetCampaignPublic", "API-003: GetTimelinePublic"]
-  },
-  "trace_to": {
-    "use_cases": ["UR-006"],
-    "api_contracts": ["API-002", "API-003"]
-  }
+  "name": "GM Campaign List Dashboard",
+  "description": "Displays a grid or list of all campaigns owned by the GM.",
+  "traces_to": [
+    "UR-008",
+    "FCHAIN-002"
+  ],
+  "layout": "Grid view with Campaign Cards. 'New Campaign' button in header.",
+  "state_bindings": [
+    {
+      "state": "campaigns",
+      "source_api": "API-002 (GET /campaigns)"
+    }
+  ],
+  "actions": [
+    {
+      "trigger": "Click 'New Campaign'",
+      "effect": "Navigate to or show Campaign Form (UIC-001)"
+    },
+    {
+      "trigger": "Click Campaign Card",
+      "effect": "Navigate to specific Campaign Dashboard (Timeline View)"
+    }
+  ]
 }

@@ -3,11 +3,13 @@
 // @trace TASK-040
 // @trace TASK-018
 // @trace TASK-041
+// @trace TASK-042
 import { useState, useEffect } from 'react'
 import { UserManagement } from './components/UserManagement'
 import { AuthForms } from './components/AuthForms'
 import { CampaignForm } from './components/CampaignForm'
 import { CampaignDashboard } from './components/CampaignDashboard'
+import { CampaignList } from './components/CampaignList'
 import './App.css'
 
 interface User {
@@ -22,6 +24,7 @@ function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [user, setUser] = useState<User | null>(null);
   const [activeCampaignId, setActiveCampaignId] = useState<number | null>(null);
+  const [isCreatingCampaign, setIsCreatingCampaign] = useState<boolean>(false);
 
   useEffect(() => {
     if (token) {
@@ -41,11 +44,13 @@ function App() {
         setToken(null);
         setUser(null);
         setActiveCampaignId(null);
+        setIsCreatingCampaign(false);
       });
     } else {
       localStorage.removeItem('token');
       setUser(null);
       setActiveCampaignId(null);
+      setIsCreatingCampaign(false);
     }
   }, [token]);
 
@@ -59,6 +64,7 @@ function App() {
     setToken(null);
     setUser(null);
     setActiveCampaignId(null);
+    setIsCreatingCampaign(false);
   };
 
   return (
@@ -89,10 +95,25 @@ function App() {
               onBack={() => setActiveCampaignId(null)} 
             />
           </div>
+        ) : isCreatingCampaign ? (
+          <div className="p-8">
+            <button 
+              onClick={() => setIsCreatingCampaign(false)}
+              className="mb-6 text-fantasy-accent hover:text-fantasy-text transition-colors text-sm uppercase tracking-wider font-bold max-w-md mx-auto block w-full text-left"
+            >
+              &larr; Back to Campaigns
+            </button>
+            <CampaignForm onSuccess={(id) => {
+              setIsCreatingCampaign(false);
+              setActiveCampaignId(id);
+            }} />
+          </div>
         ) : (
           <div className="p-8">
-            <h2 className="text-2xl font-bold mb-8 text-fantasy-text text-center">GM Dashboard</h2>
-            <CampaignForm onSuccess={(id) => setActiveCampaignId(id)} />
+            <CampaignList 
+              onSelectCampaign={(id) => setActiveCampaignId(id)}
+              onCreateNew={() => setIsCreatingCampaign(true)}
+            />
           </div>
         )
       ) : (

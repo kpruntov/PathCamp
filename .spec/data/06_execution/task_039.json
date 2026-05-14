@@ -3,7 +3,7 @@
   "title": "UI Component - Auth Forms",
   "type": "Feature",
   "routine": "Feature",
-  "status": "Review",
+  "status": "Done",
   "priority": 1,
   "description": "Implement UIC-008 (Login and Registration UI)",
   "dependencies": [],
