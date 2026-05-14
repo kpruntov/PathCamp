@@ -13,6 +13,10 @@ export default defineConfig({
       '/auth': {
         target: 'http://localhost:8000',
         changeOrigin: true,
+      },
+      '/campaigns': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
       }
     }
   }

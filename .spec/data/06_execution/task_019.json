@@ -7,7 +7,8 @@
   "priority": 3,
   "description": "Human verification of Campaign epic",
   "dependencies": [
-    "TASK-018"
+    "TASK-018",
+    "TASK-041"
   ],
   "trace_to": {
     "functional_chains": [
@@ -29,5 +30,6 @@
     "No critical regressions found in integrated components",
     "loom validate passes"
   ],
-  "assigned_role": "Master"
+  "verification_regime": "Manual",
+  "assigned_role": "Verifier"
 }

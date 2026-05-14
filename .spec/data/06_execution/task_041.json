@@ -1,0 +1,36 @@
+{
+  "id": "TASK-041",
+  "title": "Defect - Fix Create Campaign Flow",
+  "type": "Defect",
+  "routine": "Defect Resolution",
+  "status": "Pending",
+  "priority": 1,
+  "description": "Fix Vite proxy for /campaigns and implement navigation to dashboard upon campaign creation.",
+  "dependencies": [],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-002"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      "frontend/vite.config.ts",
+      "frontend/src/App.tsx",
+      "frontend/src/components/CampaignForm.tsx"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-041'",
+    "Add '/campaigns' proxy to Vite config.",
+    "Implement routing/state management in App.tsx to handle navigation to the campaign dashboard upon successful creation.",
+    "Verify the end-to-end flow using the dev server.",
+    "Run 'loom complete TASK-041'"
+  ],
+  "definition_of_done": [
+    "The /campaigns endpoint is correctly proxied.",
+    "User is navigated to the new campaign's dashboard after creation.",
+    "Dashboard shows the initial timeline tick."
+  ],
+  "verification_regime": "Manual",
+  "assigned_role": "Developer"
+}

@@ -2,10 +2,12 @@
 // @trace TASK-039
 // @trace TASK-040
 // @trace TASK-018
+// @trace TASK-041
 import { useState, useEffect } from 'react'
 import { UserManagement } from './components/UserManagement'
 import { AuthForms } from './components/AuthForms'
 import { CampaignForm } from './components/CampaignForm'
+import { CampaignDashboard } from './components/CampaignDashboard'
 import './App.css'
 
 interface User {
@@ -19,6 +21,7 @@ interface User {
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [user, setUser] = useState<User | null>(null);
+  const [activeCampaignId, setActiveCampaignId] = useState<number | null>(null);
 
   useEffect(() => {
     if (token) {
@@ -37,10 +40,12 @@ function App() {
         localStorage.removeItem('token');
         setToken(null);
         setUser(null);
+        setActiveCampaignId(null);
       });
     } else {
       localStorage.removeItem('token');
       setUser(null);
+      setActiveCampaignId(null);
     }
   }, [token]);
 
@@ -53,6 +58,7 @@ function App() {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
+    setActiveCampaignId(null);
   };
 
   return (
@@ -76,10 +82,19 @@ function App() {
       ) : user?.role === 'Admin' ? (
         <UserManagement />
       ) : user ? (
-        <div className="p-8">
-          <h2 className="text-2xl font-bold mb-8 text-fantasy-text text-center">GM Dashboard</h2>
-          <CampaignForm onSuccess={(id) => alert(`Campaign ${id} created!`)} />
-        </div>
+        activeCampaignId ? (
+          <div className="p-8">
+            <CampaignDashboard 
+              campaignId={activeCampaignId} 
+              onBack={() => setActiveCampaignId(null)} 
+            />
+          </div>
+        ) : (
+          <div className="p-8">
+            <h2 className="text-2xl font-bold mb-8 text-fantasy-text text-center">GM Dashboard</h2>
+            <CampaignForm onSuccess={(id) => setActiveCampaignId(id)} />
+          </div>
+        )
       ) : (
         <div className="p-8 text-center text-fantasy-accent animate-pulse">Loading...</div>
       )}
