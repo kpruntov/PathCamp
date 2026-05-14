@@ -1,16 +1,21 @@
 {
   "id": "UIC-007",
-  "name": "Global Campaigns Dashboard (Admin)",
-  "description": "Displays a table or list of all campaigns across the system, including GM ownership.",
+  "name": "Global Campaigns Dashboard",
+  "description": "Displays a grid or list of all campaigns across the system. Serves as the starting page.",
   "traces_to": [
     "UR-009"
   ],
-  "layout": "Data table view. Columns: ID, Name, GM Username, Party Size, Level, Created At.",
+  "layout": "Grid or Data table view. Columns/Cards: ID, Name, GM Username, Party Size, Level, Created At. Includes navigation links to Login/Register or GM Dashboard.",
   "state_bindings": [
     {
       "state": "all_campaigns",
-      "source_api": "API-002 (GET /admin/campaigns)"
+      "source_api": "API-002 (GET /campaigns/all)"
     }
   ],
-  "actions": []
+  "actions": [
+    {
+      "trigger": "Click Campaign Card",
+      "effect": "Navigate to specific Campaign Dashboard (Timeline View)"
+    }
+  ]
 }

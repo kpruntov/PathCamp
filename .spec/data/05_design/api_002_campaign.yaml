@@ -34,13 +34,13 @@ paths:
       responses:
         '201':
           description: Campaign created
-  /admin/campaigns:
+  /campaigns/all:
     get:
       summary: Retrieve all campaigns globally
       operationId: getAllCampaigns
       responses:
         '200':
-          description: A global list of campaigns
+          description: A global public list of campaigns
   /campaigns/{campaignId}/share:
     get:
       summary: Get a read-only share link for a campaign

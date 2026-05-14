@@ -1,22 +1,22 @@
 {
   "id": "UR-009",
-  "title": "View All Campaigns (Admin)",
-  "primary_actor": "UCH-003",
+  "title": "View All Campaigns (Global)",
+  "primary_actor": "UCH-002",
   "preconditions": [
-    "Admin is logged in"
+    "User accesses the application"
   ],
   "postconditions": [
-    "Admin is viewing a global list of all campaigns across the system"
+    "User is viewing a global list of all campaigns across the system"
   ],
-  "trigger": "Admin navigates to the Global Campaigns Dashboard",
+  "trigger": "User navigates to the starting page",
   "main_scenario": [
     {
       "step": 1,
-      "action": "Admin navigates to the Global Campaigns Dashboard"
+      "action": "User navigates to the root URL or Global Campaigns link"
     },
     {
       "step": 2,
-      "action": "System retrieves a complete list of all campaigns in the system"
+      "action": "System retrieves a complete list of all public/active campaigns in the system"
     },
     {
       "step": 3,
@@ -37,6 +37,7 @@
   },
   "acceptance_criteria": [
     "All campaigns are displayed, regardless of owner.",
-    "Only users with the Admin role can access this view."
+    "Unauthenticated users can view this list.",
+    "The list acts as the starting page of the application."
   ]
 }

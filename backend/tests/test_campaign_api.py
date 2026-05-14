@@ -67,6 +67,19 @@ def test_get_campaigns(client, db_session, test_user):
 
     app.dependency_overrides.pop(get_current_active_user, None)
 
+def test_get_all_campaigns(client, db_session, test_user):
+    c1 = Campaign(gm_user_id=test_user.id, name="Global Campaign 1", party_size=4, party_level=1)
+    db_session.add(c1)
+    db_session.commit()
+    
+    # Unauthenticated request
+    response = client.get("/campaigns/all")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data) >= 1
+    names = [c["name"] for c in data]
+    assert "Global Campaign 1" in names
+
 def test_create_campaign(client, test_user):
     from app.dependencies import get_current_active_user
     app.dependency_overrides[get_current_active_user] = lambda: test_user

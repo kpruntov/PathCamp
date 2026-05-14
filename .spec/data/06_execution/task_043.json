@@ -1,11 +1,11 @@
 {
   "id": "TASK-043",
-  "title": "Feature - Global Campaigns Dashboard (Admin)",
+  "title": "Feature - Global Campaigns Dashboard",
   "type": "Feature",
   "routine": "Feature",
   "status": "Pending",
-  "priority": 2,
-  "description": "Implement an admin dashboard view listing all campaigns across the system.",
+  "priority": 1,
+  "description": "Implement a public global dashboard view listing all campaigns across the system, serving as the starting page.",
   "dependencies": [
     "TASK-042"
   ],
@@ -22,7 +22,8 @@
   },
   "context": {
     "relevant_files": [
-      "frontend/src/components/UserManagement.tsx",
+      "frontend/src/App.tsx",
+      "frontend/src/components/GlobalCampaignList.tsx",
       "backend/app/routers/campaigns.py",
       "backend/app/services/campaign.py",
       ".spec/data/05_design/uic_007.json"
@@ -30,14 +31,14 @@
   },
   "execution_steps": [
     "Run 'loom start TASK-043'",
-    "Implement GET /admin/campaigns endpoint in backend returning all campaigns.",
-    "Create AdminCampaignList.tsx or update admin view matching UIC-007.",
-    "Ensure endpoint requires Admin role.",
+    "Implement public GET /campaigns/all endpoint in backend returning all campaigns.",
+    "Create GlobalCampaignList.tsx React component matching UIC-007.",
+    "Update App.tsx so GlobalCampaignList is the starting view for unauthenticated users, and provide navigation links.",
     "Run 'loom complete TASK-043'"
   ],
   "definition_of_done": [
-    "Admin dashboard displays a global list of all campaigns.",
-    "Backend endpoint enforces admin-only access.",
+    "Starting page displays a global list of all campaigns to everyone.",
+    "Backend endpoint /campaigns/all allows public access.",
     "Code contains @trace annotations for the task."
   ],
   "tdd_cycle": {

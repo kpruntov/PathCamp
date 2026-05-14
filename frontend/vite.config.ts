@@ -17,6 +17,10 @@ export default defineConfig({
       '/campaigns': {
         target: 'http://localhost:8000',
         changeOrigin: true,
+      },
+      '/campaigns/all': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
       }
     }
   }

@@ -1,5 +1,6 @@
 # @trace TASK-017
 # @trace TASK-042
+# @trace TASK-043
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from typing import List
@@ -8,6 +9,11 @@ from app.schemas import CampaignCreate, CampaignResponse, CampaignShareResponse,
 from app.services import campaign as campaign_service
 
 router = APIRouter()
+
+@router.get("/campaigns/all", response_model=List[CampaignResponse])
+def get_all_campaigns(db: Session = Depends(get_db)):
+    """Get all campaigns globally (public)."""
+    return campaign_service.get_all_campaigns(db)
 
 @router.get("/campaigns", response_model=List[CampaignResponse])
 def get_campaigns(

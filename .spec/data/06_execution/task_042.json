@@ -3,7 +3,7 @@
   "title": "Feature - Campaign List Dashboard",
   "type": "Feature",
   "routine": "Feature",
-  "status": "Pending",
+  "status": "Done",
   "priority": 2,
   "description": "Implement a dashboard view listing all campaigns owned by the GM with an option to create a new campaign.",
   "dependencies": [],
