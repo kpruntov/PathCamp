@@ -31,6 +31,7 @@ export function GlobalCampaignList({ onSelectCampaign }: GlobalCampaignListProps
 
         const data = await response.json();
         setCampaigns(data);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         setError(err.message);
       } finally {

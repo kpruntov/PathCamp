@@ -38,6 +38,7 @@ export function CampaignList({ onSelectCampaign, onCreateNew }: CampaignListProp
 
         const data = await response.json();
         setCampaigns(data);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         setError(err.message);
       } finally {

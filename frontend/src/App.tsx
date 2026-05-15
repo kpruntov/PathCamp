@@ -55,6 +55,7 @@ function App() {
       });
     } else {
       localStorage.removeItem('token');
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setUser(null);
       setActiveCampaignId(null);
       setView('global');

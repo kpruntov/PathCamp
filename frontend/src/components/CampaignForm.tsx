@@ -57,6 +57,7 @@ export function CampaignForm({ onSuccess }: CampaignFormProps) {
       setPartySize(4);
       setPartyLevel(1);
       
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message);
     } finally {
