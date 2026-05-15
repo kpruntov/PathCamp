@@ -66,3 +66,58 @@ class CampaignResponse(CampaignBase):
 class CampaignShareResponse(BaseModel):
     share_url: str
 
+# @trace TASK-021
+from typing import Any
+
+class AssetBase(BaseModel):
+    asset_type: str
+    name: str
+    description: Optional[str] = None
+    traits: Optional[list[str]] = None
+
+class AssetCreate(AssetBase):
+    pass
+
+class AssetResponse(AssetBase):
+    id: int
+    tick_id: int
+    created_at: datetime
+    updated_at: datetime
+    
+    model_config = {"from_attributes": True}
+
+class EncounterBase(BaseModel):
+    mechanical_data: dict[str, Any]
+    gm_narrative: Optional[str] = None
+
+class EncounterCreate(EncounterBase):
+    pass
+
+class EncounterResponse(EncounterBase):
+    id: int
+    asset_id: int
+    created_at: datetime
+    updated_at: datetime
+    
+    model_config = {"from_attributes": True}
+
+class TickBase(BaseModel):
+    narrative: Optional[str] = None
+
+class TickCreate(TickBase):
+    pass
+
+class TickResponse(TickBase):
+    id: int
+    campaign_id: int
+    tick_number: int
+    created_at: datetime
+    updated_at: datetime
+    assets: List[AssetResponse] = []
+    
+    model_config = {"from_attributes": True}
+
+class TimelineData(BaseModel):
+    campaign_id: int
+    ticks: List[TickResponse]
+
