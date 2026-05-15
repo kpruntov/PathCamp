@@ -104,8 +104,9 @@ class EncounterResponse(EncounterBase):
 class TickBase(BaseModel):
     narrative: Optional[str] = None
 
+# @trace TASK-022
 class TickCreate(TickBase):
-    pass
+    campaign_id: int
 
 class TickResponse(TickBase):
     id: int
