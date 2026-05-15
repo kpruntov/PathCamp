@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 import logging
 
 # Ensure tables are created (useful if running without migrations temporarily)
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 
 logger = logging.getLogger(__name__)
 
