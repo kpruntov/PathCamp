@@ -7,6 +7,7 @@ from app.token import decode_access_token
 from app.models import User
 
 security = HTTPBearer()
+security_optional = HTTPBearer(auto_error=False)
 
 def get_db():
     db = SessionLocal()
@@ -14,6 +15,18 @@ def get_db():
         yield db
     finally:
         db.close()
+
+def get_optional_user(credentials: HTTPAuthorizationCredentials = Depends(security_optional), db: Session = Depends(get_db)):
+    if not credentials:
+        return None
+    token = credentials.credentials
+    payload = decode_access_token(token)
+    if payload is None:
+        return None
+    username: str = payload.get("sub")
+    if username is None:
+        return None
+    return db.query(User).filter(User.username == username).first()
 
 def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security), db: Session = Depends(get_db)):
     token = credentials.credentials

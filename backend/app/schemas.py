@@ -120,5 +120,6 @@ class TickResponse(TickBase):
 
 class TimelineData(BaseModel):
     campaign_id: int
+    is_owner: bool = False
     ticks: List[TickResponse]
 

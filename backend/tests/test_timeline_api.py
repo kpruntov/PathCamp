@@ -95,3 +95,35 @@ def test_timeline_flow(client, auth_headers, campaign):
     assert timeline["ticks"][1]["narrative"] == "A modified beginning"
     assert len(timeline["ticks"][1]["assets"]) == 1
     assert timeline["ticks"][1]["assets"][0]["name"] == "Goblin King"
+
+def test_timeline_authorization(client, auth_headers, campaign):
+    campaign_id = campaign["id"]
+
+    # Register a second user to test unauthorized access
+    client.post("/auth/register", json={"username": "other_gm", "email": "other@test.com", "password": "pw"})
+    response = client.post("/auth/login", json={"username": "other_gm", "password": "pw"})
+    token2 = response.json()["access_token"]
+    auth_headers2 = {"Authorization": f"Bearer {token2}"}
+
+    # 1. Other user tries to create a tick
+    resp = client.post("/ticks", json={"campaign_id": campaign_id, "narrative": "Hacked tick"}, headers=auth_headers2)
+    assert resp.status_code == 403
+
+    # Need a valid tick to test update/delete
+    resp = client.post("/ticks", json={"campaign_id": campaign_id, "narrative": "Valid tick"}, headers=auth_headers)
+    assert resp.status_code == 201
+    tick_id = resp.json()["new_tick_id"]
+
+    # 2. Other user tries to update tick
+    resp = client.put(f"/ticks/{tick_id}", json={"narrative": "Hacked update"}, headers=auth_headers2)
+    assert resp.status_code == 403
+
+    # 3. Other user tries to add asset
+    asset_data = {
+        "asset_type": "NPC",
+        "name": "Hacked Asset",
+        "description": "A fierce leader",
+        "traits": []
+    }
+    resp = client.post(f"/ticks/{tick_id}/assets", json=asset_data, headers=auth_headers2)
+    assert resp.status_code == 403

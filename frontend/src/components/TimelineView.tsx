@@ -18,7 +18,8 @@ interface Tick {
 }
 
 interface TimelineData {
-  campaign_id: number;
+  campaign_id: int;
+  is_owner: boolean;
   ticks: Tick[];
 }
 
@@ -36,7 +37,7 @@ export function TimelineView({ campaignId }: TimelineViewProps) {
   const [editNarrative, setEditNarrative] = useState('');
 
   const fetchTimeline = () => {
-    fetch(`/api/campaigns/${campaignId}/timeline`, {
+    fetch(`/campaigns/${campaignId}/timeline`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -65,7 +66,7 @@ export function TimelineView({ campaignId }: TimelineViewProps) {
     if (!newTickNarrative.trim()) return;
 
     setSubmitting(true);
-    fetch('/api/ticks', {
+    fetch('/ticks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -87,7 +88,7 @@ export function TimelineView({ campaignId }: TimelineViewProps) {
     if (!selectedTick) return;
 
     setSubmitting(true);
-    fetch(`/api/ticks/${selectedTick.id}`, {
+    fetch(`/ticks/${selectedTick.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -138,27 +139,29 @@ export function TimelineView({ campaignId }: TimelineViewProps) {
         ))}
 
         {/* New Tick Form */}
-        <form onSubmit={handleCreateTick} className="bg-black/60 border border-fantasy-accent p-4 rounded mt-8">
-          <h4 className="text-fantasy-accent font-bold mb-4 uppercase tracking-wide text-sm">Add Next Tick</h4>
-          <textarea
-            value={newTickNarrative}
-            onChange={(e) => setNewTickNarrative(e.target.value)}
-            className="w-full bg-black/50 border border-fantasy-accent/30 rounded p-3 text-fantasy-text focus:border-fantasy-accent focus:outline-none min-h-[100px]"
-            placeholder="Describe what happens next..."
-            required
-          />
-          <button
-            type="submit"
-            disabled={submitting}
-            className="mt-4 bg-fantasy-accent text-fantasy-dark px-4 py-2 rounded font-bold uppercase tracking-wide text-sm hover:bg-fantasy-text transition-colors disabled:opacity-50"
-          >
-            {submitting ? 'Adding...' : 'Create Tick'}
-          </button>
-        </form>
+        {timeline?.is_owner && (
+          <form onSubmit={handleCreateTick} className="bg-black/60 border border-fantasy-accent p-4 rounded mt-8">
+            <h4 className="text-fantasy-accent font-bold mb-4 uppercase tracking-wide text-sm">Add Next Tick</h4>
+            <textarea
+              value={newTickNarrative}
+              onChange={(e) => setNewTickNarrative(e.target.value)}
+              className="w-full bg-black/50 border border-fantasy-accent/30 rounded p-3 text-fantasy-text focus:border-fantasy-accent focus:outline-none min-h-[100px]"
+              placeholder="Describe what happens next..."
+              required
+            />
+            <button
+              type="submit"
+              disabled={submitting}
+              className="mt-4 bg-fantasy-accent text-fantasy-dark px-4 py-2 rounded font-bold uppercase tracking-wide text-sm hover:bg-fantasy-text transition-colors disabled:opacity-50"
+            >
+              {submitting ? 'Adding...' : 'Create Tick'}
+            </button>
+          </form>
+        )}
       </div>
 
       {/* Side Panel for Editing */}
-      {selectedTick && (
+      {selectedTick && timeline?.is_owner && (
         <div className="w-80 flex-shrink-0 bg-black/60 border border-fantasy-accent rounded p-6 sticky top-0 h-fit">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-bold text-fantasy-accent uppercase tracking-wide">Tick {selectedTick.tick_number}</h3>
