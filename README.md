@@ -36,8 +36,7 @@ Maybe I will finish it occasionally, because I'd like to have a campain manager 
 - **Orchestration:** Podman / Docker (Distroless containers)
 
 ## IP & Licensing Note
-This project is an independent showcase. While it is themed around fantasy tabletop RPGs (such as Pathfinder), **it is not affiliated with, endorsed by, or sponsored by Paizo Inc.** 
-To ensure maximum compatibility and respect for IP, this showcase relies strictly on generic mechanics and systems covered by open licenses (such as the Open RPG Creative License (ORC) or OGL) and does not utilize Paizo's Product Identity (e.g., specific lore, trademarks, setting details). If you want to continue, build or contribute, please read and follow https://paizo.com/licenses/communityuse. 
+This project is an independent showcase themed around generic fantasy tabletop RPGs. To ensure maximum compatibility and respect for IP, this showcase relies strictly on generic mechanics and systems covered by open licenses (such as the Open RPG Creative License (ORC) or the Open Gaming License (OGL)) and does not utilize any specific publisher's Product Identity, lore, or trademarks.
 
 ## License
 [MIT License](LICENSE)
