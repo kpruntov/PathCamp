@@ -1,10 +1,10 @@
 {
   "id": "STK-002",
-  "name": "Paizo",
+  "name": "Open Gaming Community",
   "role": "Regulatory Stakeholder",
   "influence": "High",
   "interests": [
-    "Compliance with Community Use Policy",
-    "Proper use of Pathfinder 2e intellectual property"
+    "Compliance with ORC/OGL policies",
+    "Proper use of open gaming mechanics without proprietary IP infringement"
   ]
 }

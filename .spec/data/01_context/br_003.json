@@ -1,7 +1,7 @@
 {
   "id": "BR-003",
-  "title": "Paizo Licensing Compliance",
-  "statement": "The application must strictly comply with the Paizo Community Use Policy and utilize the Paizo Community Use Package for UI branding.",
+  "title": "Open Licensing Compliance",
+  "statement": "The application must strictly comply with the Open Gaming License (OGL) or Open RPG Creative License (ORC) and utilize generic fantasy branding.",
   "source": "Pathcamp PRD",
   "trace_to": {
     "stakeholders": ["STK-002"]

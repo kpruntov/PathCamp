@@ -39,8 +39,8 @@
 * **Intelligence:** Gemini 1.5 Flash for narrative flavor-text only.
 
 ## 5. Constraints & Compliance
-* **Legal:** [Paizo Community Use Policy](https://paizo.com/licenses/communityuse) compliance.
-* **Resources:** Use [Paizo Community Use Package](https://paizo.com/community/communityuse/package) for UI branding.
+* **Legal:** Open Gaming License (OGL) or Open RPG Creative License (ORC) compliance. No proprietary IP.
+* **Resources:** Use generic fantasy assets for UI branding.
 * **Determinism:** The system must never use AI to "guess" a monster's level or a check's DC. All must be derived from the metadata.
 
 ## 6. User Workflow Example
