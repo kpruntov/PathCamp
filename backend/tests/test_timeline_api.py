@@ -127,3 +127,52 @@ def test_timeline_authorization(client, auth_headers, campaign):
     }
     resp = client.post(f"/ticks/{tick_id}/assets", json=asset_data, headers=auth_headers2)
     assert resp.status_code == 403
+
+def test_delete_tick(client, auth_headers, campaign):
+    campaign_id = campaign["id"]
+
+    # The timeline already has Tick 1 (from campaign creation)
+    
+    # Let's create Tick 2
+    resp = client.post("/ticks", json={"campaign_id": campaign_id, "narrative": "Tick 2"}, headers=auth_headers)
+    tick2_id = resp.json()["new_tick_id"]
+
+    # Let's create Tick 3
+    resp = client.post("/ticks", json={"campaign_id": campaign_id, "narrative": "Tick 3"}, headers=auth_headers)
+    tick3_id = resp.json()["new_tick_id"]
+
+    # Test: Cannot delete Tick 1
+    # We need to find the ID of Tick 1 first
+    resp = client.get(f"/campaigns/{campaign_id}/timeline", headers=auth_headers)
+    timeline = resp.json()
+    tick1_id = timeline["ticks"][0]["id"]
+    
+    resp = client.delete(f"/ticks/{tick1_id}", headers=auth_headers)
+    assert resp.status_code == 400
+    assert "first tick" in resp.json()["detail"]
+
+    # Test: Delete Tick 2
+    resp = client.delete(f"/ticks/{tick2_id}", headers=auth_headers)
+    assert resp.status_code == 200
+
+    # Test: Verify Tick 2 is gone, Tick 3 is shifted?
+    # Wait, the spec says "cascade the timeline state forward". 
+    # If we delete Tick 2, the assets shouldn't cascade? Or they do.
+    # We check if it is deleted.
+    resp = client.get(f"/campaigns/{campaign_id}/timeline", headers=auth_headers)
+    timeline = resp.json()
+    # Now should have tick 1 and tick 3 (which might have its number changed or not depending on implementation)
+    tick_ids = [t["id"] for t in timeline["ticks"]]
+    assert tick1_id in tick_ids
+    assert tick2_id not in tick_ids
+    assert tick3_id in tick_ids
+
+    # Check that another user cannot delete
+    # Register a second user
+    client.post("/auth/register", json={"username": "other_gm2", "email": "other2@test.com", "password": "pw"})
+    response = client.post("/auth/login", json={"username": "other_gm2", "password": "pw"})
+    token2 = response.json()["access_token"]
+    auth_headers2 = {"Authorization": f"Bearer {token2}"}
+
+    resp = client.delete(f"/ticks/{tick3_id}", headers=auth_headers2)
+    assert resp.status_code == 403

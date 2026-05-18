@@ -118,3 +118,29 @@ def save_encounter_to_tick(db: Session, asset_id: int, encounter_data: schemas.E
     db.add(encounter)
     db.commit()
     return True
+
+def delete_tick(db: Session, tick_id: int) -> bool:
+    tick = db.query(models.Tick).filter(models.Tick.id == tick_id).first()
+    if not tick:
+        return False
+    
+    if tick.tick_number == 1:
+        raise ValueError("Cannot delete the first tick of a campaign.")
+        
+    campaign_id = tick.campaign_id
+    deleted_tick_number = tick.tick_number
+    
+    # Delete the tick
+    db.delete(tick)
+    
+    # Cascade: shift down the tick_number for all subsequent ticks
+    subsequent_ticks = db.query(models.Tick).filter(
+        models.Tick.campaign_id == campaign_id,
+        models.Tick.tick_number > deleted_tick_number
+    ).order_by(models.Tick.tick_number.asc()).all()
+    
+    for t in subsequent_ticks:
+        t.tick_number -= 1
+        
+    db.commit()
+    return True

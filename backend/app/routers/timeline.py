@@ -65,3 +65,14 @@ def save_encounter_to_tick(tickId: int, sceneId: int, encounter_data: schemas.En
     if not success:
         raise HTTPException(status_code=404, detail="Scene asset not found")
     return {"success": True}
+
+@router.delete("/ticks/{tickId}")
+def delete_tick(tickId: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_active_user)):
+    check_tick_ownership(db, tickId, current_user.id)
+    try:
+        success = timeline.delete_tick(db, tick_id=tickId)
+        if not success:
+            raise HTTPException(status_code=404, detail="Tick not found")
+        return {"success": True}
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))

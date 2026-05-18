@@ -123,7 +123,35 @@ export function TimelineView({ campaignId }: TimelineViewProps) {
                 Tick {tick.tick_number}
               </div>
               <div className="flex-1">
-                <p className="text-lg whitespace-pre-wrap">{tick.narrative || 'No narrative'}</p>
+                <div className="flex justify-between items-start mb-2">
+                  <p className="text-lg whitespace-pre-wrap">{tick.narrative || 'No narrative'}</p>
+                  {timeline?.is_owner && tick.tick_number > 1 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (window.confirm(`Are you sure you want to delete Tick ${tick.tick_number}? This will shift all subsequent ticks back by one. This action cannot be undone.`)) {
+                          fetch(`/ticks/${tick.id}`, {
+                            method: 'DELETE',
+                            headers: {
+                              'Authorization': `Bearer ${localStorage.getItem('token')}`
+                            }
+                          })
+                          .then(res => {
+                            if (!res.ok) throw new Error('Failed to delete tick');
+                            fetchTimeline();
+                            if (selectedTick?.id === tick.id) {
+                              setSelectedTick(null);
+                            }
+                          })
+                          .catch(err => alert(err.message));
+                        }
+                      }}
+                      className="text-red-500 hover:text-red-400 bg-red-500/10 hover:bg-red-500/20 px-2 py-1 rounded text-xs ml-4 flex-shrink-0"
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
                 {tick.assets && tick.assets.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {tick.assets.map(asset => (
