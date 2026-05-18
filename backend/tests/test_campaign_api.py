@@ -133,3 +133,46 @@ def test_get_shared_campaign(client, db_session, test_user):
 def test_get_shared_campaign_not_found(client):
     response = client.get("/shared/invalid-token")
     assert response.status_code == 404
+
+def test_delete_campaign(client, db_session, test_user):
+    from app.dependencies import get_current_active_user
+    app.dependency_overrides[get_current_active_user] = lambda: test_user
+
+    # Create a campaign
+    create_response = client.post(
+        "/campaigns",
+        json={"name": "To Be Deleted", "party_size": 4, "party_level": 1}
+    )
+    campaign_id = create_response.json()["id"]
+
+    # Delete the campaign
+    delete_response = client.delete(f"/campaigns/{campaign_id}")
+    assert delete_response.status_code == 200
+    assert delete_response.json() == {"success": True}
+
+    # Verify it's gone
+    from app.models import Campaign
+    assert db_session.query(Campaign).filter(Campaign.id == campaign_id).first() is None
+
+    app.dependency_overrides.pop(get_current_active_user, None)
+
+def test_delete_campaign_not_owner(client, db_session, test_user):
+    from app.dependencies import get_current_active_user
+    app.dependency_overrides[get_current_active_user] = lambda: test_user
+
+    # Create a campaign owned by someone else
+    other_user = User(username="other_gm", email="other@test.com", password_hash="pw", role="GM")
+    db_session.add(other_user)
+    db_session.commit()
+    db_session.refresh(other_user)
+
+    other_campaign = Campaign(gm_user_id=other_user.id, name="Other Campaign", party_size=4, party_level=1)
+    db_session.add(other_campaign)
+    db_session.commit()
+    db_session.refresh(other_campaign)
+
+    # Attempt to delete
+    delete_response = client.delete(f"/campaigns/{other_campaign.id}")
+    assert delete_response.status_code == 404 # Or 403, typically 404 if filtering by user id
+    
+    app.dependency_overrides.pop(get_current_active_user, None)

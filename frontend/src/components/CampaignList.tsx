@@ -1,4 +1,5 @@
 // @trace TASK-042
+// @trace TASK-045
 import { useState, useEffect } from 'react';
 
 interface Campaign {
@@ -49,6 +50,34 @@ export function CampaignList({ onSelectCampaign, onCreateNew }: CampaignListProp
     fetchCampaigns();
   }, []);
 
+  const handleDelete = async (e: React.MouseEvent, id: number, name: string) => {
+    e.stopPropagation();
+    if (!window.confirm(`Are you sure you want to permanently delete campaign "${name}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    try {
+      const response = await fetch(`/campaigns/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete campaign');
+      }
+
+      setCampaigns(campaigns.filter(c => c.id !== id));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
   if (loading) {
     return <div className="text-center text-fantasy-accent animate-pulse">Loading campaigns...</div>;
   }
@@ -78,14 +107,23 @@ export function CampaignList({ onSelectCampaign, onCreateNew }: CampaignListProp
           {campaigns.map(campaign => (
             <div 
               key={campaign.id} 
-              className="bg-fantasy-dark border border-fantasy-accent/50 p-5 rounded hover:border-fantasy-accent transition-colors cursor-pointer"
+              className="bg-fantasy-dark border border-fantasy-accent/50 p-5 rounded hover:border-fantasy-accent transition-colors cursor-pointer relative group"
               onClick={() => onSelectCampaign(campaign.id)}
             >
-              <h3 className="text-xl font-bold text-fantasy-text mb-2">{campaign.name}</h3>
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="text-xl font-bold text-fantasy-text">{campaign.name}</h3>
+                <button
+                  onClick={(e) => handleDelete(e, campaign.id, campaign.name)}
+                  className="text-red-500 hover:text-red-400 bg-red-500/10 hover:bg-red-500/20 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                  title="Delete Campaign"
+                >
+                  Delete
+                </button>
+              </div>
               {campaign.description && (
                 <p className="text-fantasy-text/80 text-sm mb-4 line-clamp-2">{campaign.description}</p>
               )}
-              <div className="flex justify-between text-xs text-fantasy-accent/70 font-bold uppercase tracking-wider">
+              <div className="flex justify-between text-xs text-fantasy-accent/70 font-bold uppercase tracking-wider mt-auto">
                 <span>Party: {campaign.party_size}</span>
                 <span>Level: {campaign.party_level}</span>
               </div>

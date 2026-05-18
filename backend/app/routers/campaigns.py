@@ -63,3 +63,15 @@ def get_shared_campaign(
     if not campaign:
         raise HTTPException(status_code=404, detail="Shared campaign not found")
     return campaign
+
+@router.delete("/campaigns/{campaign_id}")
+def delete_campaign(
+    campaign_id: int,
+    db: Session = Depends(get_db),
+    current_user: UserDetail = Depends(get_current_active_user)
+):
+    """Delete a campaign."""
+    success = campaign_service.delete_campaign(db, campaign_id, current_user.id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Campaign not found or not authorized to delete")
+    return {"success": True}

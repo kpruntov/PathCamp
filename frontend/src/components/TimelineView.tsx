@@ -12,13 +12,13 @@ interface Asset {
 
 interface Tick {
   id: number;
-  tick_number: int;
+  tick_number: number;
   narrative: string | null;
   assets: Asset[];
 }
 
 interface TimelineData {
-  campaign_id: int;
+  campaign_id: number;
   is_owner: boolean;
   ticks: Tick[];
 }

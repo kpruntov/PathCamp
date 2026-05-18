@@ -44,3 +44,12 @@ def generate_share_link(db: Session, campaign_id: int, base_url: str) -> str:
 
 def get_shared_campaign(db: Session, share_token: str) -> Campaign:
     return db.query(Campaign).filter(Campaign.share_token == share_token).first()
+
+def delete_campaign(db: Session, campaign_id: int, gm_user_id: int) -> bool:
+    db_campaign = db.query(Campaign).filter(Campaign.id == campaign_id, Campaign.gm_user_id == gm_user_id).first()
+    if not db_campaign:
+        return False
+    
+    db.delete(db_campaign)
+    db.commit()
+    return True
