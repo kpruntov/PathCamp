@@ -1,0 +1,25 @@
+{
+  "id": "SCN-030",
+  "title": "Verify Campaign Deletion",
+  "type": "Automated",
+  "objective": "Tests that deleting a campaign removes all associated data.",
+  "trace_to": {
+    "requirements": [
+      "FR-029"
+    ]
+  },
+  "steps": [
+    {
+      "step": "A campaign exists with multiple ticks and assets",
+      "expected_result": "Campaign and relations are in database"
+    },
+    {
+      "step": "The campaign owner issues a DELETE request to the campaign endpoint",
+      "expected_result": "Request returns success status"
+    },
+    {
+      "step": "Check database for campaign and its assets",
+      "expected_result": "The campaign and all its ticks/assets should be removed from the database and not accessible"
+    }
+  ]
+}

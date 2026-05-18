@@ -1,0 +1,50 @@
+{
+  "id": "TASK-045",
+  "title": "Implement Delete Campaign",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Review",
+  "priority": 5,
+  "description": "Allow campaign owners to permanently delete their campaigns and cascade deletion.",
+  "dependencies": [
+    "TASK-044"
+  ],
+  "trace_to": {
+    "design_nodes": [
+      "LCOMP-002",
+      "LCOMP-005",
+      "API-002"
+    ],
+    "requirements": [
+      "FR-029"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      "backend/app/routers/campaigns.py",
+      "backend/app/services/campaign.py",
+      "frontend/src/components/GlobalCampaignList.tsx",
+      "frontend/src/components/CampaignList.tsx"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-045'",
+    "Add DELETE /campaigns/{id} endpoint and service logic in backend.",
+    "Ensure database cascade rules remove ticks and assets.",
+    "Add Delete button with confirmation in frontend.",
+    "Run 'loom complete TASK-045'"
+  ],
+  "definition_of_done": [
+    "DELETE endpoint works for campaign owners.",
+    "Campaign data is removed from DB.",
+    "Frontend provides delete option.",
+    "Tests pass."
+  ],
+  "tdd_cycle": {
+    "test_file": "backend/tests/test_campaign_api.py",
+    "implementation_file": "backend/app/routers/campaigns.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

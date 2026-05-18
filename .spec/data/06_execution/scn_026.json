@@ -1,0 +1,22 @@
+{
+  "id": "SCN-026",
+  "title": "Verify Retrieve GM Campaigns",
+  "objective": "Validates that the /campaigns endpoint returns only the campaigns owned by the authenticated Game Master.",
+  "type": "Automated",
+  "trace_to": {
+    "requirements": [
+      "FR-025"
+    ]
+  },
+  "steps": [
+    {
+      "step": "Authenticate as a Game Master (GM).",
+      "expected_result": "Authentication successful, token obtained."
+    },
+    {
+      "step": "Send GET request to /campaigns with the auth token.",
+      "expected_result": "Endpoint returns a 200 OK with a list of campaigns belonging only to the authenticated GM."
+    }
+  ],
+  "status": "Active"
+}

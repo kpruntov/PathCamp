@@ -2,10 +2,10 @@
   "id": "UIC-007",
   "name": "Global Campaigns Dashboard",
   "description": "Displays a grid or list of all campaigns across the system. Serves as the starting page.",
-  "traces_to": [
-    "UR-009"
-  ],
-  "layout": "Grid or Data table view. Columns/Cards: ID, Name, GM Username, Party Size, Level, Created At. Includes navigation links to Login/Register or GM Dashboard.",
+  "trace_to": {
+    "user_requirements": ["UR-009"]
+  },
+  "layout_structure": "Grid or Data table view. Columns/Cards: ID, Name, GM Username, Party Size, Level, Created At. Includes navigation links to Login/Register or GM Dashboard.",
   "state_bindings": [
     {
       "state": "all_campaigns",

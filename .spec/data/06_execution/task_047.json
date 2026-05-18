@@ -1,0 +1,30 @@
+{
+  "id": "TASK-047",
+  "title": "Integration Gate - Campaign Security & Deletion",
+  "type": "Process",
+  "routine": "Process",
+  "status": "Review",
+  "priority": 5,
+  "description": "Human verification of the Campaign Security & Deletion epic.",
+  "dependencies": [
+    "TASK-046"
+  ],
+  "trace_to": {
+    "functional_chains": [
+      "FCHAIN-003"
+    ]
+  },
+  "context": {},
+  "execution_steps": [
+    "Run 'loom start TASK-047' to lock active context",
+    "Manually spin up the application stack (frontend and backend)",
+    "Perform end-to-end manual testing for Authorization and Deletion",
+    "Run 'loom complete TASK-047'"
+  ],
+  "definition_of_done": [
+    "Human User manually tests the application to confirm the end-to-end data flow and component integration is functional. No formal SCN sign-off is required at this stage.",
+    "loom validate passes"
+  ],
+  "verification_regime": "Manual",
+  "assigned_role": "Verifier"
+}

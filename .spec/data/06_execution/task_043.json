@@ -3,7 +3,7 @@
   "title": "Feature - Global Campaigns Dashboard",
   "type": "Feature",
   "routine": "Feature",
-  "status": "Pending",
+  "status": "Done",
   "priority": 1,
   "description": "Implement a public global dashboard view listing all campaigns across the system, serving as the starting page.",
   "dependencies": [

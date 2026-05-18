@@ -59,6 +59,18 @@ paths:
       responses:
         '200':
           description: Tick updated
+    delete:
+      summary: Delete a tick
+      operationId: deleteTick
+      parameters:
+        - name: tickId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tick deleted
   /ticks/{tickId}/assets:
     post:
       summary: Create a new asset within a tick

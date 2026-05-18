@@ -3,7 +3,7 @@
   "title": "Data Model - Timeline",
   "type": "Feature",
   "routine": "Feature",
-  "status": "Pending",
+  "status": "Done",
   "priority": 4,
   "description": "Implement DATA-003",
   "dependencies": [

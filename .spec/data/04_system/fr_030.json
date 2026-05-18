@@ -1,0 +1,18 @@
+{
+  "id": "FR-030",
+  "title": "Delete Tick Logic",
+  "description": "The system shall allow the owner of a campaign to delete a specific tick (except Tick 1). The system must then recalculate and cascade the state from the preceding tick to all subsequent ticks.",
+  "priority": "Must-have",
+  "stability": "Stable",
+  "trace_to": {
+    "user_requirements": [
+      "UR-011"
+    ]
+  },
+  "acceptance_criteria": [
+    "A DELETE endpoint is provided for ticks.",
+    "Attempting to delete Tick 1 returns an error.",
+    "Deleting a tick triggers the timeline cascade logic for all later ticks.",
+    "All assets associated specifically with the deleted tick are removed or unlinked."
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "TASK-044",
+  "title": "Implement Authorization and View-Only Mode",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Review",
+  "priority": 5,
+  "description": "Enforce campaign owner authorization for all modifications and implement view-only UI for non-owners.",
+  "dependencies": [
+    "TASK-043"
+  ],
+  "trace_to": {
+    "design_nodes": [
+      "LCOMP-002",
+      "LCOMP-003",
+      "LCOMP-005"
+    ],
+    "requirements": [
+      "FR-027",
+      "FR-028"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      "backend/app/routers/campaigns.py",
+      "backend/app/routers/timeline.py",
+      "frontend/src/components/TimelineView.tsx",
+      "frontend/src/components/CampaignForm.tsx"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-044'",
+    "Add ownership validation in backend for all Campaign and Timeline modification endpoints.",
+    "Update Frontend to conditionally hide 'New Tick', 'Edit', and 'Delete' buttons if user is not the owner.",
+    "Run 'loom complete TASK-044'"
+  ],
+  "definition_of_done": [
+    "Unauthorized requests to edit/create ticks return 403.",
+    "UI correctly hides edit controls for non-owners.",
+    "Tests pass."
+  ],
+  "tdd_cycle": {
+    "test_file": "backend/tests/test_timeline_api.py",
+    "implementation_file": "backend/app/routers/timeline.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

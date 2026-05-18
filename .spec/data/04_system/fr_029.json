@@ -1,0 +1,16 @@
+{
+  "id": "FR-029",
+  "title": "Delete Campaign Logic",
+  "description": "The system shall allow the owner of a campaign to permanently delete it, which cascades and permanently removes all related ticks, scenes, events, and assets.",
+  "priority": "Must-have",
+  "stability": "Stable",
+  "trace_to": {
+    "user_requirements": [
+      "UR-010"
+    ]
+  },
+  "acceptance_criteria": [
+    "A DELETE endpoint is provided for campaigns.",
+    "Database cascades or explicit logic ensure no orphaned ticks or assets remain after a campaign is deleted."
+  ]
+}

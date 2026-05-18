@@ -133,3 +133,4 @@ dist/
 
 # SpecLoom
 .spec/.lock
+graph.db

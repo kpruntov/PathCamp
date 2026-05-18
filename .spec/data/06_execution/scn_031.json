@@ -1,0 +1,25 @@
+{
+  "id": "SCN-031",
+  "title": "Verify Tick Deletion",
+  "type": "Automated",
+  "objective": "Tests that deleting a tick cascades state correctly and prevents deletion of Tick 1.",
+  "trace_to": {
+    "requirements": [
+      "FR-030"
+    ]
+  },
+  "steps": [
+    {
+      "step": "A campaign exists with at least 3 ticks",
+      "expected_result": "Ticks are in the database"
+    },
+    {
+      "step": "The owner deletes Tick 2",
+      "expected_result": "Tick 2 is removed, Tick 3 recalculates state based on Tick 1"
+    },
+    {
+      "step": "The owner attempts to delete Tick 1",
+      "expected_result": "Request returns an error"
+    }
+  ]
+}

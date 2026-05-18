@@ -1,0 +1,19 @@
+{
+  "id": "FR-027",
+  "title": "Campaign Owner Authorization",
+  "description": "The system shall enforce that only the creator (owner) of a campaign has permission to modify its timeline, add/edit/delete ticks, and manage assets within that campaign.",
+  "priority": "Must-have",
+  "stability": "Stable",
+  "trace_to": {
+    "user_requirements": [
+      "UR-001",
+      "UR-002",
+      "UR-010",
+      "UR-011"
+    ]
+  },
+  "acceptance_criteria": [
+    "API endpoints for creating/updating/deleting ticks verify that the current user ID matches the campaign owner ID.",
+    "Unauthorized modification attempts return a 403 Forbidden HTTP status."
+  ]
+}

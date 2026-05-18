@@ -1,0 +1,46 @@
+{
+  "id": "UR-010",
+  "title": "Delete a Campaign",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is logged in",
+    "GM owns the campaign"
+  ],
+  "postconditions": [
+    "The campaign and all its associated ticks, scenes, and events are permanently removed"
+  ],
+  "trigger": "GM clicks 'Delete Campaign'",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM selects the delete option for an existing campaign"
+    },
+    {
+      "step": 2,
+      "action": "System prompts for a confirmation to prevent accidental deletion"
+    },
+    {
+      "step": 3,
+      "action": "GM confirms the deletion"
+    },
+    {
+      "step": 4,
+      "action": "System permanently removes the campaign data and redirects GM to the dashboard"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "2",
+      "condition": "GM cancels the deletion",
+      "action": "System aborts the deletion process and returns to the previous view"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "Only the owner can delete a campaign.",
+    "A confirmation dialog is presented before deletion.",
+    "All cascaded data (ticks, assets) is deleted along with the campaign."
+  ]
+}

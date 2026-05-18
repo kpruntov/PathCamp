@@ -1,0 +1,17 @@
+{
+  "id": "FR-028",
+  "title": "View-Only UI Mode",
+  "description": "The system shall hide all editing UI elements (such as 'New Tick', 'Edit', 'Delete' buttons, and input forms) when a user views a campaign they do not own or are not logged in.",
+  "priority": "Must-have",
+  "stability": "Stable",
+  "trace_to": {
+    "user_requirements": [
+      "UR-006"
+    ]
+  },
+  "acceptance_criteria": [
+    "Users who are not logged in do not see any edit controls.",
+    "Logged-in users who do not own the current campaign do not see any edit controls.",
+    "The UI seamlessly operates in read-only mode for viewers."
+  ]
+}

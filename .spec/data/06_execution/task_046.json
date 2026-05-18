@@ -1,0 +1,50 @@
+{
+  "id": "TASK-046",
+  "title": "Implement Delete Tick",
+  "type": "Feature",
+  "routine": "Feature",
+  "status": "Review",
+  "priority": 5,
+  "description": "Allow campaign owners to delete specific ticks (except Tick 1) and cascade the timeline state forward.",
+  "dependencies": [
+    "TASK-045"
+  ],
+  "trace_to": {
+    "design_nodes": [
+      "LCOMP-003",
+      "LCOMP-005",
+      "API-003"
+    ],
+    "requirements": [
+      "FR-030"
+    ]
+  },
+  "context": {
+    "relevant_files": [
+      "backend/app/routers/timeline.py",
+      "backend/app/services/timeline.py",
+      "frontend/src/components/TimelineView.tsx"
+    ]
+  },
+  "execution_steps": [
+    "Run 'loom start TASK-046'",
+    "Add DELETE /ticks/{id} endpoint in backend.",
+    "Implement state recalculation logic when a tick is deleted.",
+    "Prevent deletion of Tick 1.",
+    "Add Delete button with warning in frontend for ticks.",
+    "Run 'loom complete TASK-046'"
+  ],
+  "definition_of_done": [
+    "DELETE endpoint works for campaign owners on ticks > 1.",
+    "Tick is removed and state cascades forward.",
+    "Frontend provides delete option for ticks.",
+    "Tests pass."
+  ],
+  "tdd_cycle": {
+    "test_file": "backend/tests/test_timeline_api.py",
+    "implementation_file": "backend/app/routers/timeline.py",
+    "verification_command": "pytest"
+  },
+  "verification_regime": "Automated",
+  "assigned_role": "Developer"
+}

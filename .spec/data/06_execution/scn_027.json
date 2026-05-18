@@ -1,0 +1,18 @@
+{
+  "id": "SCN-027",
+  "title": "Verify Retrieve All Campaigns (Public)",
+  "objective": "Validates that the /campaigns/all endpoint returns all system campaigns without requiring authentication.",
+  "type": "Automated",
+  "trace_to": {
+    "requirements": [
+      "FR-026"
+    ]
+  },
+  "steps": [
+    {
+      "step": "Send a GET request to /campaigns/all without an authentication token.",
+      "expected_result": "Endpoint returns a 200 OK with a list of all campaigns in the system."
+    }
+  ],
+  "status": "Active"
+}

@@ -35,6 +35,16 @@
       "func_id": "LF-027",
       "name": "List All Campaigns",
       "traces_to": ["FR-026"]
+    },
+    {
+      "func_id": "LF-028",
+      "name": "Authorize Campaign Modification",
+      "traces_to": ["FR-027"]
+    },
+    {
+      "func_id": "LF-029",
+      "name": "Delete Campaign",
+      "traces_to": ["FR-029"]
     }
   ],
   "logical_ports": [
@@ -102,6 +112,18 @@
       ],
       "output": [
         {"attribute": "campaign_data", "type": "object"}
+      ]
+    },
+    {
+      "interface_id": "LI-028",
+      "name": "DeleteCampaign",
+      "port_id": "LP-002",
+      "direction": "Provided",
+      "input": [
+        {"param": "campaign_id", "type": "string"}
+      ],
+      "output": [
+        {"attribute": "success", "type": "boolean"}
       ]
     }
   ]

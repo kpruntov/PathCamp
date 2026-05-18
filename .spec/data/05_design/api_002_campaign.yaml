@@ -41,6 +41,19 @@ paths:
       responses:
         '200':
           description: A global public list of campaigns
+  /campaigns/{campaignId}:
+    delete:
+      summary: Permanently delete a campaign
+      operationId: deleteCampaign
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Campaign deleted successfully
   /campaigns/{campaignId}/share:
     get:
       summary: Get a read-only share link for a campaign

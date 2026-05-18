@@ -2,11 +2,10 @@
   "id": "UIC-006",
   "name": "GM Campaign List Dashboard",
   "description": "Displays a grid or list of all campaigns owned by the GM.",
-  "traces_to": [
-    "UR-008",
-    "FCHAIN-002"
-  ],
-  "layout": "Grid view with Campaign Cards. 'New Campaign' button in header.",
+  "trace_to": {
+    "user_requirements": ["UR-008"]
+  },
+  "layout_structure": "Grid view with Campaign Cards. 'New Campaign' button in header.",
   "state_bindings": [
     {
       "state": "campaigns",

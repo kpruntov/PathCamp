@@ -60,6 +60,16 @@
       "func_id": "LF-020",
       "name": "Handle Event Overwrite Warnings",
       "traces_to": ["FR-014"]
+    },
+    {
+      "func_id": "LF-030",
+      "name": "Authorize Tick Modification",
+      "traces_to": ["FR-027"]
+    },
+    {
+      "func_id": "LF-031",
+      "name": "Delete Tick",
+      "traces_to": ["FR-030"]
     }
   ],
   "logical_ports": [
@@ -128,6 +138,14 @@
         {"param": "scene_id", "type": "string"},
         {"param": "encounter_data", "type": "object"}
       ],
+      "output": [{"attribute": "success", "type": "boolean"}]
+    },
+    {
+      "interface_id": "LI-029",
+      "name": "DeleteTick",
+      "port_id": "LP-003",
+      "direction": "Provided",
+      "input": [{"param": "tick_id", "type": "string"}],
       "output": [{"attribute": "success", "type": "boolean"}]
     }
   ]

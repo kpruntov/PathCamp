@@ -1,0 +1,25 @@
+{
+  "id": "SCN-028",
+  "title": "Verify Campaign Owner Authorization",
+  "type": "Automated",
+  "objective": "Tests that only the campaign owner can create, edit, or delete ticks and assets.",
+  "trace_to": {
+    "requirements": [
+      "FR-027"
+    ]
+  },
+  "steps": [
+    {
+      "step": "A campaign exists owned by User A",
+      "expected_result": "Campaign is in the database"
+    },
+    {
+      "step": "User B (or an unauthenticated user) attempts to POST/PUT/DELETE to the campaign's tick or asset endpoints",
+      "expected_result": "Request is made"
+    },
+    {
+      "step": "Check response status",
+      "expected_result": "The system should return a 403 Forbidden or 401 Unauthorized status"
+    }
+  ]
+}

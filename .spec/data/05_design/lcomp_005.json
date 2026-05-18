@@ -16,6 +16,11 @@
       "name": "Render all UI Views and Components",
       "description": "This function covers the general responsibility of rendering the UI, which is implicitly required by all user-facing functional requirements.",
       "traces_to": ["NFR-001"]
+    },
+    {
+      "func_id": "LF-032",
+      "name": "Render View-Only UI Mode",
+      "traces_to": ["FR-028"]
     }
   ],
   "logical_ports": [
@@ -49,6 +54,12 @@
     },
     {
       "interface_id": "LI-015", "port_id": "LP-005", "direction": "Required", "name": "Uses GenerateEncounter"
+    },
+    {
+      "interface_id": "LI-028", "port_id": "LP-005", "direction": "Required", "name": "Uses DeleteCampaign"
+    },
+    {
+      "interface_id": "LI-029", "port_id": "LP-005", "direction": "Required", "name": "Uses DeleteTick"
     }
   ]
 }

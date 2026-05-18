@@ -1,8 +1,8 @@
 {
   "id": "TASK-041",
   "title": "Defect - Fix Create Campaign Flow",
-  "type": "Defect",
-  "routine": "Defect Resolution",
+  "type": "Bugfix",
+  "routine": "Manual",
   "status": "Done",
   "priority": 1,
   "description": "Fix Vite proxy for /campaigns and implement navigation to dashboard upon campaign creation.",

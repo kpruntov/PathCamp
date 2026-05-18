@@ -3,7 +3,7 @@
   "title": "API Contract - Timeline",
   "type": "Feature",
   "routine": "Feature",
-  "status": "Pending",
+  "status": "Done",
   "priority": 4,
   "description": "Implement API-003 endpoints",
   "dependencies": [

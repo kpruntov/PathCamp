@@ -21,6 +21,10 @@ export default defineConfig({
       '/campaigns/all': {
         target: 'http://localhost:8000',
         changeOrigin: true,
+      },
+      '/ticks': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
       }
     }
   }

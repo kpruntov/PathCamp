@@ -1,0 +1,21 @@
+{
+  "id": "SCN-029",
+  "title": "Verify View-Only UI Mode",
+  "type": "Manual",
+  "objective": "Tests that non-owners cannot see edit controls.",
+  "trace_to": {
+    "requirements": [
+      "FR-028"
+    ]
+  },
+  "steps": [
+    {
+      "step": "A user is viewing a campaign they do not own (or is not logged in)",
+      "expected_result": "Campaign dashboard and timeline are rendered"
+    },
+    {
+      "step": "Check the UI for edit controls",
+      "expected_result": "The 'New Tick', 'Edit', and 'Delete' buttons should not be present in the DOM"
+    }
+  ]
+}

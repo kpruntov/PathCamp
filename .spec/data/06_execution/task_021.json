@@ -3,7 +3,7 @@
   "title": "Backend Logic - Timeline Service",
   "type": "Feature",
   "routine": "Feature",
-  "status": "Pending",
+  "status": "Done",
   "priority": 4,
   "description": "Implement LCOMP-003 logic",
   "dependencies": [

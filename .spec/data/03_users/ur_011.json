@@ -1,0 +1,53 @@
+{
+  "id": "UR-011",
+  "title": "Delete a Tick",
+  "primary_actor": "UCH-001",
+  "preconditions": [
+    "GM is logged in",
+    "GM owns the campaign",
+    "Campaign has more than one tick"
+  ],
+  "postconditions": [
+    "The selected tick is removed and subsequent timeline states are recalculated"
+  ],
+  "trigger": "GM clicks 'Delete' on a specific tick",
+  "main_scenario": [
+    {
+      "step": 1,
+      "action": "GM selects to delete a specific tick on the timeline"
+    },
+    {
+      "step": 2,
+      "action": "System warns the GM that deleting this tick will alter historical state and impact subsequent ticks"
+    },
+    {
+      "step": 3,
+      "action": "GM confirms the deletion"
+    },
+    {
+      "step": 4,
+      "action": "System deletes the tick, cascades the state from the preceding tick to all subsequent ticks, and refreshes the timeline"
+    }
+  ],
+  "exceptions": [
+    {
+      "step_ref": "2",
+      "condition": "GM cancels the deletion warning",
+      "action": "System aborts deletion and leaves the timeline unchanged"
+    },
+    {
+      "step_ref": "1",
+      "condition": "GM tries to delete the initial Tick 1",
+      "action": "System prevents deletion of Tick 1 and displays an error message"
+    }
+  ],
+  "trace_to": {
+    "stakeholders": ["STK-001"]
+  },
+  "acceptance_criteria": [
+    "A tick can be deleted by the campaign owner.",
+    "Tick 1 cannot be deleted.",
+    "A warning is displayed indicating historical impact.",
+    "State from the prior tick correctly cascades to future ticks after deletion."
+  ]
+}
